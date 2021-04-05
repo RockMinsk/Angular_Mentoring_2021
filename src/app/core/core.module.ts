@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './logo/logo.component';
-
-
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,8 @@ import { LogoComponent } from './logo/logo.component';
     LogoComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   exports: [
     HeaderComponent,
