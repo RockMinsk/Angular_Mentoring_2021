@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
 import { SharedModule } from '../shared/shared.module';
 
 import { CoursesPageComponent } from './courses-page/courses-page.component';
-import { CoursesPageItemComponent } from './courses-page-item/courses-page-item.component';
+import { CoursesPageItemComponent } from './courses-page/courses-page-item/courses-page-item.component';
 import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
 
 
@@ -18,7 +19,8 @@ import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
   imports: [
     CommonModule,
     SharedModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule
   ],
   exports: [
     CoursesPageComponent

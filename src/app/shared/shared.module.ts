@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MenuComponent } from './menu/menu.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     BreadcrumbsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   exports: [
     MenuComponent,
