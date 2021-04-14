@@ -1,4 +1,18 @@
 <div class="item-section">
   <p class="item-title">{{course.title}}</p>
+  <div class="date-time-section">
+    <mat-icon class="clock-icon">query_builder</mat-icon>
+    <p class="date-time-section-text">{{course.duration | minutesToHours}}</p>
+    <mat-icon class="calendar-icon">calendar_today</mat-icon>
+    <p class="date-time-section-text">{{course.creationDate | date: 'MM/dd/yyyy'}}</p>
+  </div>
   <p class="item-description">{{course.description}}</p>
+  <button class="edit-btn">
+    <mat-icon class="edit-btn-icon">edit</mat-icon>
+    Edit
+  </button>
+  <button class="delete-btn">
+    <mat-icon class="delete-btn-icon">delete</mat-icon>
+    Delete
+  </button>
 </div>

@@ -20,6 +20,7 @@
 }
 
 .item-title  {
+  float: left;
 	color: #333333;
 	font-size: 24px;
 	font-family: "SourceSansPro-Semibold";
@@ -27,14 +28,52 @@
 	text-align: left;
 	font-weight: 600;
 	height: 31px;
-	width: 600px;
+	width: 876px;
   margin: 0;
   padding-top: 24px;
   padding-left: 24px;
   padding-bottom: 10px;
 }
 
+.date-time-section {
+  display: flex;
+  float: left;
+  align-items: center;
+  margin-top: 21px;
+}
+
+.clock-icon {
+  font-size: 18px;
+  color: #979797;
+  height: 18px;
+	width: 18px;
+}
+
+.calendar-icon {
+  font-size: 18px;
+  color: #979797;
+  height: 18px;
+	width: 18px;
+  margin-left: 8px;
+}
+
+.date-time-section-text {
+  display: flex;
+	line-height: 18px;
+	letter-spacing: 0;
+	color: #858997;
+	font-size: 14px;
+	font-family: "SourceSansPro-Regular";
+	text-transform: none;
+	text-align: left;
+	height: 18px;
+	width: 70px;
+  padding-left: 4px;
+  margin-bottom: 0px;
+}
+
 .item-description {
+  float: left;
 	line-height: 18px;
 	letter-spacing: 0;
 	color: #474A59;
@@ -46,5 +85,84 @@
 	width: 876px;
   margin: 0;
   padding-left: 24px;
-  padding-bottom: 20px;
+}
+
+.edit-btn {
+  display: flex;
+  float: left;
+  align-items: center;
+	border-radius: 3px;
+	background: #009ECC;
+	height: 24px;
+	width: 60px;
+  line-height: 12px;
+	letter-spacing: -0.1px;
+  border: none;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-family: "SourceSansPro-Semibold";
+  font-style: normal;
+	text-transform: none;
+  margin-left: 40px;
+  margin-right: 12px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.edit-btn:focus {
+  outline: 0;
+  box-shadow: none;
+  border-radius: 3px;
+  border: 1px solid #51cbee;
+}
+
+.edit-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  transform: rotate(0.1deg);
+  font-size: 14px;
+  color: white;
+  height: 14px;
+	width: 20px;
+}
+
+.delete-btn {
+  display: flex;
+  float: left;
+  align-items: center;
+	border-radius: 3px;
+	background: #009ECC;
+	height: 24px;
+	width: 72px;
+  line-height: 12px;
+	letter-spacing: -0.1px;
+  border: none;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-family: "SourceSansPro-Semibold";
+  font-style: normal;
+	text-transform: none;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.delete-btn:focus {
+  outline: 0;
+  box-shadow: none;
+  border-radius: 3px;
+  border: 1px solid #51cbee;
+}
+
+.delete-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  transform: rotate(0.1deg);
+  font-size: 14px;
+  color: white;
+  height: 14px;
+	width: 20px;
 }
