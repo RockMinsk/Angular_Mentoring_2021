@@ -1,10 +1,11 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ICourse } from './courses-page-item.model';
 
 @Component({
   selector: 'app-courses-page-item',
   templateUrl: './courses-page-item.component.html',
-  styleUrls: ['./courses-page-item.component.scss']
+  styleUrls: ['./courses-page-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesPageItemComponent implements OnInit {
 
@@ -21,7 +22,8 @@ export class CoursesPageItemComponent implements OnInit {
   @Output()
   deleteCourse: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() {
+  constructor(private ref: ChangeDetectorRef) {
+    this.ref.markForCheck();
    }
 
   ngOnInit(): void {

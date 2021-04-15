@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
 import { SharedModule } from '../shared/shared.module';
@@ -8,10 +9,12 @@ import { SharedModule } from '../shared/shared.module';
 import { CoursesPageComponent } from './courses-page/courses-page.component';
 import { CoursesPageItemComponent } from './courses-page/courses-page-item/courses-page-item.component';
 import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
+import { SearchBarComponent } from './courses-page/search-bar/search-bar.component';
 
 
 @NgModule({
   declarations: [
+    SearchBarComponent,
     CoursesPageComponent,
     CoursesPageItemComponent,
     MinutesToHoursPipe
@@ -19,10 +22,12 @@ import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
   imports: [
     CommonModule,
     SharedModule,
+    FormsModule,
     MatIconModule,
     RouterModule
   ],
   exports: [
+    SearchBarComponent,
     CoursesPageComponent
   ]
 })

@@ -1,8 +1,13 @@
 <div class="item-list-background">
   <app-breadcrumbs></app-breadcrumbs>
-  <app-menu></app-menu>
+  <app-search-bar (searchCriteria)="searchCourse($event)"></app-search-bar>
+  <button (click)="addCourse()" class="add-course-btn">
+    <mat-icon class="add-course-btn-icon">add_circle_outline</mat-icon>
+    Add course
+  </button>
   <app-courses-page-item (deleteCourse)="deleteCourse($event)" *ngFor="let course of courses; trackBy:trackByCourseId" [course]="course"></app-courses-page-item>
-  <div class="load-more-section">
+  <div *ngIf="courses.length > 0" class="load-more-section">
     <a [routerLink]="" (click)="showMore()" class="load-more-text">Load more</a>
   </div>
+  <p *ngIf="courses.length === 0" class="no-items-to-display">Sorry, there are no available video cources</p>
 </div>
