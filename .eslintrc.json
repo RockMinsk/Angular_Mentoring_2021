@@ -23,6 +23,7 @@
       ],
       "rules": {
         "unused-imports/no-unused-imports": "error",
+        "@typescript-eslint/explicit-member-accessibility": "error",
         "@angular-eslint/component-selector": [
           "error",
           {

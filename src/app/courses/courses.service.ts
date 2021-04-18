@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ICourse } from './courses-page/courses-page-item/courses-page-item.model';
+import { ICourse } from './courses-page/cources-page-items-list/courses-page-item/courses-page-item.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
 
-  constructor() { }
+  public constructor() { }
 
-  getList(): ICourse[] {
+  public getList(): ICourse[] {
     return [
       {
         id: 1,

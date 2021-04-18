@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -6,19 +7,18 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, Change
   styleUrls: ['./search-bar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchBarComponent implements OnChanges {
+export class SearchBarComponent implements OnInit {
 
   @Input()
   public value = ``;
 
   @Output()
-  searchCriteria: EventEmitter<string> = new EventEmitter<string>();
+  public searchCriteria: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private ref: ChangeDetectorRef) {
-    this.ref.markForCheck();
-   }
+  public constructor(private logger: LoggerService) { }
 
-  ngOnChanges(): void {
+  public ngOnInit(): void {
+    this.logger.getLifeCycleHookMessage(`OnInit`, `SearchBarComponent`);
   }
 
   public searchCourse() {

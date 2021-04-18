@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { LoggerService } from 'src/app/services/logger.service';
 import { ICourse } from './courses-page-item.model';
 
 @Component({
@@ -20,13 +21,12 @@ export class CoursesPageItemComponent implements OnInit {
   };
 
   @Output()
-  deleteCourse: EventEmitter<number> = new EventEmitter<number>();
+  public deleteCourse: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private ref: ChangeDetectorRef) {
-    this.ref.markForCheck();
-   }
+  public constructor(private logger: LoggerService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageItemComponent`);
   }
 
   public delete(): void {
