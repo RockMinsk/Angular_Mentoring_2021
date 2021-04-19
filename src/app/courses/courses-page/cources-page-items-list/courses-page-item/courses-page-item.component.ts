@@ -32,7 +32,7 @@ OnDestroy {
   }
 
   public ngOnChanges(): void {
-    this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageItemComponent`);
+    this.logger.getLifeCycleHookMessage(`OnChanges`, `CoursesPageItemComponent`);
   }
 
   public ngAfterContentInit(): void {

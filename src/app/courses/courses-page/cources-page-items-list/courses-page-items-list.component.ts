@@ -22,7 +22,7 @@ AfterViewChecked {
   }
 
   public ngOnChanges(): void {
-    this.logger.getLifeCycleHookMessage(`OnInit`, `CourcesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(`OnChanges`, `CourcesPageItemsListComponent`);
   }
 
   public ngAfterContentInit(): void {
