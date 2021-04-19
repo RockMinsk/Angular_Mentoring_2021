@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit,
+  AfterViewChecked, OnDestroy } from '@angular/core';
 import { LoggerService } from 'src/app/services/logger.service';
 import { ICourse } from './courses-page-item/courses-page-item.model';
 
@@ -9,7 +10,8 @@ import { ICourse } from './courses-page-item/courses-page-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CourcesPageItemsListComponent implements OnInit {
+export class CourcesPageItemsListComponent implements OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit, OnDestroy,
+AfterViewChecked {
 
   @Input() public courses: ICourse[] = [];
 
@@ -17,6 +19,30 @@ export class CourcesPageItemsListComponent implements OnInit {
 
   public ngOnInit(): void {
     this.logger.getLifeCycleHookMessage(`OnInit`, `CourcesPageItemsListComponent`);
+  }
+
+  public ngOnChanges(): void {
+    this.logger.getLifeCycleHookMessage(`OnInit`, `CourcesPageItemsListComponent`);
+  }
+
+  public ngAfterContentInit(): void {
+    this.logger.getLifeCycleHookMessage(`AfterContentInit`, `CourcesPageItemsListComponent`);
+  }
+
+  public ngAfterContentChecked(): void {
+    this.logger.getLifeCycleHookMessage(`AfterContentChecked`, `CourcesPageItemsListComponent`);
+  }
+
+  public ngAfterViewInit(): void {
+    this.logger.getLifeCycleHookMessage(`AfterViewInit`, `CourcesPageItemsListComponent`);
+  }
+
+  public ngAfterViewChecked(): void {
+    this.logger.getLifeCycleHookMessage(`AfterViewChecked`, `CourcesPageItemsListComponent`);
+  }
+
+  public ngOnDestroy(): void {
+    this.logger.getLifeCycleHookMessage(`OnDestroy`, `CourcesPageItemsListComponent`);
   }
 
   public trackByCourseId(index: number, course: ICourse): number {
