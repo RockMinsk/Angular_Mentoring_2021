@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public constructor(private logger: LoggerService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.logger.getLifeCycleHookMessage(`OnInit`, `HeaderComponent`);
   }
 
 }
