@@ -22,4 +22,11 @@ describe('CourcesPageItemsListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should log message by click on "Show more" button', () => {
+    const consoleSpy = spyOn(console, 'log');
+    component.showMore();
+
+    expect(consoleSpy).toHaveBeenCalled();
+  });
 });

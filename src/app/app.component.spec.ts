@@ -26,10 +26,24 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('angular-mentoring');
   });
 
-  it('should render title', () => {
+  it('should render header', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-mentoring app is running!');
+    expect(compiled.querySelector('app-header')).toBeDefined();
+  });
+
+  it('should render Courses page', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('app-courses-page')).toBeDefined();
+  });
+
+  it('should render footer', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('app-footer')).toBeDefined();
   });
 });

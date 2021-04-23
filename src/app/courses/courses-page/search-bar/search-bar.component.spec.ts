@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { SearchBarComponent } from './search-bar.component';
 
@@ -22,4 +23,23 @@ describe('MenuComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit searchCourse by click', () => {
+    const spy = spyOn(component, 'searchCourse');
+
+    fixture.debugElement.query(By.css('button.search-btn')).triggerEventHandler('click', {});
+    fixture.detectChanges();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should emit searchCourse by press "Enter" button', () => {
+    const spy = spyOn(component, 'searchCourse');
+
+    fixture.debugElement.query(By.css('input.search-input-content')).triggerEventHandler('keyup.enter', {});
+    fixture.detectChanges();
+
+    expect(spy).toHaveBeenCalled();
+  });
+
 });
