@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ICourse } from './cources-page-items-list/courses-page-item/courses-page-item.model';
+import { ICourse } from './courses-page-items-list/courses-page-item/courses-page-item.model';
 import { CoursesService } from '../courses.service';
 import { LoggerService } from 'src/app/services/logger.service';
 
