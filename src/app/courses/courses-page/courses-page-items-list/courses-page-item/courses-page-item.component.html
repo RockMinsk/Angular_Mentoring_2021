@@ -1,5 +1,8 @@
-<div class="item-section">
-  <p class="item-title">{{course.title}}</p>
+<div class="item-section" [appHighlightBorder]="course.creationDate" [ngClass]="{'item-section-top-rated': course.topRated }" >
+  <div class="item-title">
+    <p>{{course.title}}</p>
+    <mat-icon *ngIf="course.topRated" class="material-icons-outlined rate-star">star</mat-icon>
+  </div>
   <div class="date-time-section">
     <mat-icon class="clock-icon">query_builder</mat-icon>
     <p class="date-time-section-text">{{course.duration | minutesToHours}}</p>

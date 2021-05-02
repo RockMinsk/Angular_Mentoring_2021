@@ -15,6 +15,8 @@ AfterViewChecked {
 
   @Input() public courses: ICourse[] = [];
 
+  public creationDate = '';
+
   public constructor(private logger: LoggerService) { }
 
   public ngOnInit(): void {

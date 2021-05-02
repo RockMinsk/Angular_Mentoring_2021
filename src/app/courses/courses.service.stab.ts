@@ -9,6 +9,7 @@ export class CoursesServiceStab extends CoursesService {
       title: 'TEST TITLE 1',
       creationDate: '2019-10-22',
       duration: 12345,
+      topRated: false,
       description: 'TEST DESCRIPTION 1'
     },
     {
@@ -16,6 +17,7 @@ export class CoursesServiceStab extends CoursesService {
       title: 'TEST TITLE 2',
       creationDate: '2021-10-22',
       duration: 56789,
+      topRated: true,
       description: 'TEST DESCRIPTION 2'
     }
   ];
