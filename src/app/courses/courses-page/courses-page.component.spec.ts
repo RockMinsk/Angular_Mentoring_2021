@@ -71,7 +71,6 @@ describe('CoursesPageComponent', () => {
   });
 
   it('should display correct title and description', () => {
-    // component.ngOnInit();
     const title = rootElement.queryAll(By.css('app-courses-page-item'))[0].query(By.css('p.item-title')).nativeElement;
     expect(title.textContent).toBe('TEST TITLE 1');
     const description = rootElement.queryAll(By.css('app-courses-page-item'))[0].query(By.css('p.item-description')).nativeElement;

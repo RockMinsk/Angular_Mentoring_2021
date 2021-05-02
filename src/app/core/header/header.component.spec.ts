@@ -15,7 +15,6 @@ describe('HeaderComponent', () => {
         LogoComponent
       ],
       imports: [
-        // CommonModule,
         MatIconModule
       ],
     })
