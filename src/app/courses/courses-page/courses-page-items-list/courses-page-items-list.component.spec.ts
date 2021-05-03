@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MinutesToHoursPipe } from 'src/app/pipes/minutes-to-hours.pipe';
+import { OrderByDatePipe } from 'src/app/pipes/order-by-date.pipe';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CoursesService } from '../../courses.service';
@@ -32,7 +33,8 @@ describe('CoursesPageItemsListComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
-        MinutesToHoursPipe
+        MinutesToHoursPipe,
+        OrderByDatePipe
       ],
       imports: [
         CommonModule,

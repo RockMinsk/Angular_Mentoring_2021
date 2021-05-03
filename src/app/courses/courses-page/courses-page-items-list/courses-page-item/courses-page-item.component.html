@@ -5,9 +5,9 @@
   </div>
   <div class="date-time-section">
     <mat-icon class="clock-icon">query_builder</mat-icon>
-    <p class="date-time-section-text">{{course.duration | minutesToHours}}</p>
+    <p class="date-time-section-text duration">{{course.duration | minutesToHours}}</p>
     <mat-icon class="calendar-icon">calendar_today</mat-icon>
-    <p class="date-time-section-text">{{course.creationDate | date: 'MM/dd/yyyy'}}</p>
+    <p class="date-time-section-text creation-date">{{course.creationDate | date: 'MM/dd/yyyy'}}</p>
   </div>
   <p class="item-description">{{course.description}}</p>
   <button class="edit-btn">

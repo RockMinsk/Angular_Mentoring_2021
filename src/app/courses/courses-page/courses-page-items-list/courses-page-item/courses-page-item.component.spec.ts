@@ -11,11 +11,13 @@ import { CoursesServiceStab } from 'src/app/courses/courses.service.stab';
 
 import { CoursesPageItemComponent } from './courses-page-item.component';
 import { MinutesToHoursPipe } from '../../../../pipes/minutes-to-hours.pipe';
+import { OrderByDatePipe } from '../../../../pipes/order-by-date.pipe';
 import { SearchBarComponent } from '../../search-bar/search-bar.component';
 import { CoursesPageComponent } from '../../courses-page.component';
 import { CoursesPageItemsListComponent } from '../courses-page-items-list.component';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HighlightBorderDirective } from 'src/app/directives/highlight-border.directive';
 
 describe('CoursesPageItemComponent', () => {
   let component: CoursesPageItemComponent;
@@ -32,7 +34,9 @@ describe('CoursesPageItemComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
-        MinutesToHoursPipe
+        MinutesToHoursPipe,
+        OrderByDatePipe,
+        HighlightBorderDirective
       ],
       imports: [
         CommonModule,

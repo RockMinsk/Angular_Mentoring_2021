@@ -6,13 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MinutesToHoursPipe } from 'src/app/pipes/minutes-to-hours.pipe';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoursesPageItemComponent } from '../courses-page-items-list/courses-page-item/courses-page-item.component';
 import { CoursesPageItemsListComponent } from '../courses-page-items-list/courses-page-items-list.component';
 import { CoursesPageComponent } from '../courses-page.component';
-
 import { SearchBarComponent } from './search-bar.component';
+import { MinutesToHoursPipe } from 'src/app/pipes/minutes-to-hours.pipe';
+import { OrderByDatePipe } from 'src/app/pipes/order-by-date.pipe';
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
@@ -26,7 +27,8 @@ describe('SearchBarComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
-        MinutesToHoursPipe
+        MinutesToHoursPipe,
+        OrderByDatePipe
       ],
       imports: [
         CommonModule,
