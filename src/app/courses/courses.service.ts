@@ -43,4 +43,34 @@ export class CoursesService {
   public getList(): ICourse[] {
     return this.courses;
   }
+
+  public createItem(items: ICourse[], newItem: ICourse): ICourse[] {
+    return items.concat([newItem]);
+  }
+
+  public gitItemById(items: ICourse[], id: number): ICourse | undefined {
+    return items.find(item => item.id === id);
+  }
+
+  public updateItem(items: ICourse[], updatedItem: ICourse): ICourse {
+    const itemIndex: number = items.findIndex(item => item.id === updatedItem.id);
+    return items[itemIndex] = updatedItem;
+  }
+
+  public removeItem(items: ICourse[], id: number): ICourse[] {
+    return items.filter((item: ICourse) => item.id !== id);
+  }
+
+  public searchItem(data: string): ICourse[] {
+    let items: ICourse[] = this.getList();
+    if (data) {
+      return items = items.filter((item: ICourse) => {
+        console.log(`${item.title.toLowerCase()}`);
+        const courseTitle: string = item.title.toLowerCase();
+        return courseTitle.includes(data.toLowerCase());
+      });
+    } else {
+      return items;
+    }
+  }
 }

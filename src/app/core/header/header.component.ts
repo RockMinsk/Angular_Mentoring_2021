@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
 import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
@@ -8,10 +9,17 @@ import { LoggerService } from 'src/app/services/logger.service';
 })
 export class HeaderComponent implements OnInit {
 
-  public constructor(private logger: LoggerService) { }
+  @Output()
+  public logoutCriteria: EventEmitter<string> = new EventEmitter<string>();
+
+  public constructor(private authService: AuthService, private logger: LoggerService) { }
 
   public ngOnInit(): void {
     this.logger.getLifeCycleHookMessage(`OnInit`, `HeaderComponent`);
+  }
+
+  public logout() {
+    return this.authService.logout();
   }
 
 }
