@@ -59,8 +59,6 @@ export class AuthService {
         this.users[itemIndex].isAutenticated = true;
         localStorage.setItem('currentUser', JSON.stringify(this.users[itemIndex]));
         this.router.navigate(['/courses']);
-        // TODO: clarify how to detect changes for isAuthenticated method after login and redirection to Courses page
-        window.location.reload();
         console.log(`User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged in successfully`);
       } else {
         console.log('Invalid password');
@@ -81,8 +79,6 @@ export class AuthService {
         console.log(`User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged out successfully`);
       }
       this.router.navigate(['/login']);
-      // TODO: clarify how to detect changes for isAuthenticated method after logout and redirection to Login page
-      window.location.reload();
     } catch (err) {
       console.log(err);
     }

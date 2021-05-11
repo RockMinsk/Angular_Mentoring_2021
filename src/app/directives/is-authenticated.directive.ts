@@ -1,10 +1,10 @@
-import { Directive, OnInit, OnChanges, TemplateRef, ViewContainerRef, Input } from '@angular/core';
+import { Directive, OnInit, DoCheck, TemplateRef, ViewContainerRef, Input } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
 @Directive({
   selector: '[appIsAuthenticated]'
 })
-export class IsAuthenticatedDirective implements OnInit, OnChanges {
+export class IsAuthenticatedDirective implements OnInit, DoCheck {
 
   @Input()
   public isAuthenticated = false;
@@ -33,7 +33,7 @@ export class IsAuthenticatedDirective implements OnInit, OnChanges {
     this.configureView();
   }
 
-  public ngOnChanges(){
+  public ngDoCheck(){
     this.configureView();
   }
 
