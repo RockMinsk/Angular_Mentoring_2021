@@ -1,13 +1,15 @@
 <header>
   <div class="header-bg center">
     <app-logo></app-logo>
-    <div class="user-login-section">
-      <mat-icon class="user-login-icon" [inline]="true">person</mat-icon>
+    <div *appIsAuthenticated class="user-info">
+      <div class="user-login-section">
+        <mat-icon class="user-login-icon" [inline]="true">person</mat-icon>
+      </div>
+      <a [routerLink]="" class="user-login-text">User login</a>
+      <div class="logout-section">
+          <mat-icon class="logout-icon" style="transform: rotate(180deg)" [inline]="true">logout</mat-icon>
+      </div>
+      <a [routerLink]="" class="logout-text" (click)="logout()">Log out</a>
     </div>
-    <a [routerLink]="" class="user-login-text">User login</a>
-    <div class="logout-section">
-        <mat-icon class="logout-icon" style="transform: rotate(180deg)" [inline]="true">logout</mat-icon>
-    </div>
-    <a [routerLink]="" class="logout-text" (click)="logout()">Log out</a>
   </div>
 </header>

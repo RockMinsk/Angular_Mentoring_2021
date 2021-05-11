@@ -56,7 +56,7 @@ export class LoginPageComponent implements OnInit {
 
     if (this.authService.isAutenticated()) {
       await this.router.navigate([this.returnUrl]);
-      console.log(`User already logged in`);
+      console.log(`User ${this.authService.getCurrentUserInfo()} already logged in`);
     }
   }
 

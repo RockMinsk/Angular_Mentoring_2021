@@ -65,7 +65,6 @@ export class CoursesService {
     let items: ICourse[] = this.getList();
     if (data) {
       return items = items.filter((item: ICourse) => {
-        console.log(`${item.title.toLowerCase()}`);
         const courseTitle: string = item.title.toLowerCase();
         return courseTitle.includes(data.toLowerCase());
       });

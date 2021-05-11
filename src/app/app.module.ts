@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { CoursesModule } from './courses/courses.module';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { CoursesModule } from './courses/courses.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    SharedModule,
     CoursesModule,
     AuthModule,
     BrowserAnimationsModule,

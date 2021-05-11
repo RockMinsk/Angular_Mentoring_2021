@@ -4,8 +4,6 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
-import { SharedModule } from '../shared/shared.module';
-
 import { CoursesPageComponent } from './courses-page/courses-page.component';
 import { CoursesPageItemComponent } from './courses-page/courses-page-items-list/courses-page-item/courses-page-item.component';
 import { SearchBarComponent } from './courses-page/search-bar/search-bar.component';
@@ -27,7 +25,6 @@ import { OrderByDatePipe } from '../pipes/order-by-date.pipe';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     FormsModule,
     MatIconModule,
     RouterModule

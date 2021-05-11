@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 
-import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
-describe('AuthService', () => {
-  let service: AuthService;
+describe('AuthGuard', () => {
+  let guard: AuthGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -12,10 +12,10 @@ describe('AuthService', () => {
         RouterModule.forRoot([]),
       ]
     });
-    service = TestBed.inject(AuthService);
+    guard = TestBed.inject(AuthGuard);
   });
 
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(guard).toBeTruthy();
   });
 });

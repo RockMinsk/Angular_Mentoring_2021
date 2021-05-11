@@ -43,7 +43,7 @@ export class AuthService {
     return this.users;
   }
 
-  public getCurrentAuthorizedUser(): IUser | null {
+  public getCurrentAuthenticatedUser(): IUser | null {
     const currentUser: string | null = localStorage.getItem('currentUser');
     if (currentUser) {
       return JSON.parse(currentUser);
@@ -54,12 +54,13 @@ export class AuthService {
 
   public login(email: string, password: string): boolean | void {
     const itemIndex: number = this.users.findIndex(item => item.email === email);
-    console.log(itemIndex);
     if (itemIndex >= 0) {
       if (this.users[itemIndex].password === password) {
         this.users[itemIndex].isAutenticated = true;
         localStorage.setItem('currentUser', JSON.stringify(this.users[itemIndex]));
         this.router.navigate(['/courses']);
+        // TODO: clarify how to detect changes for isAuthenticated method after login and redirection to Courses page
+        window.location.reload();
         console.log(`User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged in successfully`);
       } else {
         console.log('Invalid password');
@@ -67,12 +68,11 @@ export class AuthService {
     } else {
       console.log('Invalid login');
     }
-    console.log(this.getCurrentAuthorizedUser());
   }
 
   public logout(): void {
     try {
-      const currentUser: IUser | null = this.getCurrentAuthorizedUser();
+      const currentUser: IUser | null = this.getCurrentAuthenticatedUser();
       let itemIndex = -1;
       if (currentUser) {
         itemIndex = this.getUserIndexById(currentUser.id);
@@ -81,6 +81,8 @@ export class AuthService {
         console.log(`User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged out successfully`);
       }
       this.router.navigate(['/login']);
+      // TODO: clarify how to detect changes for isAuthenticated method after logout and redirection to Login page
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -91,12 +93,20 @@ export class AuthService {
   }
 
   public isAutenticated(): boolean {
-    const currentUser: IUser | null = this.getCurrentAuthorizedUser();
+    const currentUser: IUser | null = this.getCurrentAuthenticatedUser();
     return currentUser ? currentUser.isAutenticated : false;
   }
 
-  public getUserInfo(id: number): IUser {
-    const itemIndex: number = this.getUserIndexById(id);
-    return this.users[itemIndex];
+  public getCurrentUserInfo(): string | void {
+    try {
+      const currentUser: IUser | null = this.getCurrentAuthenticatedUser();
+      if (currentUser) {
+        return `${currentUser.firstName} ${currentUser.lastName}`;
+      } else {
+        return console.log(`No logged user`);
+      }
+    } catch (err) {
+      return console.log(err);
+    }
   }
 }
