@@ -12,9 +12,12 @@ export class HeaderComponent implements OnInit {
   @Output()
   public logoutCriteria: EventEmitter<string> = new EventEmitter<string>();
 
+  public userName: string | void = ``;
+
   public constructor(private authService: AuthService, private logger: LoggerService) { }
 
   public ngOnInit(): void {
+    this.userName = this.authService.getCurrentUserInfo();
     this.logger.getLifeCycleHookMessage(`OnInit`, `HeaderComponent`);
   }
 
