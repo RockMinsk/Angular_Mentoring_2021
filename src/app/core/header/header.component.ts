@@ -1,38 +1,16 @@
-import { Component, OnInit, Output, EventEmitter, Input, ChangeDetectionStrategy, ChangeDetectorRef, DoCheck } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
+import { Component, OnInit } from '@angular/core';
 import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, DoCheck {
+export class HeaderComponent implements OnInit {
 
-  @Input()
-  public userName: string | void = ``;
-
-  @Output()
-  public logoutCriteria: EventEmitter<string> = new EventEmitter<string>();
-
-  public constructor(
-    private authService: AuthService,
-    private logger: LoggerService,
-    private ref: ChangeDetectorRef) { }
+  public constructor(private logger: LoggerService) { }
 
   public ngOnInit(): void {
     this.logger.getLifeCycleHookMessage(`OnInit`, `HeaderComponent`);
   }
-
-  public ngDoCheck(): void {
-    this.userName = this.authService.getCurrentUserInfo();
-    this.ref.detectChanges();
-    this.logger.getLifeCycleHookMessage(`DoCheck`, `HeaderComponent`);
-  }
-
-  public logout() {
-    return this.authService.logout();
-  }
-
 }

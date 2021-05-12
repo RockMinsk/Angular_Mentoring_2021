@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './header/logo/logo.component';
+import { UserInfoComponent } from './header/user-info/user-info.component';
 import { IsAuthenticatedDirective } from '../directives/is-authenticated.directive';
 
 
@@ -14,6 +15,7 @@ import { IsAuthenticatedDirective } from '../directives/is-authenticated.directi
     HeaderComponent,
     FooterComponent,
     LogoComponent,
+    UserInfoComponent,
     IsAuthenticatedDirective
   ],
   imports: [
