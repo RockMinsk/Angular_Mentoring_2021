@@ -1,4 +1,4 @@
-import { Directive, OnInit, DoCheck, TemplateRef, ViewContainerRef, Input } from '@angular/core';
+import { Directive, OnInit, DoCheck, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 
 @Directive({
@@ -6,8 +6,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class IsAuthenticatedDirective implements OnInit, DoCheck {
 
-  @Input()
-  public isAuthenticated = false;
+  private isAuthenticated = false;
 
   private hasView = false;
 
