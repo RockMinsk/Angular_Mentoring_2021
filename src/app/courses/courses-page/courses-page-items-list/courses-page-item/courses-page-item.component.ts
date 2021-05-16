@@ -19,6 +19,7 @@ OnDestroy {
     title: 'dummy',
     creationDate: 'dummy',
     duration: 0,
+    topRated: false,
     description: 'dummy'
   };
 

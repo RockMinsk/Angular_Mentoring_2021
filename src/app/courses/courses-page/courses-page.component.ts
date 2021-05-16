@@ -17,6 +17,7 @@ export class CoursesPageComponent implements OnInit {
     title: 'dummy',
     creationDate: 'dummy',
     duration: 0,
+    topRated: false,
     description: 'dummy'
   };
 
@@ -28,7 +29,7 @@ export class CoursesPageComponent implements OnInit {
   }
 
   public addCourse(): void {
-    // this.courses.push({...this.newCourse});
+    // this.courses = this.courses.concat([this.newCourse]);
     console.log(`Click on "Add course" button`);
   }
 

@@ -12,9 +12,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CoursesPageItemsListComponent } from './courses-page-items-list/courses-page-items-list.component';
 import { CoursesPageItemComponent } from './courses-page-items-list/courses-page-item/courses-page-item.component';
 import { MinutesToHoursPipe } from 'src/app/pipes/minutes-to-hours.pipe';
+import { OrderByDatePipe } from 'src/app/pipes/order-by-date.pipe';
 import { CoursesServiceStab } from '../courses.service.stab';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HighlightBorderDirective } from 'src/app/directives/highlight-border.directive';
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
@@ -31,7 +33,9 @@ describe('CoursesPageComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
-        MinutesToHoursPipe
+        MinutesToHoursPipe,
+        OrderByDatePipe,
+        HighlightBorderDirective
       ],
       imports: [
         CommonModule,
@@ -71,10 +75,25 @@ describe('CoursesPageComponent', () => {
   });
 
   it('should display correct title and description', () => {
-    const title = rootElement.queryAll(By.css('app-courses-page-item'))[0].query(By.css('p.item-title')).nativeElement;
-    expect(title.textContent).toBe('TEST TITLE 1');
+    fixture.detectChanges();
+    const title = rootElement.queryAll(By.css('app-courses-page-item'))[0].query(By.css('div.item-title>p')).nativeElement;
+    expect(title.textContent).toBe('TEST TITLE 2');
     const description = rootElement.queryAll(By.css('app-courses-page-item'))[0].query(By.css('p.item-description')).nativeElement;
-    expect(description.textContent).toBe('TEST DESCRIPTION 1');
+    expect(description.textContent).toBe('TEST DESCRIPTION 2');
+  });
+
+  it('should display courses in correct order by date creation (desc)', () => {
+    fixture.detectChanges();
+    const firstDate = rootElement.queryAll(By.css('app-courses-page-item'))[0].query(By.css('p.creation-date')).nativeElement;
+    expect(firstDate.textContent).toBe('10/22/2021');
+    const secondDate = rootElement.queryAll(By.css('app-courses-page-item'))[1].query(By.css('p.creation-date')).nativeElement;
+    expect(secondDate.textContent).toBe('10/22/2019');
+  });
+
+  it('should have blue border if creation date is in future', () => {
+    const course: HTMLElement = rootElement.queryAll(By.css('div.item-section'))[0].nativeElement;
+    const border = course.style.boxShadow;
+    expect(border).toContain('rgba(0, 191, 255, 0.5)');
   });
 
   it('should log message by click on "Add course" button', () => {

@@ -8,9 +8,11 @@ import { SharedModule } from '../shared/shared.module';
 
 import { CoursesPageComponent } from './courses-page/courses-page.component';
 import { CoursesPageItemComponent } from './courses-page/courses-page-items-list/courses-page-item/courses-page-item.component';
-import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
 import { SearchBarComponent } from './courses-page/search-bar/search-bar.component';
 import { CoursesPageItemsListComponent } from './courses-page/courses-page-items-list/courses-page-items-list.component';
+import { HighlightBorderDirective } from '../directives/highlight-border.directive';
+import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
+import { OrderByDatePipe } from '../pipes/order-by-date.pipe';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { CoursesPageItemsListComponent } from './courses-page/courses-page-items
     CoursesPageComponent,
     CoursesPageItemsListComponent,
     CoursesPageItemComponent,
-    MinutesToHoursPipe
+    MinutesToHoursPipe,
+    OrderByDatePipe,
+    HighlightBorderDirective
   ],
   imports: [
     CommonModule,
