@@ -13,4 +13,8 @@ describe('CoursesService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should return Object', () => {
+    expect(service.getList()).toBeInstanceOf(Object);
+  });
 });

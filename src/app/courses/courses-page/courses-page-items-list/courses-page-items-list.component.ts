@@ -10,7 +10,7 @@ import { ICourse } from './courses-page-item/courses-page-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CourcesPageItemsListComponent implements OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit, OnDestroy,
+export class CoursesPageItemsListComponent implements OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit, OnDestroy,
 AfterViewChecked {
 
   @Input() public courses: ICourse[] = [];
@@ -18,31 +18,31 @@ AfterViewChecked {
   public constructor(private logger: LoggerService) { }
 
   public ngOnInit(): void {
-    this.logger.getLifeCycleHookMessage(`OnInit`, `CourcesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageItemsListComponent`);
   }
 
   public ngOnChanges(): void {
-    this.logger.getLifeCycleHookMessage(`OnChanges`, `CourcesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(`OnChanges`, `CoursesPageItemsListComponent`);
   }
 
   public ngAfterContentInit(): void {
-    this.logger.getLifeCycleHookMessage(`AfterContentInit`, `CourcesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(`AfterContentInit`, `CoursesPageItemsListComponent`);
   }
 
   public ngAfterContentChecked(): void {
-    this.logger.getLifeCycleHookMessage(`AfterContentChecked`, `CourcesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(`AfterContentChecked`, `CoursesPageItemsListComponent`);
   }
 
   public ngAfterViewInit(): void {
-    this.logger.getLifeCycleHookMessage(`AfterViewInit`, `CourcesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(`AfterViewInit`, `CoursesPageItemsListComponent`);
   }
 
   public ngAfterViewChecked(): void {
-    this.logger.getLifeCycleHookMessage(`AfterViewChecked`, `CourcesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(`AfterViewChecked`, `CoursesPageItemsListComponent`);
   }
 
   public ngOnDestroy(): void {
-    this.logger.getLifeCycleHookMessage(`OnDestroy`, `CourcesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(`OnDestroy`, `CoursesPageItemsListComponent`);
   }
 
   public trackByCourseId(index: number, course: ICourse): number {

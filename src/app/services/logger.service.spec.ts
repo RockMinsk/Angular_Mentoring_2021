@@ -13,4 +13,11 @@ describe('LoggerServiceService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should log message', () => {
+    const consoleSpy = spyOn(console, 'log');
+    service.getLifeCycleHookMessage('OnChanges', 'TEST');
+
+    expect(consoleSpy).toHaveBeenCalled();
+  });
 });
