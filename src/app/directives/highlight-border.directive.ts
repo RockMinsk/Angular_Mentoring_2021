@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, Input } from '@angular/core';
+import { Directive, ElementRef, OnInit, Input, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appHighlightBorder]'
@@ -7,7 +7,7 @@ export class HighlightBorderDirective implements OnInit {
 
   @Input('appHighlightBorder') public itemCreationDate = '';
 
-  public constructor(private element: ElementRef) {}
+  public constructor(private element: ElementRef, private renderer: Renderer2) {}
 
   public ngOnInit(): void {
     this.highlight(this.itemCreationDate);
@@ -21,9 +21,11 @@ export class HighlightBorderDirective implements OnInit {
 
     switch(true) {
       case creationDate < currentDate && creationDate >= currentDateMinusTwoWeeks:
-        return this.element.nativeElement.style.boxShadow = '0 1px 2px 0 rgba(127,255,0,0.50), 0 2px 10px 0 rgba(127,255,0,0.50)';
+        return this.renderer.setStyle(this.element.nativeElement, 'box-shadow',
+          '0 1px 2px 0 rgba(127,255,0,0.50), 0 2px 10px 0 rgba(127,255,0,0.50)');
       case creationDate > currentDate:
-        return this.element.nativeElement.style.boxShadow = '0 1px 2px 0 rgba(0,191,255,0.50), 0 2px 10px 0 rgba(0,191,255,0.50)';
+        return this.renderer.setStyle(this.element.nativeElement, 'box-shadow',
+          '0 1px 2px 0 rgba(0,191,255,0.50), 0 2px 10px 0 rgba(0,191,255,0.50)');
       default:
         return true;
     }

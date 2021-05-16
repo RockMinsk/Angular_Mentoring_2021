@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit,
   AfterViewChecked, OnDestroy } from '@angular/core';
+
 import { LoggerService } from 'src/app/services/logger.service';
+import { CoursesService } from '../../courses.service';
 import { ICourse } from './courses-page-item/courses-page-item.model';
 
 @Component({
@@ -17,7 +19,7 @@ AfterViewChecked {
 
   public creationDate = '';
 
-  public constructor(private logger: LoggerService) { }
+  public constructor(private coursesService: CoursesService, private logger: LoggerService) { }
 
   public ngOnInit(): void {
     this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageItemsListComponent`);
@@ -52,8 +54,10 @@ AfterViewChecked {
   }
 
   public deleteCourse(id: number): void {
-    this.courses = this.courses.filter((course: ICourse) => course.id !== id);
-    console.log(`Video course with id=${id} is deleted`);
+    if (confirm('Do you really want to delete this course?')) {
+      this.courses = this.coursesService.removeItem(this.courses, id);
+      console.log(`Video course with id=${id} is deleted`);
+    }
   }
 
   public showMore(): void {

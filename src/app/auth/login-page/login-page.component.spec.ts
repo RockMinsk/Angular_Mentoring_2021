@@ -1,22 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { HeaderComponent } from './header.component';
-import { LogoComponent } from './logo/logo.component';
+import { LoginPageComponent } from './login-page.component';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('LoginPageComponent', () => {
+  let component: LoginPageComponent;
+  let fixture: ComponentFixture<LoginPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        HeaderComponent,
-        LogoComponent
-      ],
+      declarations: [ LoginPageComponent ],
       imports: [
-        MatIconModule,
+        FormsModule,
+        ReactiveFormsModule,
         RouterModule.forRoot([])
       ]
     })
@@ -24,7 +21,7 @@ describe('HeaderComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(LoginPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

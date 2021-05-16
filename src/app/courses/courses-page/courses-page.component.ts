@@ -33,14 +33,8 @@ export class CoursesPageComponent implements OnInit {
     console.log(`Click on "Add course" button`);
   }
 
-  public searchCourse(data: string): void {
-    this.courses = this.coursesService.getList();
-    if (data) {
-      this.courses = this.courses.filter((course: ICourse) => {
-        const courseTitle: string = course.title.toLowerCase();
-        return courseTitle.includes(data.toLowerCase());
-      });
-    }
+  public searchCourse(data: string): ICourse[] {
+    return this.courses = this.coursesService.searchItem(data);
   }
 
 }

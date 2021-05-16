@@ -13,5 +13,4 @@ export class HeaderComponent implements OnInit {
   public ngOnInit(): void {
     this.logger.getLifeCycleHookMessage(`OnInit`, `HeaderComponent`);
   }
-
 }
