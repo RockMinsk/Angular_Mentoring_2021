@@ -20,11 +20,15 @@ OnDestroy {
     creationDate: 'dummy',
     duration: 0,
     topRated: false,
-    description: 'dummy'
+    description: 'dummy',
+    authors: 'dummy'
   };
 
   @Output()
   public deleteCourse: EventEmitter<number> = new EventEmitter<number>();
+
+  // @Output()
+  // public addCourseEvent: EventEmitter<ICourse> = new EventEmitter<ICourse>();
 
   public constructor(private logger: LoggerService) { }
 

@@ -14,6 +14,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CoursesService } from '../../courses.service';
 import { CoursesServiceStab } from '../../courses.service.stab';
 import { CoursesPageComponent } from '../courses-page.component';
+import { AddCoursePageComponent } from '../../courses-actions/add-course-page/add-course-page.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { CoursesPageItemComponent } from './courses-page-item/courses-page-item.component';
 import { CoursesPageItemsListComponent } from './courses-page-items-list.component';
@@ -33,6 +34,7 @@ describe('CoursesPageItemsListComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
+        AddCoursePageComponent,
         MinutesToHoursPipe,
         OrderByDatePipe
       ],

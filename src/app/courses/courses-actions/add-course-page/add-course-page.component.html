@@ -1,0 +1,50 @@
+<div class="add-course-page">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="add-course-form">
+        <div class="add-course-title">
+          <p>New course</p>
+        </div>
+        <div class="add-course-input-title-box">
+          <p class="add-course-input-title">Title:</p>
+          <p class="required">*required</p>
+        </div>
+        <div class="add-course-input">
+          <input matInput type="text" class="add-course-input-content" formControlName="title" required placeholder="Enter title">
+        </div>
+        <div class="add-course-input-title-box">
+          <p class="add-course-input-title">Description:</p>
+          <p class="required">*required</p>
+        </div>
+        <div class="add-course-input description-field">
+          <textarea matInput type="text" class="add-course-input-content description-field" formControlName="description" required placeholder="Enter description"></textarea>
+        </div>
+        <div class="add-course-input-title-box numeric-field">
+          <p class="add-course-input-title">Duration:</p>
+          <p class="required">*required</p>
+        </div>
+        <div class="add-course-input">
+          <!-- TODO: clarify what use instead of ngModel for 2-way binding because using ngModel input property and ngModelChange event with reactive form directives has been deprecated -->
+          <input matInput type="text" class="add-course-input-content numeric-field" formControlName="duration" [(ngModel)]="newCourse.duration" required placeholder="minutes">
+          <span *ngIf="newCourse.duration && newCourse.duration > 0" class="duration">{{ newCourse.duration | minutesToHours }}</span>
+        </div>
+        <div class="add-course-input-title-box numeric-field">
+          <p class="add-course-input-title">Date:</p>
+          <p class="required">*required</p>
+        </div>
+        <div class="add-course-input numeric-field">
+          <input matInput type="date" class="add-course-input-content numeric-field date-placeholder" formControlName="creationDate" required placeholder="MM/DD/YYYY">
+        </div>
+        <div class="add-course-input-title-box authors-field">
+          <p class="add-course-input-title">Authors:</p>
+          <p class="required">*required</p>
+        </div>
+        <div class="add-course-input numeric-field">
+          <input matInput type="text" class="add-course-input-content authors-field" formControlName="authors" required placeholder="Enter authors">
+        </div>
+        <div class="add-course-bottom-box">
+          <button (click)="onCancel()" class="cancel-btn">Cancel</button>
+          <button class="add-course-btn" type="submit">Save</button>
+        </div>
+      </div>
+    </form>
+</div>

@@ -10,7 +10,8 @@ export class CoursesServiceStab extends CoursesService {
       creationDate: '2019-10-22',
       duration: 12345,
       topRated: false,
-      description: 'TEST DESCRIPTION 1'
+      description: 'TEST DESCRIPTION 1',
+      authors: 'TEST AUTHORS 1'
     },
     {
       id: 56789,
@@ -18,7 +19,8 @@ export class CoursesServiceStab extends CoursesService {
       creationDate: '2021-10-22',
       duration: 56789,
       topRated: true,
-      description: 'TEST DESCRIPTION 2'
+      description: 'TEST DESCRIPTION 2',
+      authors: 'TEST AUTHORS 2'
     }
   ];
 

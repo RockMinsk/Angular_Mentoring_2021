@@ -17,6 +17,7 @@ import { CoursesServiceStab } from '../courses.service.stab';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HighlightBorderDirective } from 'src/app/directives/highlight-border.directive';
+import { AddCoursePageComponent } from '../courses-actions/add-course-page/add-course-page.component';
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;
@@ -33,6 +34,7 @@ describe('CoursesPageComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
+        AddCoursePageComponent,
         MinutesToHoursPipe,
         OrderByDatePipe,
         HighlightBorderDirective
@@ -98,7 +100,7 @@ describe('CoursesPageComponent', () => {
 
   it('should log message by click on "Add course" button', () => {
     const consoleSpy = spyOn(console, 'log');
-    component.addCourse();
+    component.openAddCoursePage();
 
     expect(consoleSpy).toHaveBeenCalled();
   });

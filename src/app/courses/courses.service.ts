@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CONSTANT } from '../shared/constants';
 import { ICourse } from './courses-page/courses-page-items-list/courses-page-item/courses-page-item.model';
 
 @Injectable({
@@ -15,7 +16,8 @@ export class CoursesService {
       topRated: false,
       description: `The course provides you with understanding of how to model your own RESTFull APIs application based on Spring Boot ` +
       `2 Framework, and overviews the six REST design constraints. You'll get a lot of endpoints corresponding to different Richardson ` +
-      `Maturity Models and will be able to validate and call a request via Swagger UI.`
+      `Maturity Models and will be able to validate and call a request via Swagger UI.`,
+      authors: `Matthias Biehl`
     },
     {
       id: 2,
@@ -25,7 +27,8 @@ export class CoursesService {
       topRated: true,
       description: `On this training, we will take a look at custom components in Angular, what they are, how to build components in ` +
       `Angular application and pass data between them. Also, we will check components lifecycle and find out correct component’s ` +
-      `lifecycle event for several common tasks you’ll face during development.`
+      `lifecycle event for several common tasks you’ll face during development.`,
+      authors: `Robert C. Martin`
     },
     {
       id: 3,
@@ -34,31 +37,56 @@ export class CoursesService {
       duration: 385,
       topRated: false,
       description: `This training is about Angular 2 directives and pipes. It covers pipes purpose, build-in pipes usage and custom ` +
-      `pipes creation. Participants will know about built-in directives and how to write custom directives.`
+      `pipes creation. Participants will know about built-in directives and how to write custom directives.`,
+      authors: `Mike Amundsen`
     },
   ];
 
   public constructor() { }
 
   public getList(): ICourse[] {
-    return this.courses;
+    const courses: string | null = localStorage.getItem(CONSTANT.courses);
+    if (courses) {
+      return JSON.parse(courses);
+    } else {
+      return [];
+    }
   }
 
-  public createItem(items: ICourse[], newItem: ICourse): ICourse[] {
-    return items.concat([newItem]);
+  public saveCoursesToLocalStorage(): void {
+    return localStorage.setItem(CONSTANT.courses, JSON.stringify(this.courses));
   }
 
-  public gitItemById(items: ICourse[], id: number): ICourse | undefined {
+  public getLatestId(): number {
+    const items: ICourse[] = this.getList();
+    const ids: number[] = items.map(key => key.id);
+    return Math.max(...ids);
+  }
+
+  public createItem(newItem: ICourse): ICourse[] {
+    const items: ICourse[] = this.getList();
+    const updatedItems: ICourse[] = [...items, newItem];
+    localStorage.setItem(CONSTANT.courses, JSON.stringify(updatedItems));
+    return updatedItems;
+  }
+
+  public gitItemById(id: number): ICourse | undefined {
+    const items: ICourse[] = this.getList();
     return items.find(item => item.id === id);
   }
 
-  public updateItem(items: ICourse[], updatedItem: ICourse): ICourse {
+  public updateItem(updatedItem: ICourse): void {
+    const items: ICourse[] = this.getList();
     const itemIndex: number = items.findIndex(item => item.id === updatedItem.id);
-    return items[itemIndex] = updatedItem;
+    items[itemIndex] = updatedItem;
+    return localStorage.setItem(CONSTANT.courses, JSON.stringify(items));
   }
 
   public removeItem(items: ICourse[], id: number): ICourse[] {
-    return items.filter((item: ICourse) => item.id !== id);
+    const updatedItems: ICourse[] = items.filter((item: ICourse) => item.id !== id);
+    localStorage.removeItem(CONSTANT.courses);
+    localStorage.setItem(CONSTANT.courses, JSON.stringify(updatedItems));
+    return updatedItems;
   }
 
   public searchItem(data: string): ICourse[] {

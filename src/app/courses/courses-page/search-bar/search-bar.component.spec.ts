@@ -14,6 +14,7 @@ import { CoursesPageComponent } from '../courses-page.component';
 import { SearchBarComponent } from './search-bar.component';
 import { MinutesToHoursPipe } from 'src/app/pipes/minutes-to-hours.pipe';
 import { OrderByDatePipe } from 'src/app/pipes/order-by-date.pipe';
+import { AddCoursePageComponent } from '../../courses-actions/add-course-page/add-course-page.component';
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
@@ -27,6 +28,7 @@ describe('SearchBarComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
+        AddCoursePageComponent,
         MinutesToHoursPipe,
         OrderByDatePipe
       ],

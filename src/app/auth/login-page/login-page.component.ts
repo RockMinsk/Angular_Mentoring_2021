@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CoursesService } from 'src/app/courses/courses.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { AuthService } from '../auth.service';
 import { IUser } from '../user.model';
@@ -12,7 +13,7 @@ import { IUser } from '../user.model';
 })
 export class LoginPageComponent implements OnInit {
   @Input()
-  public email = ``;
+  public username = ``;
 
   @Input()
   public password = ``;
@@ -41,6 +42,7 @@ export class LoginPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
+    private coursesService: CoursesService,
     private logger: LoggerService
   ) {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/courses';
@@ -52,6 +54,7 @@ export class LoginPageComponent implements OnInit {
    }
 
   public async ngOnInit(): Promise<void> {
+    this.coursesService.saveCoursesToLocalStorage();
     this.logger.getLifeCycleHookMessage(`OnInit`, `LoginPageComponent`);
 
     if (this.authService.isAutenticated()) {

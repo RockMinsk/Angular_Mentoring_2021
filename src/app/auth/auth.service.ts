@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { CONSTANT } from '../shared/constants';
 import { IUser } from './user.model';
 
 @Injectable({
@@ -44,7 +45,7 @@ export class AuthService {
   }
 
   public getCurrentAuthenticatedUser(): IUser | null {
-    const currentUser: string | null = localStorage.getItem('currentUser');
+    const currentUser: string | null = localStorage.getItem(CONSTANT.currentUser);
     if (currentUser) {
       return JSON.parse(currentUser);
     } else {
@@ -57,8 +58,8 @@ export class AuthService {
     if (itemIndex >= 0) {
       if (this.users[itemIndex].password === password) {
         this.users[itemIndex].isAutenticated = true;
-        localStorage.setItem('currentUser', JSON.stringify(this.users[itemIndex]));
-        this.router.navigate(['/courses']);
+        localStorage.setItem(CONSTANT.currentUser, JSON.stringify(this.users[itemIndex]));
+        this.router.navigate([CONSTANT.url.courses]);
         console.log(`User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged in successfully`);
       } else {
         console.log('Invalid password');
@@ -75,10 +76,10 @@ export class AuthService {
       if (currentUser) {
         itemIndex = this.getUserIndexById(currentUser.id);
         this.users[itemIndex].isAutenticated = false;
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem(CONSTANT.currentUser);
         console.log(`User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged out successfully`);
       }
-      this.router.navigate(['/login']);
+      this.router.navigate([CONSTANT.url.login]);
     } catch (err) {
       console.log(err);
     }
