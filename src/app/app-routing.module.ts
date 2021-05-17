@@ -9,8 +9,10 @@ import { CoursesActionsComponent } from './courses/courses-actions/courses-actio
 
 const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
-  {path: 'courses/add-course', component: CoursesActionsComponent, canActivate: [ AuthGuard ]},
-  {path: 'courses', component: CoursesPageComponent, canActivate: [ AuthGuard ]},
+  {path: 'courses', data: { breadcrumb: 'Courses' }, children: [
+    {path: '', component: CoursesPageComponent, canActivate: [ AuthGuard ], pathMatch: 'full'},
+    {path: 'add-course', component: CoursesActionsComponent, canActivate: [ AuthGuard ], data: { breadcrumb: 'New Course' }}
+  ]},
   {path: '', redirectTo: 'login', pathMatch: 'full'}
 ];
 

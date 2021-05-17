@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { AddCoursePageComponent } from './add-course-page.component';
 
@@ -8,7 +10,12 @@ describe('AddCoursePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddCoursePageComponent ]
+      declarations: [ AddCoursePageComponent ],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot([])
+      ]
     })
     .compileComponents();
   });

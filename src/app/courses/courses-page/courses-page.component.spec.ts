@@ -98,13 +98,6 @@ describe('CoursesPageComponent', () => {
     expect(border).toContain('rgba(0, 191, 255, 0.5)');
   });
 
-  it('should log message by click on "Add course" button', () => {
-    const consoleSpy = spyOn(console, 'log');
-    component.openAddCoursePage();
-
-    expect(consoleSpy).toHaveBeenCalled();
-  });
-
   describe('searchCourse() tests', () => {
 
     it('no data provided for search', () => {

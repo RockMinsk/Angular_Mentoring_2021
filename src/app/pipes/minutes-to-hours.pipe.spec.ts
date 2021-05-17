@@ -12,7 +12,7 @@ describe('Pipe: MinutesToHoursPipe', () => {
   });
 
   it('providing more than 0 minutes but less than 1 hour', () => {
-    expect(pipe.transform(45)).toBe('0 h 45 min');
+    expect(pipe.transform(45)).toBe('45 min');
   });
 
   it('providing more than 1 hour', () => {

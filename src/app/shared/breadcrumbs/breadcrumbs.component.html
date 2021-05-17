@@ -1,3 +1,10 @@
 <div class="breadcrumbs-section">
-  <p class="breadcrumbs-text">Courses</p>
+  <div class="breadcrumbs-text-box">
+    <div *ngFor="let breadcrumb of breadcrumbs; let last=last">
+      <span class="breadcrumbs-text" [ngClass]="{'breadcrumbs-text-bold': last }" [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
+        {{ breadcrumb.label }}
+      </span>
+      <span *ngIf="!last" class="breadcrumbs-separator">/</span>
+    </div>
+  </div>
 </div>
