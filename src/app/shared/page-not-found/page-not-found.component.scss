@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "SourceSansPro-Semibold";
+  src: url("/assets/fonts/SourceSansPro-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "SourceSansPro-Regular";
+  src: url("/assets/fonts/SourceSansPro-Regular.ttf") format("truetype");
+}
+
+.page-not-found {
+  display:table-cell;
+  vertical-align:middle;
+  text-align:center;
+	height: 994px;
+	width: 1280px;
+  background-color: #f8f8f8;
+}
+
+.page-not-found-title {
+  color: #333333;
+  font-family: "SourceSansPro-Semibold";
+  text-transform: none;
+  font-size: 30px;
+  padding: 20px;
+}
+
+.page-not-found-text {
+  color: #333333;
+  font-family: "SourceSansPro-Regular";
+  text-transform: none;
+  font-size: 20px;
+}
+
+.go-back {
+	color: #5681EE;
+	font-size: 12px;
+	font-family: "SourceSansPro-Regular";
+	text-transform: none;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+

@@ -1,4 +1,4 @@
-<div class="breadcrumbs-section">
+<div *ngIf="breadcrumbs && breadcrumbs.length > 0" class="breadcrumbs-section">
   <div class="breadcrumbs-text-box">
     <div *ngFor="let breadcrumb of breadcrumbs; let last=last">
       <span class="breadcrumbs-text" [ngClass]="{'breadcrumbs-text-bold': last }" [routerLink]="breadcrumb.url" routerLinkActive="router-link-active">
