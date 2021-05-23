@@ -10,7 +10,7 @@
     <p class="date-time-section-text creation-date">{{course.creationDate | date: 'MM/dd/yyyy'}}</p>
   </div>
   <p class="item-description">{{course.description}}</p>
-  <button class="edit-btn">
+  <button (click)="openEditCoursePage(course.id)" class="edit-btn">
     <mat-icon class="edit-btn-icon">edit</mat-icon>
     Edit
   </button>

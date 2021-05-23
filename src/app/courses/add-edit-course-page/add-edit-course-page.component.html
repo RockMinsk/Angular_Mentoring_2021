@@ -2,7 +2,8 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="add-course-form">
         <div class="add-course-title">
-          <p>New course</p>
+          <p *ngIf="isAddMode">New course</p>
+          <p *ngIf="!isAddMode">Edit course</p>
         </div>
         <div class="add-course-input-title-box">
           <p class="add-course-input-title">Title:</p>
@@ -24,8 +25,8 @@
         </div>
         <div class="add-course-input">
           <!-- TODO: clarify what use instead of ngModel for 2-way binding because using ngModel input property and ngModelChange event with reactive form directives has been deprecated -->
-          <input matInput type="text" class="add-course-input-content numeric-field" formControlName="duration" [(ngModel)]="newCourse.duration" required placeholder="minutes">
-          <span *ngIf="newCourse.duration && newCourse.duration > 0" class="duration">{{ newCourse.duration | minutesToHours }}</span>
+          <input matInput type="text" class="add-course-input-content numeric-field" formControlName="duration" [(ngModel)]="course.duration" required placeholder="minutes">
+          <span *ngIf="course.duration && course.duration > 0" class="duration">{{ course.duration | minutesToHours }}</span>
         </div>
         <div class="add-course-input-title-box numeric-field">
           <p class="add-course-input-title">Date:</p>

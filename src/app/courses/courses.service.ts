@@ -70,14 +70,14 @@ export class CoursesService {
     return updatedItems;
   }
 
-  public gitItemById(id: number): ICourse | undefined {
+  public getItemById(id: number): ICourse | undefined {
     const items: ICourse[] = this.getList();
-    return items.find(item => item.id === id);
+    return items.find(item => +item.id === +id);
   }
 
   public updateItem(updatedItem: ICourse): void {
     const items: ICourse[] = this.getList();
-    const itemIndex: number = items.findIndex(item => item.id === updatedItem.id);
+    const itemIndex: number = items.findIndex(item => +item.id === +updatedItem.id);
     items[itemIndex] = updatedItem;
     return localStorage.setItem(CONSTANT.courses, JSON.stringify(items));
   }

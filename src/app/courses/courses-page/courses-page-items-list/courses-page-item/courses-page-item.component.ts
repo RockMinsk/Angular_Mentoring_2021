@@ -1,6 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy, OnChanges, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoggerService } from 'src/app/services/logger.service';
+import { CONSTANT } from 'src/app/shared/constants';
 import { ICourse } from './courses-page-item.model';
 
 @Component({
@@ -30,7 +32,9 @@ OnDestroy {
   // @Output()
   // public addCourseEvent: EventEmitter<ICourse> = new EventEmitter<ICourse>();
 
-  public constructor(private logger: LoggerService) { }
+  public constructor(
+    private router: Router,
+    private logger: LoggerService) { }
 
   public ngOnInit(): void {
     this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageItemComponent`);
@@ -62,6 +66,10 @@ OnDestroy {
 
   public delete(): void {
     this.deleteCourse.emit(this.course.id);
+  }
+
+  public openEditCoursePage(courseId: number): void {
+    this.router.navigate([CONSTANT.url.courses, courseId]);
   }
 
 }

@@ -4,7 +4,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
 
 import { CoursesPageComponent } from './courses/courses-page/courses-page.component';
-import { CoursesActionsComponent } from './courses/courses-actions/courses-actions.component';
+import { AddEditCoursePageComponent } from './courses/add-edit-course-page/add-edit-course-page.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 
@@ -13,7 +13,8 @@ const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: 'courses', data: { breadcrumb: 'Courses' }, children: [
     {path: '', component: CoursesPageComponent, canActivate: [ AuthGuard ], pathMatch: 'full'},
-    {path: 'add-course', component: CoursesActionsComponent, canActivate: [ AuthGuard ], data: { breadcrumb: 'New Course' }}
+    {path: 'new', component: AddEditCoursePageComponent, canActivate: [ AuthGuard ], data: { breadcrumb: 'New Course' }},
+    {path: ':id', component: AddEditCoursePageComponent, canActivate: [ AuthGuard ], data: { breadcrumb: 'Edit Course' }}
   ]},
   {path: '**', component: PageNotFoundComponent}
 ];
