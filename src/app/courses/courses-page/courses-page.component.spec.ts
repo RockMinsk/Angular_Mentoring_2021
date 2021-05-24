@@ -17,7 +17,7 @@ import { CoursesServiceStab } from '../courses.service.stab';
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HighlightBorderDirective } from 'src/app/directives/highlight-border.directive';
-import { AddCoursePageComponent } from '../courses-actions/add-course-page/add-course-page.component';
+import { AddCoursePageComponent } from '../add-course-page/add-course-page.component';
 
 describe('CoursesPageComponent', () => {
   let component: CoursesPageComponent;

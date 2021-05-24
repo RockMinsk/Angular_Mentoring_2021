@@ -1,17 +1,10 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  Output,
-  EventEmitter,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { LoggerService } from 'src/app/services/logger.service';
-import { ICourse } from '../../courses-page/courses-page-items-list/courses-page-item/courses-page-item.model';
-import { CoursesService } from '../../courses.service';
+import { ICourse } from '../courses-page/courses-page-items-list/courses-page-item/courses-page-item.model';
+import { CoursesService } from '../courses.service';
 
 @Component({
   selector: 'app-add-course-page',
@@ -20,8 +13,7 @@ import { CoursesService } from '../../courses.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddCoursePageComponent implements OnInit {
-  @Input()
-  public newCourse: ICourse = {
+  public newCourse: any = {
     id: 10,
     title: 'dummy',
     creationDate: 'dummy',
@@ -31,18 +23,13 @@ export class AddCoursePageComponent implements OnInit {
     authors: 'dummy',
   };
 
-  @Output()
-  public addCourseCriteria: EventEmitter<ICourse> = new EventEmitter<ICourse>();
-
   public form: FormGroup;
-
-  private formSubmitAttempt = false;
 
   public constructor(
     private router: Router,
     private route: ActivatedRoute,
     private logger: LoggerService,
-    private courcesService: CoursesService,
+    private coursesService: CoursesService,
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
@@ -61,22 +48,15 @@ export class AddCoursePageComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.formSubmitAttempt = false;
     if (this.form.valid) {
       try {
-        this.newCourse.title = this.form.get('title')?.value;
-        this.newCourse.description = this.form.get('description')?.value;
-        this.newCourse.duration = this.form.get('duration')?.value;
-        this.newCourse.creationDate = this.form.get('creationDate')?.value;
-        this.newCourse.authors = this.form.get('authors')?.value;
-        this.newCourse.id = this.courcesService.getLatestId() + 1;
+        this.mapEnteredData(this.form.value);
+        this.newCourse.id = this.coursesService.getLatestId() + 1;
         this.addCourse();
         this.router.navigate(['../'], { relativeTo: this.route });
       } catch (err) {
         console.log(err);
       }
-    } else {
-      this.formSubmitAttempt = true;
     }
   }
 
@@ -87,6 +67,12 @@ export class AddCoursePageComponent implements OnInit {
   }
 
   public addCourse(): void {
-    this.addCourseCriteria.emit(this.newCourse);
+    this.coursesService.createItem(this.newCourse);
+  }
+
+  public mapEnteredData(enteredValues: ICourse) {
+    for (const [key, value] of Object.entries(enteredValues)) {
+      this.newCourse[key] = value;
+    }
   }
 }

@@ -46,9 +46,6 @@ export class CoursesPageItemComponent
   @Output()
   public deleteCourse: EventEmitter<number> = new EventEmitter<number>();
 
-  // @Output()
-  // public addCourseEvent: EventEmitter<ICourse> = new EventEmitter<ICourse>();
-
   public constructor(private logger: LoggerService) {}
 
   public ngOnInit(): void {

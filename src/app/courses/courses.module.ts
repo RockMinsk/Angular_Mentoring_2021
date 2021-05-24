@@ -11,8 +11,7 @@ import { CoursesPageItemsListComponent } from './courses-page/courses-page-items
 import { HighlightBorderDirective } from '../directives/highlight-border.directive';
 import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
 import { OrderByDatePipe } from '../pipes/order-by-date.pipe';
-import { AddCoursePageComponent } from './courses-actions/add-course-page/add-course-page.component';
-import { CoursesActionsComponent } from './courses-actions/courses-actions.component';
+import { AddCoursePageComponent } from './add-course-page/add-course-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { CoursesActionsComponent } from './courses-actions/courses-actions.compo
     OrderByDatePipe,
     HighlightBorderDirective,
     AddCoursePageComponent,
-    CoursesActionsComponent,
   ],
   imports: [
     CommonModule,
@@ -34,9 +32,8 @@ import { CoursesActionsComponent } from './courses-actions/courses-actions.compo
     RouterModule,
   ],
   exports: [
-    SearchBarComponent,
+    SearchBarComponent, //
     CoursesPageComponent,
-    CoursesActionsComponent,
     AddCoursePageComponent,
   ],
 })

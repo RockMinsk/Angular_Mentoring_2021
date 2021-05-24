@@ -4,7 +4,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { LoginPageComponent } from './auth/login-page/login-page.component';
 
 import { CoursesPageComponent } from './courses/courses-page/courses-page.component';
-import { CoursesActionsComponent } from './courses/courses-actions/courses-actions.component';
+import { AddCoursePageComponent } from './courses/add-course-page/add-course-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'add-course',
-        component: CoursesActionsComponent,
+        component: AddCoursePageComponent,
         canActivate: [AuthGuard],
         data: { breadcrumb: 'New Course' },
       },
