@@ -13,8 +13,8 @@ export class AuthService {
       firstName: 'John',
       lastName: 'Smith',
       email: 'john.smith@test.com',
-      password: 'changeme1',
-      isAutenticated: false,
+      password: 'changeMe1',
+      isAuthenticated: false,
       token: '1234567890',
     },
     {
@@ -22,8 +22,8 @@ export class AuthService {
       firstName: 'Michael',
       lastName: 'Johnson',
       email: 'michael.johnson@test.com',
-      password: 'changeme2',
-      isAutenticated: false,
+      password: 'changeMe2',
+      isAuthenticated: false,
       token: '1234567890',
     },
     {
@@ -31,8 +31,8 @@ export class AuthService {
       firstName: 'Thomas',
       lastName: 'Williams',
       email: 'thomas.williams@test.com',
-      password: 'changeme3',
-      isAutenticated: false,
+      password: 'changeMe3',
+      isAuthenticated: false,
       token: '1234567890',
     },
   ];
@@ -60,7 +60,7 @@ export class AuthService {
     );
     if (itemIndex >= 0) {
       if (this.users[itemIndex].password === password) {
-        this.users[itemIndex].isAutenticated = true;
+        this.users[itemIndex].isAuthenticated = true;
         localStorage.setItem(
           CONSTANT.currentUser,
           JSON.stringify(this.users[itemIndex])
@@ -83,7 +83,7 @@ export class AuthService {
       let itemIndex = -1;
       if (currentUser) {
         itemIndex = this.getUserIndexById(currentUser.id);
-        this.users[itemIndex].isAutenticated = false;
+        this.users[itemIndex].isAuthenticated = false;
         localStorage.removeItem(CONSTANT.currentUser);
         console.log(
           `User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged out successfully`
@@ -99,9 +99,9 @@ export class AuthService {
     return this.users.findIndex((item) => item.id === id);
   }
 
-  public isAutenticated(): boolean {
+  public isAuthenticated(): boolean {
     const currentUser: IUser | null = this.getCurrentAuthenticatedUser();
-    return currentUser ? currentUser.isAutenticated : false;
+    return currentUser ? currentUser.isAuthenticated : false;
   }
 
   public getCurrentUserInfo(): string | void {

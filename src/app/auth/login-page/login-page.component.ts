@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
     lastName: ``,
     email: ``,
     password: ``,
-    isAutenticated: false,
+    isAuthenticated: false,
     token: ``,
   };
 
@@ -39,7 +39,6 @@ export class LoginPageComponent implements OnInit {
   public loginInvalid = false;
   public emailControl = new FormControl('');
   public passwordControl = new FormControl('');
-  private formSubmitAttempt = false;
   private returnUrl: string;
 
   public constructor(
@@ -62,7 +61,7 @@ export class LoginPageComponent implements OnInit {
     this.coursesService.saveCoursesToLocalStorage();
     this.logger.getLifeCycleHookMessage(`OnInit`, `LoginPageComponent`);
 
-    if (this.authService.isAutenticated()) {
+    if (this.authService.isAuthenticated()) {
       await this.router.navigate([this.returnUrl]);
       console.log(
         `User ${this.authService.getCurrentUserInfo()} already logged in`
@@ -72,7 +71,6 @@ export class LoginPageComponent implements OnInit {
 
   public onSubmit(): void {
     this.loginInvalid = false;
-    this.formSubmitAttempt = false;
     if (this.form.valid) {
       try {
         const username = this.form.get('username')?.value;
@@ -81,8 +79,6 @@ export class LoginPageComponent implements OnInit {
       } catch (err) {
         this.loginInvalid = true;
       }
-    } else {
-      this.formSubmitAttempt = true;
     }
   }
 }

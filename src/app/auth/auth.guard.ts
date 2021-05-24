@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     try {
-      const isAuthenticated: boolean = this.authService.isAutenticated();
+      const isAuthenticated: boolean = this.authService.isAuthenticated();
       if (isAuthenticated) {
         return true;
       } else {

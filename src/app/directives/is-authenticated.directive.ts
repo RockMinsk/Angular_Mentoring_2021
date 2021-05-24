@@ -22,7 +22,7 @@ export class IsAuthenticatedDirective implements OnInit, DoCheck {
   ) {}
 
   public configureView() {
-    this.isAuthenticated = this.authService.isAutenticated();
+    this.isAuthenticated = this.authService.isAuthenticated();
 
     if (this.isAuthenticated && !this.hasView) {
       this.viewContainer.createEmbeddedView(this.templateRef);
