@@ -23,8 +23,7 @@
           <p class="required">*required</p>
         </div>
         <div class="add-course-input">
-          <!-- TODO: clarify what use instead of ngModel for 2-way binding because using ngModel input property and ngModelChange event with reactive form directives has been deprecated -->
-          <input matInput type="text" class="add-course-input-content numeric-field" formControlName="duration" [(ngModel)]="newCourse.duration" required placeholder="minutes">
+          <input matInput type="text" class="add-course-input-content numeric-field" formControlName="duration" required placeholder="minutes">
           <span *ngIf="newCourse.duration && newCourse.duration > 0" class="duration">{{ newCourse.duration | minutesToHours }}</span>
         </div>
         <div class="add-course-input-title-box numeric-field">

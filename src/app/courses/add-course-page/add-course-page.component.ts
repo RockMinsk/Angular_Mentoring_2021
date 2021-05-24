@@ -42,9 +42,11 @@ export class AddCoursePageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    // TODO: delete below code line after clarification how avoid default "0" value instead of placeholder during using of 2-way binding
-    this.newCourse.duration = null;
     this.logger.getLifeCycleHookMessage(`OnInit`, `NewCoursePageComponent`);
+
+    this.form.get('duration')?.valueChanges.subscribe((selectedValue) => {
+      this.newCourse.duration = selectedValue;
+    });
   }
 
   public onSubmit(): void {
