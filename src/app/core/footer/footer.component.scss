@@ -3,24 +3,26 @@
   src: url("/assets/fonts/SourceSansPro-Regular.ttf") format("truetype");
 }
 
-.footer-bg {
-  display: flex;
-  align-items: center;
-  background: #303240;
-  height: 60px;
-  width: 1280px;
-}
+.footer {
+  &-bg {
+    display: flex;
+    align-items: center;
+    background: #303240;
+    height: 60px;
+    width: 1280px;
+  }
 
-.footer-text {
-  line-height: 24px;
-  letter-spacing: 0;
-  color: #ffffff;
-  font-size: 12px;
-  font-family: "SourceSansPro-Regular";
-  text-transform: none;
-  text-align: left;
-  height: 24px;
-  width: 228px;
-  margin-left: 968px;
-  margin-bottom: 0px;
+  &-text {
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #ffffff;
+    font-size: 12px;
+    font-family: "SourceSansPro-Regular";
+    text-transform: none;
+    text-align: left;
+    height: 24px;
+    width: 228px;
+    margin-left: 968px;
+    margin-bottom: 0px;
+  }
 }
