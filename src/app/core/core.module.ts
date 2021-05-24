@@ -9,24 +9,23 @@ import { LogoComponent } from './header/logo/logo.component';
 import { UserInfoComponent } from './header/user-info/user-info.component';
 import { IsAuthenticatedDirective } from '../directives/is-authenticated.directive';
 
-
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     LogoComponent,
     UserInfoComponent,
-    IsAuthenticatedDirective
+    IsAuthenticatedDirective,
   ],
   imports: [
-    CommonModule,
+    CommonModule, //
     MatIconModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
-    HeaderComponent,
+    HeaderComponent, //
     FooterComponent,
-    IsAuthenticatedDirective
-  ]
+    IsAuthenticatedDirective,
+  ],
 })
-export class CoreModule { }
+export class CoreModule {}

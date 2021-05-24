@@ -1,27 +1,41 @@
 <div class="login-page">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="login-form">
-        <div class="login-title">
-          <p>Login</p>
-        </div>
-        <div class="login-input-title-box">
-          <p class="login-input-title">Email</p>
-          <p class="required">*required</p>
-        </div>
-        <div class="login-input">
-          <input matInput type="text" class="login-input-content" formControlName="username" required placeholder="Enter email">
-        </div>
-        <div class="login-input-title-box">
-          <p class="login-input-title">Password</p>
-          <p class="required">*required</p>
-        </div>
-        <div class="login-input">
-          <input matInput type="password" class="login-input-content" formControlName="password" required placeholder="Enter password">
-        </div>
-        <div class="login-bottom-box">
-          <a href="#" class="forgot-password">Forgot password?</a>
-          <button class="login-btn">Login</button>
-        </div>
+    <div class="login-form">
+      <div class="login-title">
+        <p>Login</p>
       </div>
-    </form>
+      <div class="login-input-title-box">
+        <p class="login-input-title">Email</p>
+        <p class="required">*required</p>
+      </div>
+      <div class="login-input">
+        <input
+          matInput
+          type="text"
+          class="login-input-content"
+          formControlName="username"
+          required
+          placeholder="Enter email"
+        />
+      </div>
+      <div class="login-input-title-box">
+        <p class="login-input-title">Password</p>
+        <p class="required">*required</p>
+      </div>
+      <div class="login-input">
+        <input
+          matInput
+          type="password"
+          class="login-input-content"
+          formControlName="password"
+          required
+          placeholder="Enter password"
+        />
+      </div>
+      <div class="login-bottom-box">
+        <a href="#" class="forgot-password">Forgot password?</a>
+        <button class="login-btn">Login</button>
+      </div>
+    </div>
+  </form>
 </div>

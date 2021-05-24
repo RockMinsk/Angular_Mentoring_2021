@@ -4,10 +4,9 @@ import { CONSTANT } from '../shared/constants';
 import { IUser } from './user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   public users: IUser[] = [
     {
       id: 1,
@@ -16,7 +15,7 @@ export class AuthService {
       email: 'john.smith@test.com',
       password: 'changeme1',
       isAutenticated: false,
-      token: '1234567890'
+      token: '1234567890',
     },
     {
       id: 2,
@@ -25,7 +24,7 @@ export class AuthService {
       email: 'michael.johnson@test.com',
       password: 'changeme2',
       isAutenticated: false,
-      token: '1234567890'
+      token: '1234567890',
     },
     {
       id: 3,
@@ -34,18 +33,20 @@ export class AuthService {
       email: 'thomas.williams@test.com',
       password: 'changeme3',
       isAutenticated: false,
-      token: '1234567890'
+      token: '1234567890',
     },
   ];
 
-  public constructor(private router: Router) { }
+  public constructor(private router: Router) {}
 
   public getAll(): IUser[] {
     return this.users;
   }
 
   public getCurrentAuthenticatedUser(): IUser | null {
-    const currentUser: string | null = localStorage.getItem(CONSTANT.currentUser);
+    const currentUser: string | null = localStorage.getItem(
+      CONSTANT.currentUser
+    );
     if (currentUser) {
       return JSON.parse(currentUser);
     } else {
@@ -54,13 +55,20 @@ export class AuthService {
   }
 
   public login(email: string, password: string): boolean | void {
-    const itemIndex: number = this.users.findIndex(item => item.email === email);
+    const itemIndex: number = this.users.findIndex(
+      (item) => item.email === email
+    );
     if (itemIndex >= 0) {
       if (this.users[itemIndex].password === password) {
         this.users[itemIndex].isAutenticated = true;
-        localStorage.setItem(CONSTANT.currentUser, JSON.stringify(this.users[itemIndex]));
+        localStorage.setItem(
+          CONSTANT.currentUser,
+          JSON.stringify(this.users[itemIndex])
+        );
         this.router.navigate([CONSTANT.url.courses]);
-        console.log(`User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged in successfully`);
+        console.log(
+          `User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged in successfully`
+        );
       } else {
         console.log('Invalid password');
       }
@@ -77,7 +85,9 @@ export class AuthService {
         itemIndex = this.getUserIndexById(currentUser.id);
         this.users[itemIndex].isAutenticated = false;
         localStorage.removeItem(CONSTANT.currentUser);
-        console.log(`User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged out successfully`);
+        console.log(
+          `User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged out successfully`
+        );
       }
       this.router.navigate([CONSTANT.url.login]);
     } catch (err) {
@@ -86,7 +96,7 @@ export class AuthService {
   }
 
   public getUserIndexById(id: number): number {
-    return this.users.findIndex(item => item.id === id);
+    return this.users.findIndex((item) => item.id === id);
   }
 
   public isAutenticated(): boolean {

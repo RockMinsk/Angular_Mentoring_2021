@@ -6,19 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 @NgModule({
-  declarations: [
-    BreadcrumbsComponent
-  ],
+  declarations: [BreadcrumbsComponent],
   imports: [
-    CommonModule,
+    CommonModule, //
     MatIconModule,
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
   ],
-  exports: [
-    BreadcrumbsComponent
-  ]
+  exports: [BreadcrumbsComponent],
 })
-export class SharedModule { }
+export class SharedModule {}

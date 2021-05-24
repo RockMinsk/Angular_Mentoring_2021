@@ -12,15 +12,14 @@ describe('HeaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        HeaderComponent,
-        LogoComponent
+        HeaderComponent, //
+        LogoComponent,
       ],
       imports: [
-        MatIconModule,
-        RouterModule.forRoot([])
-      ]
-    })
-    .compileComponents();
+        MatIconModule, //
+        RouterModule.forRoot([]),
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

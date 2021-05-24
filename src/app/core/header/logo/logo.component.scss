@@ -6,8 +6,8 @@
 .logo {
   display: flex;
   align-items: center;
-	height: 60px;
-	width: 300px;
+  height: 60px;
+  width: 300px;
 }
 
 .logo-play-triangle-right {
@@ -21,38 +21,38 @@
 }
 
 .logo-play-circle {
-	box-sizing: border-box;
-	display:block;
-	width:28px;
-	height:28px;
-	padding-top: 2px;
-	padding-left: 2px;
-	line-height: 2px;
-	border: 2px solid #fff;
-	border-radius: 50%;
-	color:#f5f5f5;
-	text-align:center;
-	text-decoration:none;
-	transition: all 0.3s ease;
+  box-sizing: border-box;
+  display: block;
+  width: 28px;
+  height: 28px;
+  padding-top: 2px;
+  padding-left: 2px;
+  line-height: 2px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  color: #f5f5f5;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
   margin-left: 85px;
 }
 .logo-play-circle:hover {
-	background-color: rgba(0,0,0,0.8);
-	box-shadow: 0px 0px 10px rgba(255,255,100,1);
-	text-shadow: 0px 0px 10px rgba(255,255,100,1);
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 0px 10px rgba(255, 255, 100, 1);
+  text-shadow: 0px 0px 10px rgba(255, 255, 100, 1);
 }
 
 .logo-text {
   display: flex;
   align-items: center;
-	color: #FFFFFF;
-	font-size: 18px;
-	font-family: "SourceSansPro-Bold";
-	text-align: left;
-	font-weight: 700;
-	text-transform: uppercase;
-	height: 23px;
-	width: 130px;
+  color: #ffffff;
+  font-size: 18px;
+  font-family: "SourceSansPro-Bold";
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  height: 23px;
+  width: 130px;
   margin-left: 12px;
   margin-bottom: 0px;
 }

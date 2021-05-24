@@ -9,12 +9,9 @@ describe('UserInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserInfoComponent ],
-      imports: [
-        RouterModule.forRoot([])
-      ]
-    })
-    .compileComponents();
+      declarations: [UserInfoComponent],
+      imports: [RouterModule.forRoot([])],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -12,12 +12,9 @@ describe('BreadcrumbsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BreadcrumbsComponent ],
-      imports: [
-        RouterModule.forRoot([])
-      ]
-    })
-    .compileComponents();
+      declarations: [BreadcrumbsComponent],
+      imports: [RouterModule.forRoot([])],
+    }).compileComponents();
   });
 
   beforeEach(() => {

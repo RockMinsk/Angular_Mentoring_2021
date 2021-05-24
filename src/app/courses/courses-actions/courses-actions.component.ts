@@ -6,10 +6,9 @@ import { CoursesService } from '../courses.service';
 @Component({
   selector: 'app-courses-actions',
   templateUrl: './courses-actions.component.html',
-  styleUrls: ['./courses-actions.component.scss']
+  styleUrls: ['./courses-actions.component.scss'],
 })
 export class CoursesActionsComponent implements OnInit {
-
   @Input()
   public courses: ICourse[] = [];
   public newCourse: ICourse = {
@@ -19,13 +18,13 @@ export class CoursesActionsComponent implements OnInit {
     duration: 0,
     topRated: false,
     description: 'dummy',
-    authors: 'dummy'
+    authors: 'dummy',
   };
 
   public constructor(
     private coursesService: CoursesService,
     private logger: LoggerService
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesActionsComponent`);
@@ -35,5 +34,4 @@ export class CoursesActionsComponent implements OnInit {
     this.courses = this.coursesService.createItem(newCourse);
     return this.courses;
   }
-
 }

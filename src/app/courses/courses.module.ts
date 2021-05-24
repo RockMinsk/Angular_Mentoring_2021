@@ -14,7 +14,6 @@ import { OrderByDatePipe } from '../pipes/order-by-date.pipe';
 import { AddCoursePageComponent } from './courses-actions/add-course-page/add-course-page.component';
 import { CoursesActionsComponent } from './courses-actions/courses-actions.component';
 
-
 @NgModule({
   declarations: [
     SearchBarComponent,
@@ -25,20 +24,20 @@ import { CoursesActionsComponent } from './courses-actions/courses-actions.compo
     OrderByDatePipe,
     HighlightBorderDirective,
     AddCoursePageComponent,
-    CoursesActionsComponent
+    CoursesActionsComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     SearchBarComponent,
     CoursesPageComponent,
     CoursesActionsComponent,
-    AddCoursePageComponent
-  ]
+    AddCoursePageComponent,
+  ],
 })
-export class CoursesModule { }
+export class CoursesModule {}

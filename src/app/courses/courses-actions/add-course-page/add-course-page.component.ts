@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,10 +17,9 @@ import { CoursesService } from '../../courses.service';
   selector: 'app-add-course-page',
   templateUrl: './add-course-page.component.html',
   styleUrls: ['./add-course-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddCoursePageComponent implements OnInit {
-
   @Input()
   public newCourse: ICourse = {
     id: 10,
@@ -22,7 +28,7 @@ export class AddCoursePageComponent implements OnInit {
     duration: 0,
     topRated: false,
     description: 'dummy',
-    authors: 'dummy'
+    authors: 'dummy',
   };
 
   @Output()
@@ -37,16 +43,16 @@ export class AddCoursePageComponent implements OnInit {
     private route: ActivatedRoute,
     private logger: LoggerService,
     private courcesService: CoursesService,
-    private fb: FormBuilder,
-    ) {
-      this.form = this.fb.group({
-        title: ['', Validators.required],
-        description: ['', Validators.required],
-        duration: ['', Validators.required],
-        creationDate: ['', Validators.required],
-        authors: ['', Validators.required],
-      });
-     }
+    private fb: FormBuilder
+  ) {
+    this.form = this.fb.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      duration: ['', Validators.required],
+      creationDate: ['', Validators.required],
+      authors: ['', Validators.required],
+    });
+  }
 
   public ngOnInit(): void {
     // TODO: delete below code line after clarification how avoid default "0" value instead of placeholder during using of 2-way binding
@@ -83,5 +89,4 @@ export class AddCoursePageComponent implements OnInit {
   public addCourse(): void {
     this.addCourseCriteria.emit(this.newCourse);
   }
-
 }

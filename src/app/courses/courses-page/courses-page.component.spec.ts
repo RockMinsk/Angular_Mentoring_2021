@@ -37,7 +37,7 @@ describe('CoursesPageComponent', () => {
         AddCoursePageComponent,
         MinutesToHoursPipe,
         OrderByDatePipe,
-        HighlightBorderDirective
+        HighlightBorderDirective,
       ],
       imports: [
         CommonModule,
@@ -45,11 +45,10 @@ describe('CoursesPageComponent', () => {
         FormsModule,
         MatIconModule,
         RouterModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      providers: [{ provide: CoursesService, useValue: coursesServiceStub }]
-    })
-    .compileComponents();
+      providers: [{ provide: CoursesService, useValue: coursesServiceStub }],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -72,51 +71,69 @@ describe('CoursesPageComponent', () => {
 
   it('should display correct number of courses', () => {
     component.ngOnInit();
-    const numberOfElements: number = rootElement.queryAll(By.css('app-courses-page-item')).length;
+    const numberOfElements: number = rootElement.queryAll(
+      By.css('app-courses-page-item')
+    ).length;
     expect(numberOfElements).toEqual(2);
   });
 
   it('should display correct title and description', () => {
     fixture.detectChanges();
-    const title = rootElement.queryAll(By.css('app-courses-page-item'))[0].query(By.css('div.item-title>p')).nativeElement;
+    const title = rootElement
+      .queryAll(By.css('app-courses-page-item'))[0]
+      .query(By.css('div.item-title>p')).nativeElement;
     expect(title.textContent).toBe('TEST TITLE 2');
-    const description = rootElement.queryAll(By.css('app-courses-page-item'))[0].query(By.css('p.item-description')).nativeElement;
+    const description = rootElement
+      .queryAll(By.css('app-courses-page-item'))[0]
+      .query(By.css('p.item-description')).nativeElement;
     expect(description.textContent).toBe('TEST DESCRIPTION 2');
   });
 
   it('should display courses in correct order by date creation (desc)', () => {
     fixture.detectChanges();
-    const firstDate = rootElement.queryAll(By.css('app-courses-page-item'))[0].query(By.css('p.creation-date')).nativeElement;
+    const firstDate = rootElement
+      .queryAll(By.css('app-courses-page-item'))[0]
+      .query(By.css('p.creation-date')).nativeElement;
     expect(firstDate.textContent).toBe('10/22/2021');
-    const secondDate = rootElement.queryAll(By.css('app-courses-page-item'))[1].query(By.css('p.creation-date')).nativeElement;
+    const secondDate = rootElement
+      .queryAll(By.css('app-courses-page-item'))[1]
+      .query(By.css('p.creation-date')).nativeElement;
     expect(secondDate.textContent).toBe('10/22/2019');
   });
 
   it('should have blue border if creation date is in future', () => {
-    const course: HTMLElement = rootElement.queryAll(By.css('div.item-section'))[0].nativeElement;
+    const course: HTMLElement = rootElement.queryAll(
+      By.css('div.item-section')
+    )[0].nativeElement;
     const border = course.style.boxShadow;
     expect(border).toContain('rgba(0, 191, 255, 0.5)');
   });
 
   describe('searchCourse() tests', () => {
-
     it('no data provided for search', () => {
-      let numberOfElements: number = rootElement.queryAll(By.css('app-courses-page-item')).length;
+      let numberOfElements: number = rootElement.queryAll(
+        By.css('app-courses-page-item')
+      ).length;
       expect(numberOfElements).toEqual(2);
       component.searchCourse('');
-      numberOfElements = rootElement.queryAll(By.css('app-courses-page-item')).length;
+      numberOfElements = rootElement.queryAll(
+        By.css('app-courses-page-item')
+      ).length;
       expect(numberOfElements).toEqual(2);
     });
 
     it('search by title match', () => {
-      let numberOfElements: number = rootElement.queryAll(By.css('app-courses-page-item')).length;
+      let numberOfElements: number = rootElement.queryAll(
+        By.css('app-courses-page-item')
+      ).length;
       expect(numberOfElements).toEqual(2);
       component.searchCourse('TEST TITLE 1');
       fixture.detectChanges();
-      numberOfElements = rootElement.queryAll(By.css('app-courses-page-item')).length;
+      numberOfElements = rootElement.queryAll(
+        By.css('app-courses-page-item')
+      ).length;
       // TODO [KS]: clarify why search doesn't perform and UI doesn't change
       expect(numberOfElements).toEqual(2);
     });
-
   });
 });
