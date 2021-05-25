@@ -3,25 +3,49 @@
   src: url("/assets/fonts/SourceSansPro-Bold.ttf") format("truetype");
 }
 
-.breadcrumbs-section {
-  display: flex;
-  align-items: center;
-	background: #FFFFFF;
-	height: 64px;
-	width: 1280px;
+@font-face {
+  font-family: "SourceSansPro-Regular";
+  src: url("/assets/fonts/SourceSansPro-Regular.ttf") format("truetype");
 }
 
-.breadcrumbs-text {
-	line-height: 24px;
-	letter-spacing: 0;
-	color: #464A5A;
-	font-size: 14px;
-	font-family: "SourceSansPro-Bold";
-	text-transform: none;
-	text-align: left;
-	font-weight: 700;
-	height: 24px;
-	width: 50px;
-  margin-left: 85px;
-  margin-bottom: 0px;
+.breadcrumbs {
+  &-section {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    height: 64px;
+    width: 1280px;
+  }
+
+  &-text-box {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    height: 64px;
+    width: 1110px;
+    margin-left: 85px;
+  }
+
+  &-text {
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #464a5a;
+    font-size: 14px;
+    font-family: "SourceSansPro-Regular";
+    text-transform: none;
+    text-align: left;
+    font-weight: 700;
+    height: 24px;
+    width: 50px;
+  }
+
+  &-text-bold {
+    font-family: "SourceSansPro-Bold" !important;
+  }
+
+  &-separator {
+    margin: 5px;
+    color: #009ecc;
+    font-family: "SourceSansPro-Bold";
+  }
 }

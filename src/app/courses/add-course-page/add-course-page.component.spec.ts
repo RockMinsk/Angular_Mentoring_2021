@@ -1,29 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { HeaderComponent } from './header.component';
-import { LogoComponent } from './logo/logo.component';
+import { AddCoursePageComponent } from './add-course-page.component';
 
-describe('HeaderComponent', () => {
-  let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('AddCoursePageComponent', () => {
+  let component: AddCoursePageComponent;
+  let fixture: ComponentFixture<AddCoursePageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        HeaderComponent, //
-        LogoComponent,
-      ],
+      declarations: [AddCoursePageComponent],
       imports: [
-        MatIconModule, //
+        FormsModule, //
+        ReactiveFormsModule,
         RouterModule.forRoot([]),
       ],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(AddCoursePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

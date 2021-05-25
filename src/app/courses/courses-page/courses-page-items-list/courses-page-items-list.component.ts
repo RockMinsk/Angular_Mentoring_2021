@@ -1,5 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit,
-  AfterViewChecked, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked,
+  OnDestroy,
+} from '@angular/core';
 
 import { LoggerService } from 'src/app/services/logger.service';
 import { CoursesService } from '../../courses.service';
@@ -9,44 +19,74 @@ import { ICourse } from './courses-page-item/courses-page-item.model';
   selector: 'app-courses-page-items-list',
   templateUrl: './courses-page-items-list.component.html',
   styleUrls: ['./courses-page-items-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
-export class CoursesPageItemsListComponent implements OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit, OnDestroy,
-AfterViewChecked {
-
+export class CoursesPageItemsListComponent
+  implements
+    OnInit,
+    OnChanges,
+    AfterContentInit,
+    AfterContentChecked,
+    AfterViewInit,
+    OnDestroy,
+    AfterViewChecked
+{
   @Input() public courses: ICourse[] = [];
 
   public creationDate = '';
 
-  public constructor(private coursesService: CoursesService, private logger: LoggerService) { }
+  public constructor(
+    private coursesService: CoursesService,
+    private logger: LoggerService
+  ) {}
 
   public ngOnInit(): void {
-    this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(
+      `OnInit`,
+      `CoursesPageItemsListComponent`
+    );
   }
 
   public ngOnChanges(): void {
-    this.logger.getLifeCycleHookMessage(`OnChanges`, `CoursesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(
+      `OnChanges`,
+      `CoursesPageItemsListComponent`
+    );
   }
 
   public ngAfterContentInit(): void {
-    this.logger.getLifeCycleHookMessage(`AfterContentInit`, `CoursesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(
+      `AfterContentInit`,
+      `CoursesPageItemsListComponent`
+    );
   }
 
   public ngAfterContentChecked(): void {
-    this.logger.getLifeCycleHookMessage(`AfterContentChecked`, `CoursesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(
+      `AfterContentChecked`,
+      `CoursesPageItemsListComponent`
+    );
   }
 
   public ngAfterViewInit(): void {
-    this.logger.getLifeCycleHookMessage(`AfterViewInit`, `CoursesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(
+      `AfterViewInit`,
+      `CoursesPageItemsListComponent`
+    );
   }
 
   public ngAfterViewChecked(): void {
-    this.logger.getLifeCycleHookMessage(`AfterViewChecked`, `CoursesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(
+      `AfterViewChecked`,
+      `CoursesPageItemsListComponent`
+    );
   }
 
   public ngOnDestroy(): void {
-    this.logger.getLifeCycleHookMessage(`OnDestroy`, `CoursesPageItemsListComponent`);
+    this.logger.getLifeCycleHookMessage(
+      `OnDestroy`,
+      `CoursesPageItemsListComponent`
+    );
   }
 
   public trackByCourseId(index: number, course: ICourse): number {
@@ -63,5 +103,4 @@ AfterViewChecked {
   public showMore(): void {
     console.log(`Click on "Show more" button`);
   }
-
 }

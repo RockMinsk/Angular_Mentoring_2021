@@ -8,10 +8,10 @@
   src: url("/assets/fonts/SourceSansPro-Regular.ttf") format("truetype");
 }
 
-.login {
+.add-course{
   &-page {
     position: relative;
-    height: 994px;
+    height: 930px;
     width: 1280px;
     background-color: #f8f8f8;
   }
@@ -25,8 +25,8 @@
     background: #ffffff;
     box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.1),
       0 2px 10px 0 rgba(29, 30, 38, 0.15);
-    height: 311px;
-    width: 368px;
+    height: 636px;
+    width: 730px;
   }
 
   &-title {
@@ -36,10 +36,10 @@
     text-transform: none;
     text-align: left;
     font-weight: 600;
+    vertical-align: middle;
     height: 31px;
-    width: 58px;
+    width: 120px;
     padding-top: 24px;
-    padding-bottom: 12px;
     padding-left: 24px;
   }
 
@@ -47,7 +47,7 @@
     display: flex;
     justify-content: space-between;
     height: 24px;
-    width: 320px;
+    width: 681px;
     padding-top: 12px;
     padding-left: 24px;
   }
@@ -67,7 +67,7 @@
 
   &-input {
     height: 36px;
-    width: 320px;
+    width: 681px;
     padding-top: 8px;
     padding-left: 24px;
   }
@@ -81,9 +81,11 @@
     border-width: 1px;
     border-style: solid;
     height: 36px;
-    width: 320px;
+    width: 681px;
     padding-left: 12px;
     padding-right: 12px;
+    padding-top: 9px;
+    padding-bottom: 9px;
   }
 
   &-input-content::placeholder {
@@ -111,23 +113,22 @@
 
   &-bottom-box {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     height: 36px;
-    width: 320px;
-    padding-top: 22px;
+    width: 681px;
+    padding-top: 32px;
     padding-left: 24px;
   }
 
   &-btn {
-    display: inline-block;
+    display: flex;
     align-items: center;
+    justify-content: center;
     border-radius: 3px;
     border: none;
     background: #67a300;
     height: 36px;
-    width: 79px;
-    text-align: center;
+    width: 64px;
     line-height: 36px;
     cursor: pointer;
     letter-spacing: -0.08px;
@@ -136,7 +137,7 @@
     font-family: "SourceSansPro-Semibold";
     font-style: normal;
     text-transform: none;
-    padding: 0;
+    margin-right: 24px;
   }
 
   &-btn:focus {
@@ -144,6 +145,41 @@
     border-radius: 3px;
     border: 1px solid #51cbee;
   }
+}
+
+.description-field {
+  height: 108px !important;
+}
+
+.numeric-field {
+  width: 150px !important;
+}
+
+.duration {
+  padding-left: 19px;
+  font-family: "SourceSansPro-Regular";
+  font-size: 14px;
+}
+
+.authors-field {
+  width: 312px !important;
+}
+
+.date-placeholder {
+  color: #acafbf;
+  font-family: "SourceSansPro-Regular";
+  text-transform: uppercase;
+}
+
+input[type="date"]:valid {
+  color: black;
+  font-family: "SourceSansPro-Regular";
+  font-size: 14px;
+}
+
+textarea {
+  font-family: "SourceSansPro-Regular";
+  font-size: 14px;
 }
 
 .required {
@@ -158,15 +194,29 @@
   width: 51px;
 }
 
-.forgot-password {
-  line-height: 24px;
-  letter-spacing: 0;
-  color: #5681ee;
-  font-size: 12px;
-  font-family: "SourceSansPro-Regular";
+.cancel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  border: none;
+  background: rgba(18, 21, 35, 0.2);
+  height: 36px;
+  width: 76px;
+  line-height: 36px;
+  cursor: pointer;
+  letter-spacing: -0.08px;
+  color: #5b616f;
+  font-size: 14px;
+  font-family: "SourceSansPro-Semibold";
+  font-style: normal;
   text-transform: none;
-  text-align: left;
-  text-decoration: single;
-  height: 24px;
-  width: 90px;
+  margin-left: auto;
+  margin-right: 12px;
+}
+
+.cancel-btn:focus {
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #51cbee;
 }

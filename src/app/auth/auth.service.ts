@@ -1,50 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { CONSTANT } from '../shared/constants';
 import { IUser } from './user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   public users: IUser[] = [
     {
       id: 1,
       firstName: 'John',
       lastName: 'Smith',
       email: 'john.smith@test.com',
-      password: 'changeme1',
-      isAutenticated: false,
-      token: '1234567890'
+      password: 'changeMe1',
+      isAuthenticated: false,
+      token: '1234567890',
     },
     {
       id: 2,
       firstName: 'Michael',
       lastName: 'Johnson',
       email: 'michael.johnson@test.com',
-      password: 'changeme2',
-      isAutenticated: false,
-      token: '1234567890'
+      password: 'changeMe2',
+      isAuthenticated: false,
+      token: '1234567890',
     },
     {
       id: 3,
       firstName: 'Thomas',
       lastName: 'Williams',
       email: 'thomas.williams@test.com',
-      password: 'changeme3',
-      isAutenticated: false,
-      token: '1234567890'
+      password: 'changeMe3',
+      isAuthenticated: false,
+      token: '1234567890',
     },
   ];
 
-  public constructor(private router: Router) { }
+  public constructor(private router: Router) {}
 
   public getAll(): IUser[] {
     return this.users;
   }
 
   public getCurrentAuthenticatedUser(): IUser | null {
-    const currentUser: string | null = localStorage.getItem('currentUser');
+    const currentUser: string | null = localStorage.getItem(
+      CONSTANT.currentUser
+    );
     if (currentUser) {
       return JSON.parse(currentUser);
     } else {
@@ -53,13 +55,20 @@ export class AuthService {
   }
 
   public login(email: string, password: string): boolean | void {
-    const itemIndex: number = this.users.findIndex(item => item.email === email);
+    const itemIndex: number = this.users.findIndex(
+      (item) => item.email === email
+    );
     if (itemIndex >= 0) {
       if (this.users[itemIndex].password === password) {
-        this.users[itemIndex].isAutenticated = true;
-        localStorage.setItem('currentUser', JSON.stringify(this.users[itemIndex]));
-        this.router.navigate(['/courses']);
-        console.log(`User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged in successfully`);
+        this.users[itemIndex].isAuthenticated = true;
+        localStorage.setItem(
+          CONSTANT.currentUser,
+          JSON.stringify(this.users[itemIndex])
+        );
+        this.router.navigate([CONSTANT.url.courses]);
+        console.log(
+          `User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged in successfully`
+        );
       } else {
         console.log('Invalid password');
       }
@@ -74,23 +83,25 @@ export class AuthService {
       let itemIndex = -1;
       if (currentUser) {
         itemIndex = this.getUserIndexById(currentUser.id);
-        this.users[itemIndex].isAutenticated = false;
-        localStorage.removeItem('currentUser');
-        console.log(`User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged out successfully`);
+        this.users[itemIndex].isAuthenticated = false;
+        localStorage.removeItem(CONSTANT.currentUser);
+        console.log(
+          `User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged out successfully`
+        );
       }
-      this.router.navigate(['/login']);
+      this.router.navigate([CONSTANT.url.login]);
     } catch (err) {
       console.log(err);
     }
   }
 
   public getUserIndexById(id: number): number {
-    return this.users.findIndex(item => item.id === id);
+    return this.users.findIndex((item) => item.id === id);
   }
 
-  public isAutenticated(): boolean {
+  public isAuthenticated(): boolean {
     const currentUser: IUser | null = this.getCurrentAuthenticatedUser();
-    return currentUser ? currentUser.isAutenticated : false;
+    return currentUser ? currentUser.isAuthenticated : false;
   }
 
   public getCurrentUserInfo(): string | void {

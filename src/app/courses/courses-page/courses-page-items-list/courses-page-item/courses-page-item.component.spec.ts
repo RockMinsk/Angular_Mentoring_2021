@@ -18,6 +18,7 @@ import { CoursesPageItemsListComponent } from '../courses-page-items-list.compon
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HighlightBorderDirective } from 'src/app/directives/highlight-border.directive';
+import { AddCoursePageComponent } from '../../../add-course-page/add-course-page.component';
 
 describe('CoursesPageItemComponent', () => {
   let component: CoursesPageItemComponent;
@@ -34,9 +35,10 @@ describe('CoursesPageItemComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
+        AddCoursePageComponent,
         MinutesToHoursPipe,
         OrderByDatePipe,
-        HighlightBorderDirective
+        HighlightBorderDirective,
       ],
       imports: [
         CommonModule,
@@ -44,11 +46,10 @@ describe('CoursesPageItemComponent', () => {
         FormsModule,
         MatIconModule,
         RouterModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      providers: [{ provide: CoursesService, useValue: coursesServiceStub }]
-    })
-    .compileComponents();
+      providers: [{ provide: CoursesService, useValue: coursesServiceStub }],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -71,7 +72,9 @@ describe('CoursesPageItemComponent', () => {
     component.ngOnInit();
     const spy = spyOn(component, 'delete');
 
-    rootElement.query(By.css('button.delete-btn')).triggerEventHandler('click', {});
+    rootElement
+      .query(By.css('button.delete-btn'))
+      .triggerEventHandler('click', {});
     fixture.detectChanges();
 
     expect(spy).toHaveBeenCalled();

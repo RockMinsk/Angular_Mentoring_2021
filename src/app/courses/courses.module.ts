@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
 import { CoursesPageComponent } from './courses-page/courses-page.component';
@@ -11,7 +11,7 @@ import { CoursesPageItemsListComponent } from './courses-page/courses-page-items
 import { HighlightBorderDirective } from '../directives/highlight-border.directive';
 import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
 import { OrderByDatePipe } from '../pipes/order-by-date.pipe';
-
+import { AddCoursePageComponent } from './add-course-page/add-course-page.component';
 
 @NgModule({
   declarations: [
@@ -21,17 +21,20 @@ import { OrderByDatePipe } from '../pipes/order-by-date.pipe';
     CoursesPageItemComponent,
     MinutesToHoursPipe,
     OrderByDatePipe,
-    HighlightBorderDirective
+    HighlightBorderDirective,
+    AddCoursePageComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
-    SearchBarComponent,
-    CoursesPageComponent
-  ]
+    SearchBarComponent, //
+    CoursesPageComponent,
+    AddCoursePageComponent,
+  ],
 })
-export class CoursesModule { }
+export class CoursesModule {}

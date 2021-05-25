@@ -14,6 +14,7 @@ import { CoursesPageComponent } from '../courses-page.component';
 import { SearchBarComponent } from './search-bar.component';
 import { MinutesToHoursPipe } from 'src/app/pipes/minutes-to-hours.pipe';
 import { OrderByDatePipe } from 'src/app/pipes/order-by-date.pipe';
+import { AddCoursePageComponent } from '../../add-course-page/add-course-page.component';
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
@@ -27,8 +28,9 @@ describe('SearchBarComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
+        AddCoursePageComponent,
         MinutesToHoursPipe,
-        OrderByDatePipe
+        OrderByDatePipe,
       ],
       imports: [
         CommonModule,
@@ -36,10 +38,9 @@ describe('SearchBarComponent', () => {
         FormsModule,
         MatIconModule,
         RouterModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -70,11 +71,12 @@ describe('SearchBarComponent', () => {
     expect(fixture.componentInstance.value).toBe('someValue');
   });
 
-
   it('should emit searchCourse by click', () => {
     const spy = spyOn(component, 'searchCourse');
 
-    rootElement.query(By.css('button.search-btn')).triggerEventHandler('click', {});
+    rootElement
+      .query(By.css('button.search-btn'))
+      .triggerEventHandler('click', {});
     fixture.detectChanges();
 
     expect(spy).toHaveBeenCalled();
@@ -83,10 +85,11 @@ describe('SearchBarComponent', () => {
   it('should emit searchCourse by press "Enter" button', () => {
     const spy = spyOn(component, 'searchCourse');
 
-    rootElement.query(By.css('input.search-input-content')).triggerEventHandler('keyup.enter', {});
+    rootElement
+      .query(By.css('input.search-input-content'))
+      .triggerEventHandler('keyup.enter', {});
     fixture.detectChanges();
 
     expect(spy).toHaveBeenCalled();
   });
-
 });

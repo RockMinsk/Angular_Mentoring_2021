@@ -14,6 +14,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CoursesService } from '../../courses.service';
 import { CoursesServiceStab } from '../../courses.service.stab';
 import { CoursesPageComponent } from '../courses-page.component';
+import { AddCoursePageComponent } from '../../add-course-page/add-course-page.component';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { CoursesPageItemComponent } from './courses-page-item/courses-page-item.component';
 import { CoursesPageItemsListComponent } from './courses-page-items-list.component';
@@ -33,8 +34,9 @@ describe('CoursesPageItemsListComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
+        AddCoursePageComponent,
         MinutesToHoursPipe,
-        OrderByDatePipe
+        OrderByDatePipe,
       ],
       imports: [
         CommonModule,
@@ -42,11 +44,10 @@ describe('CoursesPageItemsListComponent', () => {
         FormsModule,
         MatIconModule,
         RouterModule,
-        RouterTestingModule
+        RouterTestingModule,
       ],
-      providers: [ { provide: CoursesService, useValue: coursesServiceStub } ]
-    })
-    .compileComponents();
+      providers: [{ provide: CoursesService, useValue: coursesServiceStub }],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -73,9 +74,10 @@ describe('CoursesPageItemsListComponent', () => {
   });
 
   describe('deleteCourse() tests', () => {
-
     it('delete one course', () => {
-      const numberOfElements: number = rootElement.queryAll(By.css('app-courses-page-item')).length;
+      const numberOfElements: number = rootElement.queryAll(
+        By.css('app-courses-page-item')
+      ).length;
       expect(numberOfElements).toEqual(2);
       expect(component.courses.length).toEqual(2);
       fixture.detectChanges();
@@ -93,10 +95,11 @@ describe('CoursesPageItemsListComponent', () => {
       component.courses = [];
 
       fixture.detectChanges();
-      const numberOfElements: number = rootElement.queryAll(By.css('app-courses-page-item')).length;
+      const numberOfElements: number = rootElement.queryAll(
+        By.css('app-courses-page-item')
+      ).length;
       expect(numberOfElements).toEqual(0);
       expect(component.courses.length).toEqual(0);
     });
   });
-
 });

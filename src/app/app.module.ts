@@ -10,11 +10,8 @@ import { CoreModule } from './core/core.module';
 import { CoursesModule } from './courses/courses.module';
 import { SharedModule } from './shared/shared.module';
 
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,9 +21,9 @@ import { SharedModule } from './shared/shared.module';
     AuthModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
