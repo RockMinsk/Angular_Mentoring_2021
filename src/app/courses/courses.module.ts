@@ -13,7 +13,6 @@ import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
 import { OrderByDatePipe } from '../pipes/order-by-date.pipe';
 import { AddEditCoursePageComponent } from './add-edit-course-page/add-edit-course-page.component';
 
-
 @NgModule({
   declarations: [
     SearchBarComponent,
@@ -23,19 +22,19 @@ import { AddEditCoursePageComponent } from './add-edit-course-page/add-edit-cour
     MinutesToHoursPipe,
     OrderByDatePipe,
     HighlightBorderDirective,
-    AddEditCoursePageComponent
+    AddEditCoursePageComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
-    SearchBarComponent,
+    SearchBarComponent, //
     CoursesPageComponent,
-    AddEditCoursePageComponent
-  ]
+    AddEditCoursePageComponent,
+  ],
 })
-export class CoursesModule { }
+export class CoursesModule {}

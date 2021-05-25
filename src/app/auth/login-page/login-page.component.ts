@@ -1,5 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CoursesService } from 'src/app/courses/courses.service';
 import { LoggerService } from 'src/app/services/logger.service';
@@ -9,7 +14,7 @@ import { IUser } from '../user.model';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
   @Input()
@@ -24,8 +29,8 @@ export class LoginPageComponent implements OnInit {
     lastName: ``,
     email: ``,
     password: ``,
-    isAutenticated: false,
-    token: ``
+    isAuthenticated: false,
+    token: ``,
   };
 
   public users = [];
@@ -34,7 +39,6 @@ export class LoginPageComponent implements OnInit {
   public loginInvalid = false;
   public emailControl = new FormControl('');
   public passwordControl = new FormControl('');
-  private formSubmitAttempt = false;
   private returnUrl: string;
 
   public constructor(
@@ -49,23 +53,24 @@ export class LoginPageComponent implements OnInit {
 
     this.form = this.fb.group({
       username: ['', Validators.email],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
-   }
+  }
 
   public async ngOnInit(): Promise<void> {
     this.coursesService.saveCoursesToLocalStorage();
     this.logger.getLifeCycleHookMessage(`OnInit`, `LoginPageComponent`);
 
-    if (this.authService.isAutenticated()) {
+    if (this.authService.isAuthenticated()) {
       await this.router.navigate([this.returnUrl]);
-      console.log(`User ${this.authService.getCurrentUserInfo()} already logged in`);
+      console.log(
+        `User ${this.authService.getCurrentUserInfo()} already logged in`
+      );
     }
   }
 
   public onSubmit(): void {
     this.loginInvalid = false;
-    this.formSubmitAttempt = false;
     if (this.form.valid) {
       try {
         const username = this.form.get('username')?.value;
@@ -74,9 +79,6 @@ export class LoginPageComponent implements OnInit {
       } catch (err) {
         this.loginInvalid = true;
       }
-    } else {
-      this.formSubmitAttempt = true;
     }
   }
-
 }

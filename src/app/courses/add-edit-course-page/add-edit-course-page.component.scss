@@ -1,33 +1,35 @@
 @font-face {
-    font-family: "SourceSansPro-Semibold";
-    src: url("/assets/fonts/SourceSansPro-SemiBold.ttf") format("truetype");
-  }
+  font-family: "SourceSansPro-Semibold";
+  src: url("/assets/fonts/SourceSansPro-SemiBold.ttf") format("truetype");
+}
 
-  @font-face {
-    font-family: "SourceSansPro-Regular";
-    src: url("/assets/fonts/SourceSansPro-Regular.ttf") format("truetype");
-  }
+@font-face {
+  font-family: "SourceSansPro-Regular";
+  src: url("/assets/fonts/SourceSansPro-Regular.ttf") format("truetype");
+}
 
-  .add-course-page {
+.add-course{
+  &-page {
     position: relative;
     height: 930px;
     width: 1280px;
     background-color: #f8f8f8;
   }
 
-  .add-course-form {
+  &-form {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 6px;
-    background: #FFFFFF;
-    box-shadow: 0 1px 2px 0 rgba(29,30,38,0.10), 0 2px 10px 0 rgba(29,30,38,0.15);
+    background: #ffffff;
+    box-shadow: 0 1px 2px 0 rgba(29, 30, 38, 0.1),
+      0 2px 10px 0 rgba(29, 30, 38, 0.15);
     height: 636px;
     width: 730px;
   }
 
-  .add-course-title {
+  &-title {
     color: #333333;
     font-size: 24px;
     font-family: "SourceSansPro-Semibold";
@@ -41,7 +43,7 @@
     padding-left: 24px;
   }
 
-  .add-course-input-title-box {
+  &-input-title-box {
     display: flex;
     justify-content: space-between;
     height: 24px;
@@ -50,10 +52,10 @@
     padding-left: 24px;
   }
 
-  .add-course-input-title {
+  &-input-title {
     line-height: 24px;
     letter-spacing: 0;
-    color: #474A59;
+    color: #474a59;
     font-size: 14px;
     font-family: "SourceSansPro-Semibold";
     text-transform: none;
@@ -63,17 +65,17 @@
     width: 38px;
   }
 
-  .add-course-input {
+  &-input {
     height: 36px;
     width: 681px;
     padding-top: 8px;
     padding-left: 24px;
   }
 
-  .add-course-input-content {
+  &-input-content {
     border-radius: 3px;
-    border: 1px solid #CED0DB;
-    background: #FFFFFF;
+    border: 1px solid #ced0db;
+    background: #ffffff;
     box-sizing: border-box;
     border-color: #ced0db;
     border-width: 1px;
@@ -86,10 +88,10 @@
     padding-bottom: 9px;
   }
 
-  .add-course-input-content::placeholder {
+  &-input-content::placeholder {
     line-height: 18px;
     letter-spacing: 0;
-    color: #ACAFBF;
+    color: #acafbf;
     font-size: 14px;
     font-family: "SourceSansPro-Regular";
     text-transform: none;
@@ -99,7 +101,7 @@
     width: 216px;
   }
 
-  .add-course-input-content:focus {
+  &-input-content:focus {
     outline: none;
     border-radius: 3px;
     border: 1px solid #51cbee;
@@ -109,54 +111,7 @@
     margin-right: -2px;
   }
 
-  .description-field {
-    height: 108px !important;
-  }
-
-  .numeric-field {
-    width: 150px !important;
-  }
-
-  .duration {
-    padding-left: 19px;
-    font-family: "SourceSansPro-Regular";
-    font-size: 14px;
-  }
-
-  .authors-field {
-    width: 312px !important;
-  }
-
-  .date-placeholder {
-    color: #ACAFBF;
-    font-family: "SourceSansPro-Regular";
-    text-transform: uppercase;
-  }
-
-  input[type="date"]:valid {
-    color: black;
-    font-family: "SourceSansPro-Regular";
-    font-size: 14px;
-  }
-
-  textarea {
-    font-family: "SourceSansPro-Regular";
-    font-size: 14px;
-  }
-
-  .required {
-    line-height: 24px;
-    letter-spacing: 0;
-    color: #474A59;
-    font-size: 12px;
-    font-family: "SourceSansPro-Regular";
-    text-transform: none;
-    text-align: left;
-    height: 24px;
-    width: 51px;
-  }
-
-  .add-course-bottom-box {
+  &-bottom-box {
     display: flex;
     align-items: flex-end;
     height: 36px;
@@ -165,46 +120,19 @@
     padding-left: 24px;
   }
 
-  .cancel-btn {
+  &-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 3px;
     border: none;
-    background: rgba(18,21,35,0.20);
-    height: 36px;
-    width: 76px;
-    line-height: 36px;
-    cursor: pointer;
-    letter-spacing: -0.08px;
-    color: #5B616F;
-    font-size: 14px;
-    font-family: "SourceSansPro-Semibold";
-    font-style: normal;
-    text-transform: none;
-    margin-left: auto;
-    margin-right: 12px;
-  }
-
-  .cancel-btn:focus {
-    outline: none;
-    border-radius: 3px;
-    border: 1px solid #51cbee;
-  }
-
-  .add-course-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 3px;
-    border: none;
-    background: #67A300;
+    background: #67a300;
     height: 36px;
     width: 64px;
     line-height: 36px;
     cursor: pointer;
     letter-spacing: -0.08px;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 14px;
     font-family: "SourceSansPro-Semibold";
     font-style: normal;
@@ -212,8 +140,83 @@
     margin-right: 24px;
   }
 
-  .add-course-btn:focus {
+  &-btn:focus {
     outline: none;
     border-radius: 3px;
     border: 1px solid #51cbee;
   }
+}
+
+.description-field {
+  height: 108px !important;
+}
+
+.numeric-field {
+  width: 150px !important;
+}
+
+.duration {
+  padding-left: 19px;
+  font-family: "SourceSansPro-Regular";
+  font-size: 14px;
+}
+
+.authors-field {
+  width: 312px !important;
+}
+
+.date-placeholder {
+  color: #acafbf;
+  font-family: "SourceSansPro-Regular";
+  text-transform: uppercase;
+}
+
+input[type="date"]:valid {
+  color: black;
+  font-family: "SourceSansPro-Regular";
+  font-size: 14px;
+}
+
+textarea {
+  font-family: "SourceSansPro-Regular";
+  font-size: 14px;
+}
+
+.required {
+  line-height: 24px;
+  letter-spacing: 0;
+  color: #474a59;
+  font-size: 12px;
+  font-family: "SourceSansPro-Regular";
+  text-transform: none;
+  text-align: left;
+  height: 24px;
+  width: 51px;
+}
+
+.cancel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  border: none;
+  background: rgba(18, 21, 35, 0.2);
+  height: 36px;
+  width: 76px;
+  line-height: 36px;
+  cursor: pointer;
+  letter-spacing: -0.08px;
+  color: #5b616f;
+  font-size: 14px;
+  font-family: "SourceSansPro-Semibold";
+  font-style: normal;
+  text-transform: none;
+  margin-left: auto;
+  margin-right: 12px;
+}
+
+.cancel-btn:focus {
+  outline: none;
+  border-radius: 3px;
+  border: 1px solid #51cbee;
+}

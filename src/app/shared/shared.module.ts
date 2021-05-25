@@ -7,21 +7,14 @@ import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-
 @NgModule({
-  declarations: [
-    BreadcrumbsComponent,
-    PageNotFoundComponent
-  ],
+  declarations: [BreadcrumbsComponent, PageNotFoundComponent],
   imports: [
-    CommonModule,
+    CommonModule, //
     MatIconModule,
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
   ],
-  exports: [
-    BreadcrumbsComponent,
-    PageNotFoundComponent
-  ]
+  exports: [BreadcrumbsComponent, PageNotFoundComponent],
 })
-export class SharedModule { }
+export class SharedModule {}

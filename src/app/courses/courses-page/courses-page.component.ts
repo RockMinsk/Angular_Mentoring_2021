@@ -10,10 +10,9 @@ import { CONSTANT } from 'src/app/shared/constants';
   selector: 'app-courses-page',
   templateUrl: './courses-page.component.html',
   styleUrls: ['./courses-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesPageComponent implements OnInit {
-
   public courses: ICourse[] = [];
   public newCourse: ICourse = {
     id: 0,
@@ -22,7 +21,7 @@ export class CoursesPageComponent implements OnInit {
     duration: 0,
     topRated: false,
     description: 'dummy',
-    authors: 'dummy'
+    authors: 'dummy',
   };
 
   public constructor(
@@ -30,7 +29,7 @@ export class CoursesPageComponent implements OnInit {
     private route: ActivatedRoute,
     private coursesService: CoursesService,
     private logger: LoggerService
-    ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.courses = this.coursesService.getList();
@@ -42,7 +41,6 @@ export class CoursesPageComponent implements OnInit {
   }
 
   public searchCourse(data: string): ICourse[] {
-    return this.courses = this.coursesService.searchItem(data);
+    return (this.courses = this.coursesService.searchItem(data));
   }
-
 }

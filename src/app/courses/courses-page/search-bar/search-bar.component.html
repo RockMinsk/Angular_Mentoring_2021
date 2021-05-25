@@ -1,6 +1,13 @@
 <div class="menu">
   <div class="search-input-box">
-    <input matInput type="text" class="search-input-content" [(ngModel)]="value" (keyup.enter)="searchCourse()" placeholder="Type to search">
+    <input
+      matInput
+      type="text"
+      class="search-input-content"
+      [(ngModel)]="value"
+      (keyup.enter)="searchCourse()"
+      placeholder="Type to search"
+    />
   </div>
   <button class="search-btn" (click)="searchCourse()">Search</button>
 </div>

@@ -10,14 +10,13 @@ describe('AddCoursePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddEditCoursePageComponent ],
+      declarations: [AddEditCoursePageComponent],
       imports: [
-        FormsModule,
+        FormsModule, //
         ReactiveFormsModule,
-        RouterModule.forRoot([])
-      ]
-    })
-    .compileComponents();
+        RouterModule.forRoot([]),
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {

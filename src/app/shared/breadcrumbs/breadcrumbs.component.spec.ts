@@ -1,6 +1,5 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { BreadcrumbsComponent } from './breadcrumbs.component';
@@ -12,12 +11,9 @@ describe('BreadcrumbsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BreadcrumbsComponent ],
-      imports: [
-        RouterModule.forRoot([])
-      ]
-    })
-    .compileComponents();
+      declarations: [BreadcrumbsComponent],
+      imports: [RouterModule.forRoot([])],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -30,9 +26,4 @@ describe('BreadcrumbsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  // it('should have correct text', () => {
-  //   const text = rootElement.query(By.css('span.breadcrumbs-text')).nativeElement;
-  //   expect(text.textContent).toEqual('Courses');
-  // });
 });

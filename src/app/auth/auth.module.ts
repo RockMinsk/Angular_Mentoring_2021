@@ -3,18 +3,13 @@ import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
-  declarations: [
-    LoginPageComponent
-  ],
+  declarations: [LoginPageComponent],
   imports: [
-    CommonModule,
+    CommonModule, //
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  exports: [
-    LoginPageComponent
-  ]
+  exports: [LoginPageComponent],
 })
-export class AuthModule { }
+export class AuthModule {}

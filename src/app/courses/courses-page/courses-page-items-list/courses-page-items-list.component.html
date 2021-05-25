@@ -1,5 +1,14 @@
-<app-courses-page-item (deleteCourse)="deleteCourse($event)" *ngFor="let course of courses | orderByDate: creationDate; trackBy:trackByCourseId" [course]="course"></app-courses-page-item>
+<app-courses-page-item
+  (deleteCourse)="deleteCourse($event)"
+  *ngFor="
+    let course of courses | orderByDate: creationDate;
+    trackBy: trackByCourseId
+  "
+  [course]="course"
+></app-courses-page-item>
 <div *ngIf="courses.length > 0" class="load-more-section">
   <a [routerLink]="" (click)="showMore()" class="load-more-text">Load more</a>
 </div>
-<p *ngIf="courses.length === 0" class="no-items-to-display">{{'No data, feel free to add new course' | uppercase}}</p>
+<p *ngIf="courses.length === 0" class="no-items-to-display">
+  {{ "No data, feel free to add new course" | uppercase }}
+</p>

@@ -4,6 +4,6 @@ export const CONSTANT = {
   url: {
     login: '/login',
     addCourse: './new',
-    courses: '/courses'
-  }
+    courses: '/courses',
+  },
 };

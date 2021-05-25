@@ -16,11 +16,9 @@ describe('AppComponent', () => {
         AppRoutingModule,
         CoreModule,
         CoursesModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
       ],
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 

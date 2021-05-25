@@ -1,59 +1,63 @@
 .user-info {
   display: flex;
   align-items: center;
-	background: #303240;
-	height: 60px;
-	width: 980px;
+  background: #303240;
+  height: 60px;
+  width: 980px;
 }
 
-.user-login-text {
-	line-height: 24px;
-	letter-spacing: 0;
-	color: #FFFFFF;
-	font-size: 14px;
-	font-family: "SourceSansPro-Regular";
-	text-transform: none;
-  text-decoration: none;
-	text-align: right;
-	height: 24px;
-  margin-right: 28px;
+.user-login {
+  &-text {
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "SourceSansPro-Regular";
+    text-transform: none;
+    text-decoration: none;
+    text-align: right;
+    height: 24px;
+    margin-right: 28px;
+  }
+
+  &-section {
+    display: flex;
+    align-items: center;
+    height: 16px;
+    width: 16px;
+    margin-left: auto;
+    margin-right: 5px;
+  }
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: white;
+  }
 }
 
-.user-login-section {
-  display: flex;
-  align-items: center;
-  height: 16px;
-	width: 16px;
-  margin-left: auto;
-  margin-right: 5px;
-}
+.logout {
+  &-text {
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: "SourceSansPro-Regular";
+    text-transform: none;
+    text-decoration: none;
+    text-align: right;
+    height: 24px;
+    width: 45px;
+    margin-right: 85px;
+  }
 
-.user-login-icon {
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  color: white;
-}
-
-.logout-text {
-	line-height: 24px;
-	letter-spacing: 0;
-	color: #FFFFFF;
-	font-size: 14px;
-	font-family: "SourceSansPro-Regular";
-	text-transform: none;
-  text-decoration: none;
-	text-align: right;
-	height: 24px;
-	width: 45px;
-  margin-right: 85px;
-}
-
-.logout-icon {
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  color: white;
-  vertical-align: middle;
-  margin-right: 6px;
+  &-icon {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: white;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
 }
