@@ -13,17 +13,8 @@ import { CoursesService } from '../courses.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddCoursePageComponent implements OnInit {
-  public newCourse: any = {
-    id: 10,
-    title: 'dummy',
-    creationDate: 'dummy',
-    duration: 0,
-    topRated: false,
-    description: 'dummy',
-    authors: 'dummy',
-  };
-
   public form: FormGroup;
+  public duration = 0;
 
   public constructor(
     private router: Router,
@@ -45,16 +36,14 @@ export class AddCoursePageComponent implements OnInit {
     this.logger.getLifeCycleHookMessage(`OnInit`, `NewCoursePageComponent`);
 
     this.form.get('duration')?.valueChanges.subscribe((selectedValue) => {
-      this.newCourse.duration = selectedValue;
+      this.duration = selectedValue;
     });
   }
 
   public onSubmit(): void {
     if (this.form.valid) {
       try {
-        this.mapEnteredData(this.form.value);
-        this.newCourse.id = this.coursesService.getLatestId() + 1;
-        this.addCourse();
+        this.addCourse(this.form.value);
         this.router.navigate(['../'], { relativeTo: this.route });
       } catch (err) {
         console.log(err);
@@ -68,13 +57,7 @@ export class AddCoursePageComponent implements OnInit {
     }
   }
 
-  public addCourse(): void {
-    this.coursesService.createItem(this.newCourse);
-  }
-
-  public mapEnteredData(enteredValues: ICourse) {
-    for (const [key, value] of Object.entries(enteredValues)) {
-      this.newCourse[key] = value;
-    }
+  private addCourse(course: ICourse): void {
+    this.coursesService.createItem(course);
   }
 }

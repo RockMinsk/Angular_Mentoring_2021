@@ -67,6 +67,7 @@ export class CoursesService {
 
   public createItem(newItem: ICourse): ICourse[] {
     const items: ICourse[] = this.getList();
+    newItem.id = this.getLatestId() + 1;
     const updatedItems: ICourse[] = [...items, newItem];
     localStorage.setItem(CONSTANT.courses, JSON.stringify(updatedItems));
     return updatedItems;
