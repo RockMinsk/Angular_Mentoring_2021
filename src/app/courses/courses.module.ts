@@ -12,6 +12,7 @@ import { HighlightBorderDirective } from '../directives/highlight-border.directi
 import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
 import { OrderByDatePipe } from '../pipes/order-by-date.pipe';
 import { AddEditCoursePageComponent } from './add-edit-course-page/add-edit-course-page.component';
+import { CoursesRoutingModule } from './courses-routing.module';
 
 @NgModule({
   declarations: [
@@ -30,11 +31,8 @@ import { AddEditCoursePageComponent } from './add-edit-course-page/add-edit-cour
     ReactiveFormsModule,
     MatIconModule,
     RouterModule,
+    CoursesRoutingModule,
   ],
-  exports: [
-    SearchBarComponent, //
-    CoursesPageComponent,
-    AddEditCoursePageComponent,
-  ],
+  exports: [],
 })
 export class CoursesModule {}
