@@ -17,6 +17,7 @@ export class AddEditCoursePageComponent implements OnInit {
   public duration = 0;
   public id = 0;
   public isAddMode = false;
+  public submitted = false;
 
   public constructor(
     private router: Router,
@@ -57,19 +58,26 @@ export class AddEditCoursePageComponent implements OnInit {
     });
   }
 
+  public get f() {
+    return this.form.controls;
+  }
+
   public onSubmit(): void {
-    if (this.form.valid) {
-      try {
-        if (this.isAddMode) {
-          this.addCourse(this.form.value);
-        } else {
-          this.editCourse(this.form.value);
-        }
-        this.router.navigate(['../'], { relativeTo: this.route });
-      } catch (err) {
-        console.log(err);
+    this.submitted = true;
+
+    if (this.form.invalid) {
+      return;
+    }
+
+    try {
+      if (this.isAddMode) {
+        this.addCourse(this.form.value);
+      } else {
+        this.editCourse(this.form.value);
       }
-    } else {
+      this.router.navigate(['../'], { relativeTo: this.route });
+    } catch (err) {
+      console.log(err);
     }
   }
 

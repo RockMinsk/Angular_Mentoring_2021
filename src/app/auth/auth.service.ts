@@ -54,7 +54,7 @@ export class AuthService {
     }
   }
 
-  public login(email: string, password: string): boolean | void {
+  public login(email: string, password: string): boolean {
     const itemIndex: number = this.users.findIndex(
       (item) => item.email === email
     );
@@ -69,11 +69,14 @@ export class AuthService {
         console.log(
           `User "${this.users[itemIndex].firstName} ${this.users[itemIndex].lastName}" logged in successfully`
         );
+        return true;
       } else {
         console.log('Invalid password');
+        return false;
       }
     } else {
       console.log('Invalid login');
+      return false;
     }
   }
 

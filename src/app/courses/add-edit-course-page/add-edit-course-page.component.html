@@ -13,11 +13,14 @@
         <input
           matInput
           type="text"
-          class="add-course-input-content"
+          class="add-course-input-content form-control"
           formControlName="title"
           required
           placeholder="Enter title"
         />
+        <div *ngIf="submitted && f.title.errors" class="error">
+          <div *ngIf="f.title.errors?.required">Title is required.</div>
+        </div>
       </div>
       <div class="add-course-input-title-box">
         <p class="add-course-input-title">Description:</p>
@@ -32,6 +35,9 @@
           required
           placeholder="Enter description"
         ></textarea>
+        <div *ngIf="submitted && f.description.errors" class="error">
+          <div *ngIf="f.description.errors?.required">Description is required.</div>
+        </div>
       </div>
       <div class="add-course-input-title-box numeric-field">
         <p class="add-course-input-title">Duration:</p>
@@ -49,6 +55,9 @@
         <span *ngIf="duration && duration > 0" class="duration">{{
           duration | minutesToHours
         }}</span>
+        <div *ngIf="submitted && f.duration.errors" class="error">
+          <div *ngIf="f.duration.errors?.required">Duration is required.</div>
+        </div>
       </div>
       <div class="add-course-input-title-box numeric-field">
         <p class="add-course-input-title">Date:</p>
@@ -63,6 +72,9 @@
           required
           placeholder="MM/DD/YYYY"
         />
+        <div *ngIf="submitted && f.creationDate.errors" class="error">
+          <div *ngIf="f.creationDate.errors?.required">Date is required.</div>
+        </div>
       </div>
       <div class="add-course-input-title-box authors-field">
         <p class="add-course-input-title">Authors:</p>
@@ -77,6 +89,9 @@
           required
           placeholder="Enter authors"
         />
+        <div *ngIf="submitted && f.authors.errors" class="error">
+          <div *ngIf="f.authors.errors?.required">Authors is required.</div>
+        </div>
       </div>
       <div class="add-course-bottom-box">
         <button (click)="onCancel()" class="cancel-btn">Cancel</button>

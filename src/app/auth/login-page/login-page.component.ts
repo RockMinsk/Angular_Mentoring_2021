@@ -18,7 +18,7 @@ import { IUser } from '../user.model';
 })
 export class LoginPageComponent implements OnInit {
   @Input()
-  public username = ``;
+  public email = ``;
 
   @Input()
   public password = ``;
@@ -36,7 +36,7 @@ export class LoginPageComponent implements OnInit {
   public users = [];
 
   public form: FormGroup;
-  public loginInvalid = false;
+  public submitted = false;
   public emailControl = new FormControl('');
   public passwordControl = new FormControl('');
   private returnUrl: string;
@@ -52,7 +52,7 @@ export class LoginPageComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/courses';
 
     this.form = this.fb.group({
-      username: ['', Validators.email],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -69,16 +69,27 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
+  public get f() {
+    return this.form.controls;
+  }
+
   public onSubmit(): void {
-    this.loginInvalid = false;
-    if (this.form.valid) {
-      try {
-        const username = this.form.get('username')?.value;
-        const password = this.form.get('password')?.value;
-        this.authService.login(username, password);
-      } catch (err) {
-        this.loginInvalid = true;
+    this.submitted = true;
+
+    if (this.form.invalid) {
+      return;
+    }
+
+    try {
+      const email = this.form.get('email')?.value;
+      const password = this.form.get('password')?.value;
+      const isLoginValid: boolean = this.authService.login(email, password);
+      if (!isLoginValid) {
+        this.form.controls.password.setErrors({ incorrect: true });
       }
+    } catch (err) {
+      this.form.controls.password.setErrors({ incorrect: true });
+      console.log(err);
     }
   }
 }
