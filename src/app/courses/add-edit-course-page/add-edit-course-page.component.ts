@@ -7,14 +7,17 @@ import { ICourse } from '../courses-page/courses-page-items-list/courses-page-it
 import { CoursesService } from '../courses.service';
 
 @Component({
-  selector: 'app-add-course-page',
-  templateUrl: './add-course-page.component.html',
-  styleUrls: ['./add-course-page.component.scss'],
+  selector: 'app-add-edit-course-page',
+  templateUrl: './add-edit-course-page.component.html',
+  styleUrls: ['./add-edit-course-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddCoursePageComponent implements OnInit {
+export class AddEditCoursePageComponent implements OnInit {
   public form: FormGroup;
   public duration = 0;
+  public id = 0;
+  public isAddMode = false;
+  public submitted = false;
 
   public constructor(
     private router: Router,
@@ -33,21 +36,48 @@ export class AddCoursePageComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.logger.getLifeCycleHookMessage(`OnInit`, `NewCoursePageComponent`);
+    this.id = +this.route.snapshot.params.id;
+    this.isAddMode = !this.id;
+    this.logger.getLifeCycleHookMessage(`OnInit`, `AddEditCoursePageComponent`);
+
+    if (!this.isAddMode) {
+      const course: ICourse | undefined = this.coursesService.getItemById(
+        this.id
+      );
+      this.form = this.fb.group({
+        title: [course?.title, Validators.required],
+        description: [course?.description, Validators.required],
+        duration: [course?.duration, Validators.required],
+        creationDate: [course?.creationDate, Validators.required],
+        authors: [course?.authors, Validators.required],
+      });
+    }
 
     this.form.get('duration')?.valueChanges.subscribe((selectedValue) => {
       this.duration = selectedValue;
     });
   }
 
+  public get f() {
+    return this.form.controls;
+  }
+
   public onSubmit(): void {
-    if (this.form.valid) {
-      try {
+    this.submitted = true;
+
+    if (this.form.invalid) {
+      return;
+    }
+
+    try {
+      if (this.isAddMode) {
         this.addCourse(this.form.value);
-        this.router.navigate(['../'], { relativeTo: this.route });
-      } catch (err) {
-        console.log(err);
+      } else {
+        this.editCourse(this.form.value);
       }
+      this.router.navigate(['../'], { relativeTo: this.route });
+    } catch (err) {
+      console.log(err);
     }
   }
 
@@ -59,5 +89,10 @@ export class AddCoursePageComponent implements OnInit {
 
   private addCourse(course: ICourse): void {
     this.coursesService.createItem(course);
+  }
+
+  private editCourse(course: ICourse): void {
+    course.id = this.id;
+    this.coursesService.updateItem(course);
   }
 }

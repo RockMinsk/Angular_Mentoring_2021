@@ -2,15 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { AddCoursePageComponent } from './add-course-page.component';
+import { AddEditCoursePageComponent } from './add-edit-course-page.component';
 
 describe('AddCoursePageComponent', () => {
-  let component: AddCoursePageComponent;
-  let fixture: ComponentFixture<AddCoursePageComponent>;
+  let component: AddEditCoursePageComponent;
+  let fixture: ComponentFixture<AddEditCoursePageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddCoursePageComponent],
+      declarations: [AddEditCoursePageComponent],
       imports: [
         FormsModule, //
         ReactiveFormsModule,
@@ -20,7 +20,7 @@ describe('AddCoursePageComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddCoursePageComponent);
+    fixture = TestBed.createComponent(AddEditCoursePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

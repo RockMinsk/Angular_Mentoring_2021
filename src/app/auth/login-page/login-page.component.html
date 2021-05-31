@@ -13,10 +13,13 @@
           matInput
           type="text"
           class="login-input-content"
-          formControlName="username"
+          formControlName="email"
           required
           placeholder="Enter email"
         />
+        <div *ngIf="submitted && f.email.errors" class="error">
+          <div *ngIf="f.email.errors.required">Email is required.</div>
+        </div>
       </div>
       <div class="login-input-title-box">
         <p class="login-input-title">Password</p>
@@ -31,6 +34,10 @@
           required
           placeholder="Enter password"
         />
+        <div *ngIf="submitted && f.password.errors" class="error">
+          <div *ngIf="f.password.errors.required">Password is required.</div>
+          <div *ngIf="(f.password.errors && !f.password.errors.required) || (f.email.errors && !f.email.errors?.required)">Email or password is invalid</div>
+        </div>
       </div>
       <div class="login-bottom-box">
         <a href="#" class="forgot-password">Forgot password?</a>

@@ -9,31 +9,31 @@
 }
 
 .item-section {
-	border-radius: 6px;
+  border-radius: 6px;
   background: #FFFFFF;
-	box-shadow: 0 1px 2px 0 rgba(29,30,38,0.10), 0 2px 10px 0 rgba(29,30,38,0.15);
-	height: 140px;
-	width: 1110px;
+  box-shadow: 0 1px 2px 0 rgba(29,30,38,0.10), 0 2px 10px 0 rgba(29,30,38,0.15);
+  height: 140px;
+  width: 1110px;
   margin-left: 85px;
   margin-bottom: 24px;
 }
 
 .item-section-top-rated {
-	background: #fff9e5;
+  background: #fff9e5;
 }
 
 .item-title  {
   display: flex;
   align-items: center;
   float: left;
-	color: #333333;
-	font-size: 24px;
-	font-family: "SourceSansPro-Semibold";
-	text-transform: none;
-	text-align: left;
-	font-weight: 600;
-	height: 31px;
-	width: 876px;
+  color: #333333;
+  font-size: 24px;
+  font-family: "SourceSansPro-Semibold";
+  text-transform: none;
+  text-align: left;
+  font-weight: 600;
+  height: 31px;
+  width: 876px;
   margin: 0;
   padding-top: 24px;
   padding-left: 24px;
@@ -58,43 +58,43 @@
   font-size: 18px;
   color: #979797;
   height: 18px;
-	width: 18px;
+  width: 18px;
 }
 
 .calendar-icon {
   font-size: 18px;
   color: #979797;
   height: 18px;
-	width: 18px;
+  width: 18px;
   margin-left: 8px;
 }
 
 .date-time-section-text {
   display: flex;
-	line-height: 18px;
-	letter-spacing: 0;
-	color: #858997;
-	font-size: 14px;
-	font-family: "SourceSansPro-Regular";
-	text-transform: none;
-	text-align: left;
-	height: 18px;
-	width: 70px;
+  line-height: 18px;
+  letter-spacing: 0;
+  color: #858997;
+  font-size: 14px;
+  font-family: "SourceSansPro-Regular";
+  text-transform: none;
+  text-align: left;
+  height: 18px;
+  width: 70px;
   padding-left: 4px;
   margin-bottom: 0px;
 }
 
 .item-description {
   float: left;
-	line-height: 18px;
-	letter-spacing: 0;
-	color: #474A59;
-	font-size: 14px;
-	font-family: "SourceSansPro-Regular";
-	text-transform: none;
-	text-align: left;
-	height: 54px;
-	width: 876px;
+  line-height: 18px;
+  letter-spacing: 0;
+  color: #474A59;
+  font-size: 14px;
+  font-family: "SourceSansPro-Regular";
+  text-transform: none;
+  text-align: left;
+  height: 54px;
+  width: 876px;
   margin: 0;
   padding-left: 24px;
 }
@@ -103,18 +103,18 @@
   display: flex;
   float: left;
   align-items: center;
-	border-radius: 3px;
-	background: #009ECC;
-	height: 24px;
-	width: 60px;
+  border-radius: 3px;
+  background: #009ECC;
+  height: 24px;
+  width: 60px;
   line-height: 12px;
-	letter-spacing: -0.1px;
+  letter-spacing: -0.1px;
   border: none;
-	color: #FFFFFF;
-	font-size: 12px;
-	font-family: "SourceSansPro-Semibold";
+  color: #FFFFFF;
+  font-size: 12px;
+  font-family: "SourceSansPro-Semibold";
   font-style: normal;
-	text-transform: none;
+  text-transform: none;
   margin-left: 40px;
   margin-right: 12px;
   padding-top: 0px;
@@ -138,25 +138,25 @@
   font-size: 14px;
   color: white;
   height: 14px;
-	width: 20px;
+  width: 20px;
 }
 
 .delete-btn {
   display: flex;
   float: left;
   align-items: center;
-	border-radius: 3px;
-	background: #009ECC;
-	height: 24px;
-	width: 72px;
+  border-radius: 3px;
+  background: #009ECC;
+  height: 24px;
+  width: 72px;
   line-height: 12px;
-	letter-spacing: -0.1px;
+  letter-spacing: -0.1px;
   border: none;
-	color: #FFFFFF;
-	font-size: 12px;
-	font-family: "SourceSansPro-Semibold";
+  color: #FFFFFF;
+  font-size: 12px;
+  font-family: "SourceSansPro-Semibold";
   font-style: normal;
-	text-transform: none;
+  text-transform: none;
   padding-top: 0px;
   padding-bottom: 0px;
   cursor: pointer;
@@ -178,5 +178,5 @@
   font-size: 14px;
   color: white;
   height: 14px;
-	width: 20px;
+  width: 20px;
 }

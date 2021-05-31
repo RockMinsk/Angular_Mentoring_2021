@@ -18,7 +18,7 @@ import { CoursesPageItemsListComponent } from '../courses-page-items-list.compon
 import { RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HighlightBorderDirective } from 'src/app/directives/highlight-border.directive';
-import { AddCoursePageComponent } from '../../../add-course-page/add-course-page.component';
+import { AddEditCoursePageComponent } from '../../../add-edit-course-page/add-edit-course-page.component';
 
 describe('CoursesPageItemComponent', () => {
   let component: CoursesPageItemComponent;
@@ -35,7 +35,7 @@ describe('CoursesPageItemComponent', () => {
         CoursesPageComponent,
         CoursesPageItemsListComponent,
         CoursesPageItemComponent,
-        AddCoursePageComponent,
+        AddEditCoursePageComponent,
         MinutesToHoursPipe,
         OrderByDatePipe,
         HighlightBorderDirective,

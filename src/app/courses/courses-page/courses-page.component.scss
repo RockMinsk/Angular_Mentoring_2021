@@ -9,32 +9,32 @@
 }
 
 .item-list-background {
-	height: 930px;
-	width: 1280px;
+  height: 930px;
+  width: 1280px;
   background-color: #f8f8f8;
 }
 
 .add-course-btn {
   display: flex;
   align-items: center;
-	border-radius: 3px;
+  border-radius: 3px;
   border: none;
-	background: #009ECC;
-	height: 36px;
-	width: 111px;
+  background: #009ECC;
+  height: 36px;
+  width: 111px;
   margin-top: auto;
   margin-bottom: 23px;
   margin-left: auto;
   margin-right: 85px;
   cursor: pointer;
   line-height: 24px;
-	letter-spacing: -0.1px;
-	color: #FFFFFF;
-	font-size: 14px;
-	font-family: "SourceSansPro-Semibold";
+  letter-spacing: -0.1px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: "SourceSansPro-Semibold";
   font-style: normal;
-	text-transform: none;
-	font-weight: 600;
+  text-transform: none;
+  font-weight: 600;
 }
 
 .add-course-btn:focus {

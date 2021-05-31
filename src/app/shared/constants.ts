@@ -3,7 +3,7 @@ export const CONSTANT = {
   courses: 'courses',
   url: {
     login: '/login',
-    addCourse: './add-course',
+    addCourse: './new',
     courses: '/courses',
   },
 };

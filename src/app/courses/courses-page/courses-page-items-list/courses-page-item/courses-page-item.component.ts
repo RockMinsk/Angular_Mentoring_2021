@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import {
   Component,
   Input,
@@ -13,6 +14,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { LoggerService } from 'src/app/services/logger.service';
+import { CONSTANT } from 'src/app/shared/constants';
 import { ICourse } from './courses-page-item.model';
 
 @Component({
@@ -46,7 +48,7 @@ export class CoursesPageItemComponent
   @Output()
   public deleteCourse: EventEmitter<number> = new EventEmitter<number>();
 
-  public constructor(private logger: LoggerService) {}
+  public constructor(private router: Router, private logger: LoggerService) {}
 
   public ngOnInit(): void {
     this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageItemComponent`);
@@ -96,5 +98,9 @@ export class CoursesPageItemComponent
 
   public delete(): void {
     this.deleteCourse.emit(this.course.id);
+  }
+
+  public openEditCoursePage(courseId: number): void {
+    this.router.navigate([CONSTANT.url.courses, courseId]);
   }
 }
