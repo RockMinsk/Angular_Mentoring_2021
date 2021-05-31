@@ -6,7 +6,7 @@ import { LoginPageComponent } from './auth/login-page/login-page.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'courses', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent },
   {
     path: 'courses',
@@ -20,6 +20,5 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard],
 })
 export class AppRoutingModule {}
