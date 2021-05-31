@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
 
 import { CoursesPageComponent } from './courses-page/courses-page.component';
 import { CoursesPageItemComponent } from './courses-page/courses-page-items-list/courses-page-item/courses-page-item.component';
@@ -32,6 +33,7 @@ import { CoursesRoutingModule } from './courses-routing.module';
     MatIconModule,
     RouterModule,
     CoursesRoutingModule,
+    HttpClientModule,
   ],
   exports: [],
 })

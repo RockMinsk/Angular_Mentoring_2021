@@ -1,15 +1,12 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
-  OnInit,
-  OnChanges,
-  AfterContentInit,
-  AfterContentChecked,
-  AfterViewInit,
-  AfterViewChecked,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { LoggerService } from 'src/app/services/logger.service';
 import { CoursesService } from '../../courses.service';
@@ -21,22 +18,17 @@ import { ICourse } from './courses-page-item/courses-page-item.model';
   styleUrls: ['./courses-page-items-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CoursesPageItemsListComponent
-  implements
-    OnInit,
-    OnChanges,
-    AfterContentInit,
-    AfterContentChecked,
-    AfterViewInit,
-    OnDestroy,
-    AfterViewChecked
-{
+export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
   @Input() public courses: ICourse[] = [];
 
-  public creationDate = '';
+  public date = '';
+  public pageIncrement = 1;
+
+  private subscription: Subscription | undefined;
 
   public constructor(
     private coursesService: CoursesService,
+    private cdRef: ChangeDetectorRef,
     private logger: LoggerService
   ) {}
 
@@ -45,48 +37,11 @@ export class CoursesPageItemsListComponent
       `OnInit`,
       `CoursesPageItemsListComponent`
     );
-  }
-
-  public ngOnChanges(): void {
-    this.logger.getLifeCycleHookMessage(
-      `OnChanges`,
-      `CoursesPageItemsListComponent`
-    );
-  }
-
-  public ngAfterContentInit(): void {
-    this.logger.getLifeCycleHookMessage(
-      `AfterContentInit`,
-      `CoursesPageItemsListComponent`
-    );
-  }
-
-  public ngAfterContentChecked(): void {
-    this.logger.getLifeCycleHookMessage(
-      `AfterContentChecked`,
-      `CoursesPageItemsListComponent`
-    );
-  }
-
-  public ngAfterViewInit(): void {
-    this.logger.getLifeCycleHookMessage(
-      `AfterViewInit`,
-      `CoursesPageItemsListComponent`
-    );
-  }
-
-  public ngAfterViewChecked(): void {
-    this.logger.getLifeCycleHookMessage(
-      `AfterViewChecked`,
-      `CoursesPageItemsListComponent`
-    );
+    this.showMore();
   }
 
   public ngOnDestroy(): void {
-    this.logger.getLifeCycleHookMessage(
-      `OnDestroy`,
-      `CoursesPageItemsListComponent`
-    );
+    this.subscription?.unsubscribe();
   }
 
   public trackByCourseId(index: number, course: ICourse): number {
@@ -95,12 +50,23 @@ export class CoursesPageItemsListComponent
 
   public deleteCourse(id: number): void {
     if (confirm('Do you really want to delete this course?')) {
-      this.courses = this.coursesService.removeItem(this.courses, id);
-      console.log(`Video course with id=${id} is deleted`);
+      this.subscription = this.coursesService.removeItem(id).subscribe(() => {
+        console.log(`Course with id=${id} deleted`);
+        this.coursesService.getList().subscribe((courses: ICourse[]) => {
+          this.courses = courses;
+          this.cdRef.markForCheck();
+        });
+      });
     }
   }
 
-  public showMore(): void {
-    console.log(`Click on "Show more" button`);
+  public showMore() {
+    this.subscription = this.coursesService
+      .getList(this.pageIncrement)
+      .subscribe((courses: ICourse[]) => {
+        this.courses = courses;
+        this.cdRef.markForCheck();
+      });
+    this.pageIncrement++;
   }
 }

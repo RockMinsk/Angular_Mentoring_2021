@@ -5,21 +5,21 @@ export class CoursesServiceStab extends CoursesService {
   public courses: ICourse[] = [
     {
       id: 12345,
-      title: 'TEST TITLE 1',
-      creationDate: '2019-10-22',
+      name: 'TEST TITLE 1',
+      date: '2019-10-22',
       duration: 12345,
       topRated: false,
       description: 'TEST DESCRIPTION 1',
-      authors: 'TEST AUTHORS 1',
+      authors: [],
     },
     {
       id: 56789,
-      title: 'TEST TITLE 2',
-      creationDate: '2021-10-22',
+      name: 'TEST TITLE 2',
+      date: '2021-10-22',
       duration: 56789,
       topRated: true,
       description: 'TEST DESCRIPTION 2',
-      authors: 'TEST AUTHORS 2',
+      authors: [],
     },
   ];
 

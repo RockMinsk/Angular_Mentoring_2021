@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { CONSTANT } from '../shared/constants';
 import { IUser } from './user.model';
 
@@ -37,10 +39,10 @@ export class AuthService {
     },
   ];
 
-  public constructor(private router: Router) {}
+  public constructor(private router: Router, private httpClient: HttpClient) {}
 
-  public getAll(): IUser[] {
-    return this.users;
+  public getAll(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>('http://localhost:3004/users');
   }
 
   public getCurrentAuthenticatedUser(): IUser | null {
