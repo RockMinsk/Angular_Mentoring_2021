@@ -11,7 +11,7 @@
 .menu {
   display: flex;
   height: 50px;
-	width: 1280px;
+  width: 1280px;
 }
 
 .search-input {
@@ -66,11 +66,11 @@
 .search-btn {
   display: inline-block;
   align-items: center;
-	border-radius: 3px;
+  border-radius: 3px;
   border: none;
-	background: #67A300;
-	height: 36px;
-	width: 73px;
+  background: #67A300;
+  height: 36px;
+  width: 73px;
   text-align: center;
   line-height: 36px;
   margin-top: 21px;
@@ -78,11 +78,11 @@
   padding: 0;
   cursor: pointer;
   letter-spacing: -0.08px;
-	color: #FFFFFF;
-	font-size: 14px;
-	font-family: "SourceSansPro-Semibold";
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: "SourceSansPro-Semibold";
   font-style: normal;
-	text-transform: none;
+  text-transform: none;
 }
 
 .search-btn:focus {
