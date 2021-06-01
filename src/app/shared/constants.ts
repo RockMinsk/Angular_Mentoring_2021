@@ -1,10 +1,15 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 export const CONSTANT = {
-  currentUser: 'currentUser',
+  STORAGE: {
+    TOKEN: 'token',
+  },
   courses: 'courses',
   baseUrl: 'http://localhost:3004',
   url: {
-    login: '/login',
+    login: 'auth/login',
+    userInfo: 'auth/userinfo',
     addCourse: './new',
-    courses: '/courses',
+    courses: 'courses',
   },
 };

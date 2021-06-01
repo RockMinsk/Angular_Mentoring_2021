@@ -6,8 +6,11 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { IUser } from 'src/app/auth/user.model';
 import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
@@ -16,26 +19,44 @@ import { LoggerService } from 'src/app/services/logger.service';
   styleUrls: ['./user-info.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent implements OnInit, OnDestroy {
   @Input()
-  public userName: string | void = ``;
+  public name = {
+    first: '',
+    last: '',
+  };
 
   @Output()
   public logoutCriteria: EventEmitter<string> = new EventEmitter<string>();
 
+  private subscription: Subscription | undefined;
+
   public constructor(
     private authService: AuthService,
     private logger: LoggerService,
-    private ref: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef
   ) {}
 
   public ngOnInit(): void {
-    this.userName = this.authService.getCurrentUserInfo();
-    this.ref.markForCheck();
+    this.getUserInfo();
     this.logger.getLifeCycleHookMessage(`OnInit`, `UserInfoComponent`);
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 
   public logout() {
     return this.authService.logout();
+  }
+
+  private getUserInfo(): void {
+    this.subscription = this.authService
+      .getCurrentUserInfo()
+      .subscribe((data: IUser) => {
+        this.name.first = data.name.first;
+        this.name.last = data.name.last;
+        this.cdRef.markForCheck();
+      });
   }
 }

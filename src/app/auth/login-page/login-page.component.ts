@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   FormControl,
   FormBuilder,
@@ -6,7 +12,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { LoggerService } from 'src/app/services/logger.service';
+import { CONSTANT } from 'src/app/shared/constants';
 import { AuthService } from '../auth.service';
 import { IUser } from '../user.model';
 
@@ -15,7 +23,7 @@ import { IUser } from '../user.model';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss'],
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, OnDestroy {
   @Input()
   public email = ``;
 
@@ -24,11 +32,12 @@ export class LoginPageComponent implements OnInit {
 
   public currentUser: IUser = {
     id: 0,
-    firstName: ``,
-    lastName: ``,
-    email: ``,
+    name: {
+      first: ``,
+      last: ``,
+    },
+    login: ``,
     password: ``,
-    isAuthenticated: false,
     token: ``,
   };
 
@@ -36,21 +45,25 @@ export class LoginPageComponent implements OnInit {
 
   public form: FormGroup;
   public submitted = false;
-  public emailControl = new FormControl('');
+  public loginControl = new FormControl('');
   public passwordControl = new FormControl('');
+
   private returnUrl: string;
+  private isLoginValid = false;
+  private subscription: Subscription | undefined;
 
   public constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private cdRef: ChangeDetectorRef
   ) {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/courses';
 
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      login: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
@@ -66,6 +79,10 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
+  public ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
+
   public get f() {
     return this.form.controls;
   }
@@ -78,15 +95,31 @@ export class LoginPageComponent implements OnInit {
     }
 
     try {
-      const email = this.form.get('email')?.value;
-      const password = this.form.get('password')?.value;
-      const isLoginValid: boolean = this.authService.login(email, password);
-      if (!isLoginValid) {
+      this.login(this.form.value);
+      if (!this.isLoginValid) {
         this.form.controls.password.setErrors({ incorrect: true });
       }
     } catch (err) {
       this.form.controls.password.setErrors({ incorrect: true });
       console.log(err);
     }
+  }
+
+  private login(user: Partial<IUser>): void {
+    this.subscription = this.authService.login(user).subscribe((data) => {
+      const token: string | undefined = data.token;
+      if (token) {
+        this.authService.saveDataToSessionStorage(
+          CONSTANT.STORAGE.TOKEN,
+          token
+        );
+        this.router.navigate([CONSTANT.url.courses]);
+        console.log(`User logged in successfully`);
+        this.isLoginValid = true;
+      } else {
+        this.isLoginValid = false;
+      }
+      this.cdRef.markForCheck();
+    });
   }
 }

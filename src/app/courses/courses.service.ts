@@ -16,7 +16,7 @@ export class CoursesService {
 
   public getList(page: number = 1): Observable<ICourse[]> {
     return this.httpClient
-      .get<ICourse[]>(`${CONSTANT.baseUrl}${CONSTANT.url.courses}`, {
+      .get<ICourse[]>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}`, {
         params: { sort: 'date', start: `${(page - 1) * 4}`, count: `4` },
       })
       .pipe(catchError((error) => handleError(error)));
@@ -24,14 +24,14 @@ export class CoursesService {
 
   public getItemById(id: number): Observable<ICourse> {
     return this.httpClient
-      .get<ICourse>(`${CONSTANT.baseUrl}${CONSTANT.url.courses}/${id}`)
+      .get<ICourse>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}/${id}`)
       .pipe(catchError((error) => handleError(error)));
   }
 
   public createItem(newItem: ICourse): Observable<ArrayBuffer> {
     const body = JSON.stringify(newItem);
     return this.httpClient
-      .post<ArrayBuffer>(`${CONSTANT.baseUrl}${CONSTANT.url.courses}`, body, {
+      .post<ArrayBuffer>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}`, body, {
         headers: { 'content-type': 'application/json' },
       })
       .pipe(catchError((error) => handleError(error)));
@@ -42,7 +42,7 @@ export class CoursesService {
       const body = JSON.stringify(updatedItem);
       return this.httpClient
         .put<ArrayBuffer>(
-          `${CONSTANT.baseUrl}${CONSTANT.url.courses}/${updatedItem.id}`,
+          `${CONSTANT.baseUrl}/${CONSTANT.url.courses}/${updatedItem.id}`,
           body,
           {
             headers: { 'content-type': 'application/json' },
@@ -54,13 +54,13 @@ export class CoursesService {
 
   public removeItem(id: number): Observable<void> {
     return this.httpClient
-      .delete<void>(`${CONSTANT.baseUrl}${CONSTANT.url.courses}/${id}`)
+      .delete<void>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}/${id}`)
       .pipe(catchError((error) => handleError(error)));
   }
 
   public getSearchedList(data: string): Observable<ICourse[]> {
     return this.httpClient
-      .get<ICourse[]>(`${CONSTANT.baseUrl}${CONSTANT.url.courses}`, {
+      .get<ICourse[]>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}`, {
         params: { textFragment: `${data}` },
       })
       .pipe(catchError((error) => handleError(error)));

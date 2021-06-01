@@ -1,9 +1,12 @@
 export interface IUser {
   id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  isAuthenticated: boolean;
   token: string;
+  name: IUserName;
+  login: string;
+  password: string;
+}
+
+export interface IUserName {
+  first: string;
+  last: string;
 }

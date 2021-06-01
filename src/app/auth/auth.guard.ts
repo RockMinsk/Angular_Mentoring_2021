@@ -34,4 +34,24 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
+
+  // public canActivate(): boolean {
+  //   try {
+  //     this.authService.isAuthenticated().subscribe((resp) => {
+  //       console.log(`====TEST=== ${resp.status}`);
+  //       if (resp.status === 200) {
+  //         this.state = true;
+  //         this.isAuthenticated();
+  //       } else {
+  //         this.router.navigate([CONSTANT.url.login]);
+  //         this.state = false;
+  //         this.isAuthenticated();
+  //       }
+  //     });
+  //     return this.isAuthenticated();
+  //   } catch {
+  //     this.router.navigate([CONSTANT.url.login]);
+  //     return false;
+  //   }
+  // }
 }
