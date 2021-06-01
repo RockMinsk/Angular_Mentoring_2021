@@ -17,7 +17,7 @@ export class CoursesService {
   public getList(page: number = 1): Observable<ICourse[]> {
     return this.httpClient
       .get<ICourse[]>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}`, {
-        params: { sort: 'date', start: `${(page - 1) * 4}`, count: `4` },
+        params: { sort: `date`, start: `${(page - 1) * 4}`, count: `4` },
       })
       .pipe(catchError((error) => handleError(error)));
   }
@@ -61,7 +61,12 @@ export class CoursesService {
   public getSearchedList(data: string): Observable<ICourse[]> {
     return this.httpClient
       .get<ICourse[]>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}`, {
-        params: { textFragment: `${data}` },
+        params: {
+          textFragment: `${data}`,
+          sort: `date`,
+          start: `0`,
+          count: `4`,
+        },
       })
       .pipe(catchError((error) => handleError(error)));
   }

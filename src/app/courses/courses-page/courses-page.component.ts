@@ -1,17 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ICourse } from './courses-page-items-list/courses-page-item/courses-page-item.model';
 import { CoursesService } from '../courses.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { CONSTANT } from 'src/app/shared/constants';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses-page',
@@ -19,26 +13,20 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./courses-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CoursesPageComponent implements OnInit, OnDestroy {
+export class CoursesPageComponent implements OnInit {
   public courses: ICourse[] = [];
-
-  private subscription: Subscription | undefined;
+  public courses$!: Observable<ICourse[]>;
 
   public constructor(
     private router: Router,
     private route: ActivatedRoute,
     private coursesService: CoursesService,
-    private logger: LoggerService,
-    private cdRef: ChangeDetectorRef
+    private logger: LoggerService
   ) {}
 
   public ngOnInit(): void {
-    this.showCourses();
+    this.courses$ = this.coursesService.getList();
     this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageComponent`);
-  }
-
-  public ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
   }
 
   public openAddCoursePage(): void {
@@ -46,20 +34,6 @@ export class CoursesPageComponent implements OnInit, OnDestroy {
   }
 
   public searchCourse(data: string): void {
-    this.subscription = this.coursesService
-      .getSearchedList(data)
-      .subscribe((courses: ICourse[]) => {
-        this.courses = courses;
-        this.cdRef.markForCheck();
-      });
-  }
-
-  private showCourses(): void {
-    this.subscription = this.coursesService
-      .getList()
-      .subscribe((courses: ICourse[]) => {
-        this.courses = courses;
-        this.cdRef.markForCheck();
-      });
+    this.courses$ = this.coursesService.getSearchedList(data);
   }
 }

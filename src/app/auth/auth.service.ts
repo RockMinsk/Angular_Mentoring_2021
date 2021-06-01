@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-// import * as jwt from 'jsonwebtoken';
 
 import { handleError } from '../services/error-handling.service';
 import { CONSTANT } from '../shared/constants';
@@ -26,7 +25,7 @@ export class AuthService {
   }
 
   public signToken(token: string): void {
-    return sessionStorage.setItem('token', token);
+    return sessionStorage.setItem(CONSTANT.STORAGE.TOKEN, token);
   }
 
   public saveDataToSessionStorage(key: string, value: string): void {
@@ -34,7 +33,7 @@ export class AuthService {
   }
 
   public getToken(): string | null {
-    return sessionStorage.getItem('token');
+    return sessionStorage.getItem(CONSTANT.STORAGE.TOKEN);
   }
 
   public logout(): void {

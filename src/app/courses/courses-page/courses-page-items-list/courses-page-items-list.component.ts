@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { LoggerService } from 'src/app/services/logger.service';
 import { CoursesService } from '../../courses.service';
@@ -19,7 +19,7 @@ import { ICourse } from './courses-page-item/courses-page-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
-  @Input() public courses: ICourse[] = [];
+  @Input() public courses$!: Observable<ICourse[]>;
 
   public date = '';
   public pageIncrement = 1;
@@ -48,25 +48,19 @@ export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
     return course.id;
   }
 
+  // TODO: investigate if it's possible to use somehow async pipe instead of subscription in this case
   public deleteCourse(id: number): void {
     if (confirm('Do you really want to delete this course?')) {
       this.subscription = this.coursesService.removeItem(id).subscribe(() => {
         console.log(`Course with id=${id} deleted`);
-        this.coursesService.getList().subscribe((courses: ICourse[]) => {
-          this.courses = courses;
-          this.cdRef.markForCheck();
-        });
+        this.courses$ = this.coursesService.getList();
+        this.cdRef.markForCheck();
       });
     }
   }
 
   public showMore() {
-    this.subscription = this.coursesService
-      .getList(this.pageIncrement)
-      .subscribe((courses: ICourse[]) => {
-        this.courses = courses;
-        this.cdRef.markForCheck();
-      });
+    this.courses$ = this.coursesService.getList(this.pageIncrement);
     this.pageIncrement++;
   }
 }
