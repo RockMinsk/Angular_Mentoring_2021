@@ -27,7 +27,7 @@ export class CoursesServiceStab extends CoursesService {
     super();
   }
 
-  public getList(): ICourse[] {
+  public getSortedList(): ICourse[] {
     return this.courses;
   }
 }

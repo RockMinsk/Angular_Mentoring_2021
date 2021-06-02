@@ -14,7 +14,6 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesPageComponent implements OnInit {
-  public courses: ICourse[] = [];
   public courses$!: Observable<ICourse[]>;
 
   public constructor(
@@ -25,7 +24,7 @@ export class CoursesPageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.courses$ = this.coursesService.getList();
+    this.courses$ = this.coursesService.getSortedList();
     this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageComponent`);
   }
 

@@ -19,10 +19,12 @@ import { ICourse } from './courses-page-item/courses-page-item.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
-  @Input() public courses$!: Observable<ICourse[]>;
+  // TODO: change <any> to <ICourse[]> after investigation how to fix issue with types in "paginate" pipe
+  @Input() public courses$!: Observable<any>;
 
-  public date = '';
-  public pageIncrement = 1;
+  public currentPage = 1;
+  public itemsPerPage = 4;
+  public totalItems = 0;
 
   private subscription: Subscription | undefined;
 
@@ -37,7 +39,8 @@ export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
       `OnInit`,
       `CoursesPageItemsListComponent`
     );
-    this.showMore();
+    this.showCourses();
+    this.getNumberOfCourses();
   }
 
   public ngOnDestroy(): void {
@@ -53,14 +56,29 @@ export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
     if (confirm('Do you really want to delete this course?')) {
       this.subscription = this.coursesService.removeItem(id).subscribe(() => {
         console.log(`Course with id=${id} deleted`);
-        this.courses$ = this.coursesService.getList();
+        this.totalItems--;
+        if (this.totalItems % this.itemsPerPage === 0) {
+          this.currentPage = this.currentPage - 1;
+        }
+        this.courses$ = this.coursesService.getSortedList(this.currentPage);
         this.cdRef.markForCheck();
       });
     }
   }
 
-  public showMore() {
-    this.courses$ = this.coursesService.getList(this.pageIncrement);
-    this.pageIncrement++;
+  public handlePageChange(event: number): void {
+    this.currentPage = event;
+    this.showCourses();
+  }
+
+  private showCourses(): void {
+    this.courses$ = this.coursesService.getSortedList(this.currentPage);
+  }
+
+  private getNumberOfCourses(): void {
+    this.subscription = this.coursesService
+      .getTotalNumberOfItems()
+      .subscribe((result) => (this.totalItems = result));
+    this.cdRef.markForCheck();
   }
 }

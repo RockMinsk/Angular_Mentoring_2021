@@ -57,7 +57,7 @@ describe('CoursesPageItemsListComponent', () => {
     rootElement = fixture.debugElement;
 
     const expectedCourse = new CoursesServiceStab();
-    component.courses = expectedCourse.getList();
+    component.courses = expectedCourse.getSortedList();
 
     fixture.detectChanges();
   });

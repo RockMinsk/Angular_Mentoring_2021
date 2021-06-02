@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 import { handleError } from '../services/error-handling.service';
 import { CONSTANT } from '../shared/constants';
@@ -14,11 +14,25 @@ import { ICourse } from './courses-page/courses-page-items-list/courses-page-ite
 export class CoursesService {
   public constructor(private httpClient: HttpClient) {}
 
-  public getList(page: number = 1): Observable<ICourse[]> {
+  public getSortedList(
+    page: number = 1,
+    pageSize: number = 4
+  ): Observable<ICourse[]> {
     return this.httpClient
       .get<ICourse[]>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}`, {
-        params: { sort: `date`, start: `${(page - 1) * 4}`, count: `4` },
+        params: {
+          sort: `date`,
+          start: `${(page - 1) * pageSize}`,
+          count: `${pageSize}`,
+        },
       })
+      .pipe(catchError((error) => handleError(error)));
+  }
+
+  public getTotalNumberOfItems(): Observable<number> {
+    return this.httpClient
+      .get<ICourse[]>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}`)
+      .pipe(map((result) => result.length))
       .pipe(catchError((error) => handleError(error)));
   }
 

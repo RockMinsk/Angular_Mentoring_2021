@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
 import { CoursesPageComponent } from './courses-page/courses-page.component';
 import { CoursesPageItemComponent } from './courses-page/courses-page-items-list/courses-page-item/courses-page-item.component';
 import { SearchBarComponent } from './courses-page/search-bar/search-bar.component';
@@ -34,6 +36,7 @@ import { CoursesRoutingModule } from './courses-routing.module';
     RouterModule,
     CoursesRoutingModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   exports: [],
 })
