@@ -70,26 +70,4 @@ describe('SearchBarComponent', () => {
 
     expect(fixture.componentInstance.value).toBe('someValue');
   });
-
-  it('should emit searchCourse by click', () => {
-    const spy = spyOn(component, 'searchCourse');
-
-    rootElement
-      .query(By.css('button.search-btn'))
-      .triggerEventHandler('click', {});
-    fixture.detectChanges();
-
-    expect(spy).toHaveBeenCalled();
-  });
-
-  it('should emit searchCourse by press "Enter" button', () => {
-    const spy = spyOn(component, 'searchCourse');
-
-    rootElement
-      .query(By.css('input.search-input-content'))
-      .triggerEventHandler('keyup.enter', {});
-    fixture.detectChanges();
-
-    expect(spy).toHaveBeenCalled();
-  });
 });
