@@ -6,15 +6,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
-  declarations: [BreadcrumbsComponent, PageNotFoundComponent],
+  declarations: [BreadcrumbsComponent, PageNotFoundComponent, LoaderComponent],
   imports: [
     CommonModule, //
     MatIconModule,
     AppRoutingModule,
     BrowserModule,
   ],
-  exports: [BreadcrumbsComponent, PageNotFoundComponent],
+  exports: [BreadcrumbsComponent, PageNotFoundComponent, LoaderComponent],
 })
 export class SharedModule {}
