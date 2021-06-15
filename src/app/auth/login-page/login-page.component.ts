@@ -87,7 +87,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     return this.form.controls;
   }
 
-  public onSubmit(): void {
+  public async onSubmit(): Promise<void> {
     this.submitted = true;
 
     if (this.form.invalid) {
@@ -95,7 +95,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
 
     try {
-      this.login(this.form.value);
+      await this.login(this.form.value);
       if (!this.isLoginValid) {
         this.form.controls.password.setErrors({ incorrect: true });
       }
@@ -105,7 +105,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  private login(user: Partial<IUser>): void {
+  private async login(user: Partial<IUser>): Promise<void> {
     this.subscription = this.authService.login(user).subscribe((data) => {
       const token: string | undefined = data.token;
       if (token) {
