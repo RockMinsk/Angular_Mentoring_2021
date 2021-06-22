@@ -8,9 +8,12 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 import { LoggerService } from 'src/app/services/logger.service';
+import { ActionTypes } from 'src/app/store/actions/courses.actions';
+import { AppState } from 'src/app/store/app.states';
 import { ICourse } from '../courses-page/courses-page-items-list/courses-page-item/courses-page-item.model';
 import { CoursesService } from '../courses.service';
 
@@ -24,6 +27,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public duration = 0;
   public id = 0;
+  public topRated = false;
   public isAddMode = false;
   public submitted = false;
 
@@ -36,7 +40,8 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     private logger: LoggerService,
     private coursesService: CoursesService,
     private fb: FormBuilder,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private store: Store<AppState>
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -58,6 +63,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
         .getItemById(this.id)
         .subscribe((courseSubs: ICourse) => {
           course = courseSubs;
+          this.topRated = course.topRated;
           this.cdRef.markForCheck();
 
           const formattedDate = this.datePipe.transform(
@@ -123,21 +129,18 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   }
 
   private addCourse(course: ICourse): void {
-    this.subscription = this.coursesService
-      .createItem(course)
-      .subscribe((data) => {
-        console.log(data);
-        this.cdRef.markForCheck();
-      });
+    return this.store.dispatch({
+      type: ActionTypes.addCourseRequest,
+      payload: course,
+    });
   }
 
   private editCourse(course: ICourse): void {
     course.id = this.id;
-    this.subscription = this.coursesService
-      .updateItem(course)
-      .subscribe((data) => {
-        console.log(data);
-        this.cdRef.markForCheck();
-      });
+    course.topRated = this.topRated;
+    return this.store.dispatch({
+      type: ActionTypes.editCourseRequest,
+      payload: course,
+    });
   }
 }

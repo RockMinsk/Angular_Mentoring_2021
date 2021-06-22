@@ -8,10 +8,13 @@ import {
   ChangeDetectorRef,
   OnDestroy,
 } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { IUser } from 'src/app/auth/user.model';
 import { LoggerService } from 'src/app/services/logger.service';
+import { AuthActionTypes } from 'src/app/store/actions/auth.actions';
+import { AppState } from 'src/app/store/app.states';
 
 @Component({
   selector: 'app-user-info',
@@ -34,7 +37,8 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   public constructor(
     private authService: AuthService,
     private logger: LoggerService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private store: Store<AppState>
   ) {}
 
   public ngOnInit(): void {
@@ -47,7 +51,9 @@ export class UserInfoComponent implements OnInit, OnDestroy {
   }
 
   public logout() {
-    return this.authService.logout();
+    this.store.dispatch({
+      type: AuthActionTypes.logout,
+    });
   }
 
   private getUserInfo(): void {

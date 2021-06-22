@@ -1,10 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   FormControl,
   FormBuilder,
@@ -12,9 +6,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+
 import { LoggerService } from 'src/app/services/logger.service';
-import { CONSTANT } from 'src/app/shared/constants';
+import { AuthActionTypes } from 'src/app/store/actions/auth.actions';
+import { AppState } from 'src/app/store/app.states';
 import { AuthService } from '../auth.service';
 import { IUser } from '../user.model';
 
@@ -58,7 +56,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private logger: LoggerService,
-    private cdRef: ChangeDetectorRef
+    private store: Store<AppState>
   ) {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/courses';
 
@@ -106,20 +104,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   private login(user: Partial<IUser>): void {
-    this.subscription = this.authService.login(user).subscribe((data) => {
-      const token: string | undefined = data.token;
-      if (token) {
-        this.authService.saveDataToSessionStorage(
-          CONSTANT.STORAGE.TOKEN,
-          token
-        );
-        this.router.navigate([CONSTANT.url.courses]);
-        console.log(`User logged in successfully`);
-        this.isLoginValid = true;
-      } else {
-        this.isLoginValid = false;
-      }
-      this.cdRef.markForCheck();
+    this.store.dispatch({
+      type: AuthActionTypes.login,
+      payload: user,
     });
   }
 }

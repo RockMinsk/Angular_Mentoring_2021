@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ICourse } from './courses-page-items-list/courses-page-item/courses-page-item.model';
-import { CoursesService } from '../courses.service';
+import { Store } from '@ngrx/store';
+
 import { LoggerService } from 'src/app/services/logger.service';
 import { CONSTANT } from 'src/app/shared/constants';
-import { Observable } from 'rxjs';
+import { ActionTypes } from 'src/app/store/actions/courses.actions';
+import { AppState } from 'src/app/store/app.states';
 
 @Component({
   selector: 'app-courses-page',
@@ -14,17 +15,14 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesPageComponent implements OnInit {
-  public courses$!: Observable<ICourse[]>;
-
   public constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private coursesService: CoursesService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private store: Store<AppState>
   ) {}
 
   public ngOnInit(): void {
-    this.courses$ = this.coursesService.getSortedList();
     this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageComponent`);
   }
 
@@ -33,6 +31,13 @@ export class CoursesPageComponent implements OnInit {
   }
 
   public searchCourse(data: string): void {
-    this.courses$ = this.coursesService.getSearchedList(data);
+    this.store.dispatch({
+      type: ActionTypes.loadSearchedCourses,
+      payload: data,
+    });
+    this.store.dispatch({
+      type: ActionTypes.getTotalNumberOfCoursesRequest,
+      payload: data,
+    });
   }
 }

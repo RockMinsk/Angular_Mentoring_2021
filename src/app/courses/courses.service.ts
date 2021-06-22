@@ -29,9 +29,18 @@ export class CoursesService {
       .pipe(catchError((error) => handleError(error)));
   }
 
-  public getTotalNumberOfItems(): Observable<number> {
+  public getTotalNumberOfItems(data?: string): Observable<number> {
     return this.httpClient
-      .get<ICourse[]>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}`)
+      .get<ICourse[]>(
+        `${CONSTANT.baseUrl}/${CONSTANT.url.courses}`,
+        data
+          ? {
+              params: {
+                textFragment: `${data}`,
+              },
+            }
+          : {}
+      )
       .pipe(map((result) => result.length))
       .pipe(catchError((error) => handleError(error)));
   }

@@ -6,9 +6,16 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
 import { LoggerService } from 'src/app/services/logger.service';
+import { ActionTypes } from 'src/app/store/actions/courses.actions';
+import { AppState } from 'src/app/store/app.states';
+import {
+  getAllCourses,
+  getAllCoursesNumber,
+} from 'src/app/store/selectors/courses.selectors';
 import { CoursesService } from '../../courses.service';
 import { ICourse } from './courses-page-item/courses-page-item.model';
 
@@ -21,6 +28,7 @@ import { ICourse } from './courses-page-item/courses-page-item.model';
 export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
   // TODO: change <any> to <ICourse[]> after investigation how to fix issue with types in "paginate" pipe
   @Input() public courses$!: Observable<any>;
+  public totalItems$!: Observable<any>;
 
   public currentPage = 1;
   public itemsPerPage = 4;
@@ -31,8 +39,12 @@ export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
   public constructor(
     private coursesService: CoursesService,
     private cdRef: ChangeDetectorRef,
-    private logger: LoggerService
-  ) {}
+    private logger: LoggerService,
+    private store: Store<AppState>
+  ) {
+    this.courses$ = this.store.select(getAllCourses);
+    this.totalItems$ = this.store.select(getAllCoursesNumber);
+  }
 
   public ngOnInit(): void {
     this.logger.getLifeCycleHookMessage(
@@ -69,16 +81,19 @@ export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
   public handlePageChange(event: number): void {
     this.currentPage = event;
     this.showCourses();
+    this.getNumberOfCourses();
   }
 
   private showCourses(): void {
-    this.courses$ = this.coursesService.getSortedList(this.currentPage);
+    return this.store.dispatch({
+      type: ActionTypes.loadCoursesPerPageRequest,
+      payload: this.currentPage,
+    });
   }
 
   private getNumberOfCourses(): void {
-    this.subscription = this.coursesService
-      .getTotalNumberOfItems()
-      .subscribe((result) => (this.totalItems = result));
-    this.cdRef.markForCheck();
+    return this.store.dispatch({
+      type: ActionTypes.getTotalNumberOfCoursesRequest,
+    });
   }
 }
