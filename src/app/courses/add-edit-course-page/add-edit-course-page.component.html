@@ -18,8 +18,9 @@
           required
           placeholder="Enter title"
         />
-        <div *ngIf="submitted && f.name.errors" class="error">
+        <div *ngIf="f.name.errors && (f.name.dirty || f.name.touched)" class="error">
           <div *ngIf="f.name.errors?.required">Title is required.</div>
+          <div *ngIf="f.name.errors?.maxlength">Title can be max 50 characters long.</div>
         </div>
       </div>
       <div class="add-course-input-title-box">
@@ -35,8 +36,9 @@
           required
           placeholder="Enter description"
         ></textarea>
-        <div *ngIf="submitted && f.description.errors" class="error">
+        <div *ngIf="f.description.errors && (f.description.dirty || f.description.touched)" class="error">
           <div *ngIf="f.description.errors?.required">Description is required.</div>
+          <div *ngIf="f.name.errors?.maxlength">Description can be max 500 characters long.</div>
         </div>
       </div>
       <div class="add-course-input-title-box numeric-field">
@@ -55,8 +57,9 @@
         <span *ngIf="duration && duration > 0" class="duration">{{
           duration | minutesToHours
         }}</span>
-        <div *ngIf="submitted && f.duration.errors" class="error">
+        <div *ngIf="f.duration.errors && (f.duration.dirty || f.duration.touched)" class="error">
           <div *ngIf="f.duration.errors?.required">Duration is required.</div>
+          <div *ngIf="f.duration.errors?.pattern">Only numbers are allowed</div>
         </div>
       </div>
       <div class="add-course-input-title-box numeric-field">
@@ -72,7 +75,7 @@
           required
           placeholder="MM/DD/YYYY"
         />
-        <div *ngIf="submitted && f.date.errors" class="error">
+        <div *ngIf="f.date.errors && (f.date.dirty || f.date.touched)" class="error">
           <div *ngIf="f.date.errors?.required">Date is required.</div>
         </div>
       </div>
@@ -89,13 +92,15 @@
           required
           placeholder="Enter authors"
         />
-        <div *ngIf="submitted && f.authors.errors" class="error">
+        <div *ngIf="f.authors.errors && (f.authors.dirty || f.authors.touched)" class="error">
           <div *ngIf="f.authors.errors?.required">Authors is required.</div>
         </div>
       </div>
       <div class="add-course-bottom-box">
         <button (click)="onCancel()" class="cancel-btn">Cancel</button>
-        <button class="add-course-btn" type="submit">Save</button>
+        <div matTooltip="Please enter required data to proceed" [matTooltipDisabled]="!form.invalid" matTooltipPosition="above">
+          <button class="add-course-btn" type="submit" [disabled]="form.invalid">Save</button>
+        </div>
       </div>
     </div>
   </form>

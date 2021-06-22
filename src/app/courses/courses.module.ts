@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -33,6 +34,7 @@ import { CoursesRoutingModule } from './courses-routing.module';
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatTooltipModule,
     RouterModule,
     CoursesRoutingModule,
     HttpClientModule,

@@ -145,6 +145,10 @@
     border-radius: 3px;
     border: 1px solid #51cbee;
   }
+
+  &-btn:disabled {
+    background: #666666;
+  }
 }
 
 .description-field {

@@ -29,7 +29,6 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   public id = 0;
   public topRated = false;
   public isAddMode = false;
-  public submitted = false;
 
   private subscription: Subscription | undefined;
   private datePipe: DatePipe = new DatePipe('en-US');
@@ -44,9 +43,9 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     private store: Store<AppState>
   ) {
     this.form = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      duration: ['', Validators.required],
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.maxLength(500)]],
+      duration: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       date: ['', Validators.required],
       authors: ['', Validators.required],
     });
@@ -81,12 +80,22 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
           }
 
           this.form = this.fb.group({
-            name: [course?.name, Validators.required],
-            description: [course?.description, Validators.required],
-            duration: [course?.duration, Validators.required],
+            name: [
+              course?.name,
+              [Validators.required, Validators.maxLength(50)],
+            ],
+            description: [
+              course?.description,
+              [Validators.required, Validators.maxLength(500)],
+            ],
+            duration: [
+              course?.duration,
+              [Validators.required, Validators.pattern('^[0-9]*$')],
+            ],
             date: [formattedDate, Validators.required],
             authors: [formattedAuthors, Validators.required],
           });
+          console.log(`++++++ ${this.form.valid}`);
         });
     }
 
@@ -104,8 +113,6 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit(): void {
-    this.submitted = true;
-
     if (this.form.invalid) {
       return;
     }
