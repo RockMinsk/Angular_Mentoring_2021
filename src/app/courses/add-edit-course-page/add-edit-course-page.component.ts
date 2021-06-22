@@ -95,7 +95,6 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
             date: [formattedDate, Validators.required],
             authors: [formattedAuthors, Validators.required],
           });
-          console.log(`++++++ ${this.form.valid}`);
         });
     }
 
