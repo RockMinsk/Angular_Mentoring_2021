@@ -1,6 +1,7 @@
 import {
   HttpEvent,
   HttpHandler,
+  HttpInterceptor,
   HttpRequest,
   HttpResponse,
 } from '@angular/common/http';
@@ -11,7 +12,7 @@ import { LoaderService } from './loader.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LoaderInterceptor {
+export class LoaderInterceptor implements HttpInterceptor {
   private requests: HttpRequest<any>[] = [];
 
   public constructor(private loaderService: LoaderService) {}
