@@ -1,14 +1,22 @@
 <app-courses-page-item
   (deleteCourse)="deleteCourse($event)"
   *ngFor="
-    let course of courses | orderByDate: creationDate;
+    let course of courses$ | async | paginate : {
+      itemsPerPage: itemsPerPage,
+      currentPage: currentPage,
+      totalItems: totalItems
+    };
     trackBy: trackByCourseId
   "
   [course]="course"
 ></app-courses-page-item>
-<div *ngIf="courses.length > 0" class="load-more-section">
-  <a [routerLink]="" (click)="showMore()" class="load-more-text">Load more</a>
+<div *ngIf="(courses$ | async)?.length! > 0" class="load-more-section">
+  <pagination-controls class="ngx-pagination"
+    previousLabel="Prev"
+    nextLabel="Next"
+    (pageChange)="handlePageChange($event)">
+  </pagination-controls>
 </div>
-<p *ngIf="courses.length === 0" class="no-items-to-display">
+<p *ngIf="(courses$ | async)?.length === 0" class="no-items-to-display">
   {{ "No data, feel free to add new course" | uppercase }}
 </p>

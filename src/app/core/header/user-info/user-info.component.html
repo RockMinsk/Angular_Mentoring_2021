@@ -2,7 +2,7 @@
   <div class="user-login-section">
     <mat-icon class="user-login-icon" [inline]="true">person</mat-icon>
   </div>
-  <span class="user-login-text">{{ userName }}</span>
+  <span *ngIf="userData$ | async as userData" class="user-login-text">{{ userData.name.first }}  {{ userData.name.last }}</span>
   <div class="logout-section">
     <mat-icon
       class="logout-icon"

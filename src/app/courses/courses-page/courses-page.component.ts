@@ -5,6 +5,7 @@ import { ICourse } from './courses-page-items-list/courses-page-item/courses-pag
 import { CoursesService } from '../courses.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { CONSTANT } from 'src/app/shared/constants';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses-page',
@@ -13,16 +14,7 @@ import { CONSTANT } from 'src/app/shared/constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CoursesPageComponent implements OnInit {
-  public courses: ICourse[] = [];
-  public newCourse: ICourse = {
-    id: 0,
-    title: 'dummy',
-    creationDate: 'dummy',
-    duration: 0,
-    topRated: false,
-    description: 'dummy',
-    authors: 'dummy',
-  };
+  public courses$!: Observable<ICourse[]>;
 
   public constructor(
     private router: Router,
@@ -32,7 +24,7 @@ export class CoursesPageComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.courses = this.coursesService.getList();
+    this.courses$ = this.coursesService.getSortedList();
     this.logger.getLifeCycleHookMessage(`OnInit`, `CoursesPageComponent`);
   }
 
@@ -40,7 +32,7 @@ export class CoursesPageComponent implements OnInit {
     this.router.navigate([CONSTANT.url.addCourse], { relativeTo: this.route });
   }
 
-  public searchCourse(data: string): ICourse[] {
-    return (this.courses = this.coursesService.searchItem(data));
+  public searchCourse(data: string): void {
+    this.courses$ = this.coursesService.getSearchedList(data);
   }
 }

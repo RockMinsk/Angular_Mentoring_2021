@@ -1,10 +1,10 @@
 <div
   class="item-section"
-  [appHighlightBorder]="course.creationDate"
+  [appHighlightBorder]="course.date"
   [ngClass]="{ 'item-section-top-rated': course.topRated }"
 >
   <div class="item-title">
-    <p>{{ course.title }}</p>
+    <p>{{ course.name }}</p>
     <mat-icon *ngIf="course.topRated" class="material-icons-outlined rate-star"
       >star</mat-icon
     >
@@ -16,7 +16,7 @@
     </p>
     <mat-icon class="calendar-icon">calendar_today</mat-icon>
     <p class="date-time-section-text creation-date">
-      {{ course.creationDate | date: "MM/dd/yyyy" }}
+      {{ course.date | date: "MM/dd/yyyy" }}
     </p>
   </div>
   <p class="item-description">{{ course.description }}</p>

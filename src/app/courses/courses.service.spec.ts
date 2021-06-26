@@ -15,6 +15,6 @@ describe('CoursesService', () => {
   });
 
   it('should return Object', () => {
-    expect(service.getList()).toBeInstanceOf(Object);
+    expect(service.getSortedList()).toBeInstanceOf(Object);
   });
 });

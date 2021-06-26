@@ -5,9 +5,10 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { IUser } from 'src/app/auth/user.model';
 import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
@@ -17,25 +18,26 @@ import { LoggerService } from 'src/app/services/logger.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserInfoComponent implements OnInit {
-  @Input()
-  public userName: string | void = ``;
+  @Input() public userData$!: Observable<IUser>;
 
   @Output()
   public logoutCriteria: EventEmitter<string> = new EventEmitter<string>();
 
   public constructor(
     private authService: AuthService,
-    private logger: LoggerService,
-    private ref: ChangeDetectorRef
+    private logger: LoggerService
   ) {}
 
   public ngOnInit(): void {
-    this.userName = this.authService.getCurrentUserInfo();
-    this.ref.markForCheck();
+    this.getUserInfo();
     this.logger.getLifeCycleHookMessage(`OnInit`, `UserInfoComponent`);
   }
 
   public logout() {
     return this.authService.logout();
+  }
+
+  private getUserInfo(): void {
+    this.userData$ = this.authService.getCurrentUserInfo();
   }
 }

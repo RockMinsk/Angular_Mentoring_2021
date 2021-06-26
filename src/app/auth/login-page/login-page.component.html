@@ -13,12 +13,12 @@
           matInput
           type="text"
           class="login-input-content"
-          formControlName="email"
+          formControlName="login"
           required
           placeholder="Enter email"
         />
-        <div *ngIf="submitted && f.email.errors" class="error">
-          <div *ngIf="f.email.errors.required">Email is required.</div>
+        <div *ngIf="submitted && f.login.errors" class="error">
+          <div *ngIf="f.login.errors.required">Email is required.</div>
         </div>
       </div>
       <div class="login-input-title-box">

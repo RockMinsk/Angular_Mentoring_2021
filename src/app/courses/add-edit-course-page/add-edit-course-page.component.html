@@ -14,12 +14,12 @@
           matInput
           type="text"
           class="add-course-input-content form-control"
-          formControlName="title"
+          formControlName="name"
           required
           placeholder="Enter title"
         />
-        <div *ngIf="submitted && f.title.errors" class="error">
-          <div *ngIf="f.title.errors?.required">Title is required.</div>
+        <div *ngIf="submitted && f.name.errors" class="error">
+          <div *ngIf="f.name.errors?.required">Title is required.</div>
         </div>
       </div>
       <div class="add-course-input-title-box">
@@ -68,12 +68,12 @@
           matInput
           type="date"
           class="add-course-input-content numeric-field date-placeholder"
-          formControlName="creationDate"
+          formControlName="date"
           required
           placeholder="MM/DD/YYYY"
         />
-        <div *ngIf="submitted && f.creationDate.errors" class="error">
-          <div *ngIf="f.creationDate.errors?.required">Date is required.</div>
+        <div *ngIf="submitted && f.date.errors" class="error">
+          <div *ngIf="f.date.errors?.required">Date is required.</div>
         </div>
       </div>
       <div class="add-course-input-title-box authors-field">

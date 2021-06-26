@@ -1,6 +1,14 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnDestroy,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { LoggerService } from 'src/app/services/logger.service';
 import { ICourse } from '../courses-page/courses-page-items-list/courses-page-item/courses-page-item.model';
@@ -12,25 +20,29 @@ import { CoursesService } from '../courses.service';
   styleUrls: ['./add-edit-course-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddEditCoursePageComponent implements OnInit {
+export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public duration = 0;
   public id = 0;
   public isAddMode = false;
   public submitted = false;
 
+  private subscription: Subscription | undefined;
+  private datePipe: DatePipe = new DatePipe('en-US');
+
   public constructor(
     private router: Router,
     private route: ActivatedRoute,
     private logger: LoggerService,
     private coursesService: CoursesService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private cdRef: ChangeDetectorRef
   ) {
     this.form = this.fb.group({
-      title: ['', Validators.required],
+      name: ['', Validators.required],
       description: ['', Validators.required],
       duration: ['', Validators.required],
-      creationDate: ['', Validators.required],
+      date: ['', Validators.required],
       authors: ['', Validators.required],
     });
   }
@@ -41,21 +53,44 @@ export class AddEditCoursePageComponent implements OnInit {
     this.logger.getLifeCycleHookMessage(`OnInit`, `AddEditCoursePageComponent`);
 
     if (!this.isAddMode) {
-      const course: ICourse | undefined = this.coursesService.getItemById(
-        this.id
-      );
-      this.form = this.fb.group({
-        title: [course?.title, Validators.required],
-        description: [course?.description, Validators.required],
-        duration: [course?.duration, Validators.required],
-        creationDate: [course?.creationDate, Validators.required],
-        authors: [course?.authors, Validators.required],
-      });
+      let course: ICourse;
+      this.subscription = this.coursesService
+        .getItemById(this.id)
+        .subscribe((courseSubs: ICourse) => {
+          course = courseSubs;
+          this.cdRef.markForCheck();
+
+          const formattedDate = this.datePipe.transform(
+            course.date,
+            'yyyy-MM-dd'
+          );
+
+          let formattedAuthors: string;
+          if (typeof course.authors === 'object') {
+            formattedAuthors = course.authors
+              .map((el: any) => `${el.name} ${el.lastName}`)
+              .join(', ');
+          } else {
+            formattedAuthors = course.authors;
+          }
+
+          this.form = this.fb.group({
+            name: [course?.name, Validators.required],
+            description: [course?.description, Validators.required],
+            duration: [course?.duration, Validators.required],
+            date: [formattedDate, Validators.required],
+            authors: [formattedAuthors, Validators.required],
+          });
+        });
     }
 
     this.form.get('duration')?.valueChanges.subscribe((selectedValue) => {
       this.duration = selectedValue;
     });
+  }
+
+  public ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 
   public get f() {
@@ -88,11 +123,21 @@ export class AddEditCoursePageComponent implements OnInit {
   }
 
   private addCourse(course: ICourse): void {
-    this.coursesService.createItem(course);
+    this.subscription = this.coursesService
+      .createItem(course)
+      .subscribe((data) => {
+        console.log(data);
+        this.cdRef.markForCheck();
+      });
   }
 
   private editCourse(course: ICourse): void {
     course.id = this.id;
-    this.coursesService.updateItem(course);
+    this.subscription = this.coursesService
+      .updateItem(course)
+      .subscribe((data) => {
+        console.log(data);
+        this.cdRef.markForCheck();
+      });
   }
 }

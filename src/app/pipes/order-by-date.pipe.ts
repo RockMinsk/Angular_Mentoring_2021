@@ -5,9 +5,7 @@ import { ICourse } from '../courses/courses-page/courses-page-items-list/courses
   name: 'orderByDate',
 })
 export class OrderByDatePipe implements PipeTransform {
-  public transform(allCourses: ICourse[], creationDate: string): ICourse[] {
-    return allCourses.sort((a, b) =>
-      a.creationDate < b.creationDate ? 1 : -1
-    );
+  public transform(allCourses: ICourse[], date: string): ICourse[] {
+    return allCourses.sort((a, b) => (a.date < b.date ? 1 : -1));
   }
 }
