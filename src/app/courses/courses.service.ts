@@ -72,14 +72,18 @@ export class CoursesService {
       .pipe(catchError((error) => handleError(error)));
   }
 
-  public getSearchedList(data: string): Observable<ICourse[]> {
+  public getSearchedList(
+    data: string,
+    page: number = 1,
+    pageSize: number = 4
+  ): Observable<ICourse[]> {
     return this.httpClient
       .get<ICourse[]>(`${CONSTANT.baseUrl}/${CONSTANT.url.courses}`, {
         params: {
           textFragment: `${data}`,
           sort: `date`,
-          start: `0`,
-          count: `4`,
+          start: `${(page - 1) * pageSize}`,
+          count: `${pageSize}`,
         },
       })
       .pipe(catchError((error) => handleError(error)));

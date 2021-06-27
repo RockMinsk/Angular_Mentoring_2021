@@ -63,12 +63,6 @@ describe('CoursesPageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call courseService', () => {
-    const getDataSpy = spyOn(coursesService, 'getList');
-    component.ngOnInit();
-    expect(getDataSpy).toHaveBeenCalled();
-  });
-
   it('should display correct number of courses', () => {
     component.ngOnInit();
     const numberOfElements: number = rootElement.queryAll(

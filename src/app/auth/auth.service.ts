@@ -40,7 +40,6 @@ export class AuthService {
     try {
       this.getCurrentUserInfo().subscribe((data: IUser) => {
         if (data) {
-          console.log(JSON.stringify(data));
           sessionStorage.removeItem(CONSTANT.STORAGE.TOKEN);
           console.log(
             `User "${data.name.first} ${data.name.last}" logged out successfully`

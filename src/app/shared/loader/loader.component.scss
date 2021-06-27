@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "SourceSansPro-Bold";
+  src: url("/assets/fonts/SourceSansPro-Bold.ttf") format("truetype");
+}
+
+.loading-spinner{
+  background-color: #0000001f;
+  position: absolute;
+  width: 1280px;
+  height: 1114px;
+  margin: auto;
+  top: 0px;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+}
+
+.loading-spinner img{
+  align-self: end;
+}
+
+.loading-message{
+  font-family: "SourceSansPro-Bold";
+  font-size: 20px;
+  color: #1d3f72;
+  text-align: center;
+  align-self: start;
+}
