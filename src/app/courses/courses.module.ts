@@ -5,6 +5,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MomentDateModule } from '@angular/material-moment-adapter';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 
@@ -17,6 +23,7 @@ import { MinutesToHoursPipe } from '../pipes/minutes-to-hours.pipe';
 import { OrderByDatePipe } from '../pipes/order-by-date.pipe';
 import { AddEditCoursePageComponent } from './add-edit-course-page/add-edit-course-page.component';
 import { CoursesRoutingModule } from './courses-routing.module';
+import { AuthorsComponent } from './add-edit-course-page/authors/authors.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +35,7 @@ import { CoursesRoutingModule } from './courses-routing.module';
     OrderByDatePipe,
     HighlightBorderDirective,
     AddEditCoursePageComponent,
+    AuthorsComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +43,12 @@ import { CoursesRoutingModule } from './courses-routing.module';
     ReactiveFormsModule,
     MatIconModule,
     MatTooltipModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MomentDateModule,
     RouterModule,
     CoursesRoutingModule,
     HttpClientModule,

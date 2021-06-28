@@ -66,40 +66,31 @@
         <p class="add-course-input-title">Date:</p>
         <p class="required">*required</p>
       </div>
-      <div class="add-course-input numeric-field">
+      <div class="add-course-input calendar-field">
         <input
-          matInput
-          type="date"
+          matInput [matDatepicker]="picker"
           class="add-course-input-content numeric-field date-placeholder"
           formControlName="date"
           required
           placeholder="MM/DD/YYYY"
         />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
         <div *ngIf="f.date.errors && (f.date.dirty || f.date.touched)" class="error">
           <div *ngIf="f.date.errors?.required">Date is required.</div>
         </div>
       </div>
-      <div class="add-course-input-title-box authors-field">
+      <div class="add-course-input-title-box">
         <p class="add-course-input-title">Authors:</p>
         <p class="required">*required</p>
       </div>
-      <div class="add-course-input numeric-field">
-        <input
-          matInput
-          type="text"
-          class="add-course-input-content authors-field"
-          formControlName="authors"
-          required
-          placeholder="Enter authors"
-        />
-        <div *ngIf="f.authors.errors && (f.authors.dirty || f.authors.touched)" class="error">
-          <div *ngIf="f.authors.errors?.required">Authors is required.</div>
-        </div>
+      <div class="add-course-input">
+        <app-authors (addAuthorEvent)="addAuthor($event)" (removeAuthorEvent)="removeAuthor($event)" [selectedAuthors]="preselectedAuthors"></app-authors>
       </div>
       <div class="add-course-bottom-box">
         <button (click)="onCancel()" class="cancel-btn">Cancel</button>
         <div matTooltip="Please enter required data to proceed" [matTooltipDisabled]="!form.invalid" matTooltipPosition="above">
-          <button class="add-course-btn" type="submit" [disabled]="form.invalid">Save</button>
+          <button class="add-course-btn" type="submit" [disabled]="form.invalid || selectedAuthors.length === 0">Save</button>
         </div>
       </div>
     </div>

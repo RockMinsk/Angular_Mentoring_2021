@@ -20,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
 import { reducers } from './store/app.states';
 import { AuthEffects } from './store/effects/auth.effects';
 import { CoursesEffects } from './store/effects/courses.effects';
+import { AuthorsEffects } from './store/effects/authors.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,7 +36,7 @@ import { CoursesEffects } from './store/effects/courses.effects';
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, {}),
-    EffectsModule.forRoot([AuthEffects, CoursesEffects]),
+    EffectsModule.forRoot([AuthEffects, CoursesEffects, AuthorsEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
