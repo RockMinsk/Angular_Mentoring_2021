@@ -13,7 +13,7 @@ export const initialState: AuthState = {
   errorMessage: null,
 };
 
-export const authReducer = (state = initialState, action: All) => {
+const authReducer = (state: AuthState = initialState, action: All) => {
   switch (action.type) {
     case AuthActionTypes.loginSuccess:
       return {

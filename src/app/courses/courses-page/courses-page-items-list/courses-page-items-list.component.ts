@@ -85,14 +85,14 @@ export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
   }
 
   private showCourses(): void {
-    return this.store.dispatch({
+    this.store.dispatch({
       type: ActionTypes.loadCoursesPerPageRequest,
       payload: this.currentPage,
     });
   }
 
   private getNumberOfCourses(): void {
-    return this.store.dispatch({
+    this.store.dispatch({
       type: ActionTypes.getTotalNumberOfCoursesRequest,
     });
   }

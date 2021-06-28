@@ -129,7 +129,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   }
 
   private addCourse(course: ICourse): void {
-    return this.store.dispatch({
+    this.store.dispatch({
       type: ActionTypes.addCourseRequest,
       payload: course,
     });
@@ -138,7 +138,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   private editCourse(course: ICourse): void {
     course.id = this.id;
     course.topRated = this.topRated;
-    return this.store.dispatch({
+    this.store.dispatch({
       type: ActionTypes.editCourseRequest,
       payload: course,
     });

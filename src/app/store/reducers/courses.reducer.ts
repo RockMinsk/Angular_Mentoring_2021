@@ -15,7 +15,7 @@ export const initialState: CoursesState = {
   data: null,
 };
 
-export const coursesReducer = (state = initialState, action: All) => {
+const coursesReducer = (state: CoursesState = initialState, action: All) => {
   switch (action.type) {
     case ActionTypes.loadCoursesPerPage:
       return {
