@@ -12,8 +12,8 @@
 ></app-courses-page-item>
 <div *ngIf="(totalItems$ | async)! > 0" class="load-more-section">
   <pagination-controls class="ngx-pagination"
-    previousLabel="Prev"
-    nextLabel="Next"
+    previousLabel="{{ 'SHARED.BUTTONS.PREVIOUS_PAGE' | translate }}"
+    nextLabel="{{ 'SHARED.BUTTONS.NEXT_PAGE' | translate }}"
     (pageChange)="handlePageChange($event)">
   </pagination-controls>
 </div>

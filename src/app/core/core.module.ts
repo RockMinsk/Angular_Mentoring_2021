@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './header/logo/logo.component';
 import { UserInfoComponent } from './header/user-info/user-info.component';
 import { IsAuthenticatedDirective } from '../directives/is-authenticated.directive';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { IsAuthenticatedDirective } from '../directives/is-authenticated.directi
     CommonModule, //
     MatIconModule,
     RouterModule,
+    SharedModule,
   ],
   exports: [
     HeaderComponent, //

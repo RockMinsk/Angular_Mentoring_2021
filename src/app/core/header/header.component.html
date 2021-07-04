@@ -1,6 +1,19 @@
 <header>
   <div class="header-bg center">
     <app-logo></app-logo>
+    <span class="form-inline">
+      <span class="language-text">{{ "SHARED.HEADER.SELECT_LANGUAGE" | translate }}</span>
+      <select
+          class="form-control"
+          #selectedLang
+          (change)="switchLang(selectedLang.value)">
+        <option *ngFor="let language of translate.getLangs()"
+          [value]="language"
+          [selected]="language === translate.currentLang">
+          {{ language }}
+        </option>
+      </select>
+    </span>
     <app-user-info *appIsAuthenticated></app-user-info>
   </div>
 </header>

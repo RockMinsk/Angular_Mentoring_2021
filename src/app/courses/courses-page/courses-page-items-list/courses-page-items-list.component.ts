@@ -7,6 +7,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subscription } from 'rxjs';
 
 import { LoggerService } from 'src/app/services/logger.service';
@@ -40,7 +41,8 @@ export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
     private coursesService: CoursesService,
     private cdRef: ChangeDetectorRef,
     private logger: LoggerService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private translate: TranslateService
   ) {
     this.courses$ = this.store.select(getAllCourses);
     this.totalItems$ = this.store.select(getAllCoursesNumber);
@@ -65,7 +67,7 @@ export class CoursesPageItemsListComponent implements OnInit, OnDestroy {
 
   // TODO: investigate if it's possible to use somehow async pipe instead of subscription in this case
   public deleteCourse(id: number): void {
-    if (confirm('Do you really want to delete this course?')) {
+    if (confirm(this.translate.instant('SHARED.CONFIRMATION.DELETE_COURSE'))) {
       this.subscription = this.coursesService.removeItem(id).subscribe(() => {
         console.log(`Course with id=${id} deleted`);
         this.totalItems--;

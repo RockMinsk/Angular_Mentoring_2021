@@ -2,12 +2,12 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="add-course-form">
       <div class="add-course-title">
-        <p *ngIf="isAddMode">New course</p>
-        <p *ngIf="!isAddMode">Edit course</p>
+        <p *ngIf="isAddMode">{{ "PAGES.ADD_EDIT_COURSE.NEW_COURSE" | translate }}</p>
+        <p *ngIf="!isAddMode">{{ "PAGES.ADD_EDIT_COURSE.EDIT_COURSE" | translate }}</p>
       </div>
       <div class="add-course-input-title-box">
-        <p class="add-course-input-title">Title:</p>
-        <p class="required">*required</p>
+        <p class="add-course-input-title">{{ "PAGES.ADD_EDIT_COURSE.TITLE" | translate }}</p>
+        <p class="required">{{ "SHARED.FORM.REQUIRED" | translate }}</p>
       </div>
       <div class="add-course-input">
         <input
@@ -16,16 +16,16 @@
           class="add-course-input-content form-control"
           formControlName="name"
           required
-          placeholder="Enter title"
+          placeholder="{{ 'PAGES.ADD_EDIT_COURSE.TITLE_PLACEHOLDER' | translate }}"
         />
         <div *ngIf="f.name.errors && (f.name.dirty || f.name.touched)" class="error">
-          <div *ngIf="f.name.errors?.required">Title is required.</div>
-          <div *ngIf="f.name.errors?.maxlength">Title can be max 50 characters long.</div>
+          <div *ngIf="f.name.errors?.required">{{ "PAGES.ADD_EDIT_COURSE.TITLE_REQUIRED" | translate }}</div>
+          <div *ngIf="f.name.errors?.maxlength">{{ "PAGES.ADD_EDIT_COURSE.TITLE_MAX_LENGTH" | translate }}</div>
         </div>
       </div>
       <div class="add-course-input-title-box">
-        <p class="add-course-input-title">Description:</p>
-        <p class="required">*required</p>
+        <p class="add-course-input-title">{{ "PAGES.ADD_EDIT_COURSE.DESCRIPTION" | translate }}</p>
+        <p class="required">{{ "SHARED.FORM.REQUIRED" | translate }}</p>
       </div>
       <div class="add-course-input description-field">
         <textarea
@@ -34,16 +34,16 @@
           class="add-course-input-content description-field"
           formControlName="description"
           required
-          placeholder="Enter description"
+          placeholder="{{ 'PAGES.ADD_EDIT_COURSE.DESCRIPTION_PLACEHOLDER' | translate }}"
         ></textarea>
         <div *ngIf="f.description.errors && (f.description.dirty || f.description.touched)" class="error">
-          <div *ngIf="f.description.errors?.required">Description is required.</div>
-          <div *ngIf="f.name.errors?.maxlength">Description can be max 500 characters long.</div>
+          <div *ngIf="f.description.errors?.required">{{ "PAGES.ADD_EDIT_COURSE.DESCRIPTION_REQUIRED" | translate }}</div>
+          <div *ngIf="f.name.errors?.maxlength">{{ "PAGES.ADD_EDIT_COURSE.DESCRIPTION_MAX_LENGTH" | translate }}</div>
         </div>
       </div>
       <div class="add-course-input-title-box numeric-field">
-        <p class="add-course-input-title">Duration:</p>
-        <p class="required">*required</p>
+        <p class="add-course-input-title">{{ "PAGES.ADD_EDIT_COURSE.DURATION" | translate }}</p>
+        <p class="required">{{ "SHARED.FORM.REQUIRED" | translate }}</p>
       </div>
       <div class="add-course-input">
         <input
@@ -52,19 +52,19 @@
           class="add-course-input-content numeric-field"
           formControlName="duration"
           required
-          placeholder="minutes"
+          placeholder="{{ 'PAGES.ADD_EDIT_COURSE.DURATION_PLACEHOLDER' | translate }}"
         />
         <span *ngIf="duration && duration > 0" class="duration">{{
           duration | minutesToHours
         }}</span>
         <div *ngIf="f.duration.errors && (f.duration.dirty || f.duration.touched)" class="error">
-          <div *ngIf="f.duration.errors?.required">Duration is required.</div>
-          <div *ngIf="f.duration.errors?.pattern">Only numbers are allowed</div>
+          <div *ngIf="f.duration.errors?.required">{{ "PAGES.ADD_EDIT_COURSE.DURATION_REQUIRED" | translate }}</div>
+          <div *ngIf="f.duration.errors?.pattern">{{ "PAGES.ADD_EDIT_COURSE.DURATION_ONLY_NUMBERS" | translate }}</div>
         </div>
       </div>
       <div class="add-course-input-title-box numeric-field">
-        <p class="add-course-input-title">Date:</p>
-        <p class="required">*required</p>
+        <p class="add-course-input-title">{{ "PAGES.ADD_EDIT_COURSE.DATE" | translate }}</p>
+        <p class="required">{{ "SHARED.FORM.REQUIRED" | translate }}</p>
       </div>
       <div class="add-course-input calendar-field">
         <input
@@ -72,25 +72,25 @@
           class="add-course-input-content numeric-field date-placeholder"
           formControlName="date"
           required
-          placeholder="MM/DD/YYYY"
+          placeholder="{{ 'PAGES.ADD_EDIT_COURSE.DATE_PLACEHOLDER' | translate }}"
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <div *ngIf="f.date.errors && (f.date.dirty || f.date.touched)" class="error">
-          <div *ngIf="f.date.errors?.required">Date is required.</div>
+          <div *ngIf="f.date.errors?.required">{{ "PAGES.ADD_EDIT_COURSE.DATE_REQUIRED" | translate }}</div>
         </div>
       </div>
       <div class="add-course-input-title-box">
-        <p class="add-course-input-title">Authors:</p>
-        <p class="required">*required</p>
+        <p class="add-course-input-title">{{ "PAGES.ADD_EDIT_COURSE.AUTHORS" | translate }}</p>
+        <p class="required">{{ "SHARED.FORM.REQUIRED" | translate }}</p>
       </div>
       <div class="add-course-input">
         <app-authors (addAuthorEvent)="addAuthor($event)" (removeAuthorEvent)="removeAuthor($event)" [selectedAuthors]="preselectedAuthors"></app-authors>
       </div>
       <div class="add-course-bottom-box">
-        <button (click)="onCancel()" class="cancel-btn">Cancel</button>
-        <div matTooltip="Please enter required data to proceed" [matTooltipDisabled]="!form.invalid" matTooltipPosition="above">
-          <button class="add-course-btn" type="submit" [disabled]="form.invalid || selectedAuthors.length === 0">Save</button>
+        <button (click)="onCancel()" class="cancel-btn">{{ "SHARED.BUTTONS.CANCEL" | translate }}</button>
+        <div matTooltip="{{ 'PAGES.ADD_EDIT_COURSE.ENTER_REQUIRED_DATA_PLACEHOLDER' | translate }}" [matTooltipDisabled]="!form.invalid" matTooltipPosition="above">
+          <button class="add-course-btn" type="submit" [disabled]="form.invalid || selectedAuthors.length === 0">{{ "SHARED.BUTTONS.SAVE" | translate }}</button>
         </div>
       </div>
     </div>

@@ -22,10 +22,10 @@
   <p class="item-description">{{ course.description }}</p>
   <button (click)="openEditCoursePage(course.id)" class="edit-btn">
     <mat-icon class="edit-btn-icon">edit</mat-icon>
-    Edit
+    {{ "SHARED.BUTTONS.EDIT" | translate }}
   </button>
   <button (click)="delete()" class="delete-btn">
     <mat-icon class="delete-btn-icon">delete</mat-icon>
-    Delete
+    {{ "SHARED.BUTTONS.DELETE" | translate }}
   </button>
 </div>

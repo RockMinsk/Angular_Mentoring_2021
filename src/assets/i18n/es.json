@@ -1,0 +1,73 @@
+{
+  "PAGES": {
+    "LOGIN": {
+      "TITLE": "Acceso",
+      "EMAIL": "Correo electrónico",
+      "EMAIL_PLACEHOLDER": "Ingrese correo electrónico",
+      "EMAIL_REQUIRED": "Se requiere correo electronico.",
+      "PASSWORD": "Contraseña",
+      "PASSWORD_PLACEHOLDER": "Ingrese la contraseña",
+      "PASSWORD_REQUIRED": "Se requiere contraseña.",
+      "FORGOT_PASSWORD": "¿Se te olvidó la contraseña?",
+      "EMAIL_PASSWORD_INVALID": "El correo electrónico o la contraseña no son válidos."
+    },
+    "ADD_EDIT_COURSE": {
+      "NEW_COURSE": "Nuevo curso",
+      "EDIT_COURSE": "Editar curso",
+      "TITLE": "Título:",
+      "TITLE_PLACEHOLDER": "Ingrese el título",
+      "TITLE_REQUIRED": "Se requiere título.",
+      "TITLE_MAX_LENGTH": "El título puede tener un máximo de 50 caracteres.",
+      "DESCRIPTION" : "Descripción:",
+      "DESCRIPTION_PLACEHOLDER" : "Ingrese descripción",
+      "DESCRIPTION_REQUIRED" : "Se requiere una descripción.",
+      "DESCRIPTION_MAX_LENGTH" : "La descripción puede tener un máximo de 500 caracteres.",
+      "DURATION": "Duración:",
+      "DURATION_PLACEHOLDER": "minutos",
+      "DURATION_REQUIRED": "Se requiere duración.",
+      "DURATION_ONLY_NUMBERS": "Solo se permiten números.",
+      "DATE": "Fecha:",
+      "DATE_PLACEHOLDER": "MM/DD/YYYY",
+      "DATE_REQUIRED": "Se requiere fecha.",
+      "AUTHORS": "Autores:",
+      "AUTHORS_PLACEHOLDER": "Ingrese autores",
+      "AUTHORS_REQUIRED": "Se requieren autores.",
+      "ENTER_REQUIRED_DATA_HINT": "Ingrese los datos requeridos para continuar"
+    }
+  },
+  "SHARED": {
+    "HEADER": {
+      "TITLE": "Cursos de video",
+      "SELECT_LANGUAGE": "Seleccione el idioma:",
+      "LOG_OUT": "Cerrar sesión"
+    },
+    "BREADCRUMBS": {
+      "COURSES": "Cursos",
+      "NEW_COURSE": "Nuevo curso",
+      "EDIT_COURSE": "Editar curso"
+    },
+    "SEARCH": {
+      "PLACEHOLDER": "Escribe para buscar"
+    },
+    "FOOTER": {
+      "COPYRIGHT": "Copyright © Cursos en video. Reservados todos los derechos"
+    },
+    "BUTTONS": {
+      "LOGIN": "Iniciar sesión",
+      "ADD_COURSE": "Agregar curso",
+      "EDIT": "Editar",
+      "SAVE": "Guardar",
+      "CANCEL": "Cancelar",
+      "DELETE": "Borrar",
+      "PREVIOUS_PAGE": "Página anterior",
+      "NEXT_PAGE": "Siguiente página"
+    },
+    "FORM": {
+      "REQUIRED": "*requerido"
+    },
+    "CONFIRMATION": {
+      "DELETE_COURSE": "¿Realmente quieres eliminar este curso?",
+      "CANCEL_COURSE_CREATION": "¿Realmente quieres cancelar la creación de un nuevo curso?"
+    }
+  }
+}
