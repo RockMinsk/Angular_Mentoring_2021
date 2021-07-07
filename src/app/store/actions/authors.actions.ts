@@ -22,4 +22,4 @@ export class LoadAuthorsFailed implements Action {
   public constructor(public error: string) {}
 }
 
-export type All = GetAuthors;
+export type AllAuthorsStates = GetAuthors;

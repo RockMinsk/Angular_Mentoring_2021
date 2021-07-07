@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormControl,
   FormBuilder,
@@ -22,25 +22,6 @@ import { IUser } from '../user.model';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
-  @Input()
-  public email = ``;
-
-  @Input()
-  public password = ``;
-
-  public currentUser: IUser = {
-    id: 0,
-    name: {
-      first: ``,
-      last: ``,
-    },
-    login: ``,
-    password: ``,
-    token: ``,
-  };
-
-  public users = [];
-
   public form: FormGroup;
   public submitted = false;
   public loginControl = new FormControl('');

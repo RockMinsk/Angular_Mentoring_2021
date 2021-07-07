@@ -174,7 +174,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
 
   private addCourse(course: ICourse): void {
     course.authors = this.selectedAuthors;
-    return this.store.dispatch({
+    this.store.dispatch({
       type: ActionTypes.addCourseRequest,
       payload: course,
     });
@@ -184,7 +184,7 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     course.id = this.id;
     course.topRated = this.topRated;
     course.authors = this.selectedAuthors;
-    return this.store.dispatch({
+    this.store.dispatch({
       type: ActionTypes.editCourseRequest,
       payload: course,
     });

@@ -1,11 +1,11 @@
 import { ICourse } from '../../courses/courses-page/courses-page-items-list/courses-page-item/courses-page-item.model';
-import { ActionTypes, All } from '../actions/courses.actions';
+import { ActionTypes, AllCoursesActions } from '../actions/courses.actions';
 
 export interface CoursesState {
   allCoursesLoaded: boolean;
   numberOfCourses: number;
   numberOfSearchedCourses: number;
-  data: ICourse[] | null;
+  data: ICourse[] | ICourse | null;
 }
 
 export const initialState: CoursesState = {
@@ -15,10 +15,14 @@ export const initialState: CoursesState = {
   data: null,
 };
 
-export const coursesReducer = (state = initialState, action: All) => {
+export const coursesReducer = (
+  state: CoursesState = initialState,
+  action: AllCoursesActions
+) => {
   switch (action.type) {
     case ActionTypes.loadCoursesPerPage:
       return {
+        ...state,
         allCoursesLoaded: true,
         data: action.payload,
       };
@@ -36,6 +40,3 @@ export const coursesReducer = (state = initialState, action: All) => {
       return state;
   }
 };
-
-export const myCoursesReducer = (state: any, action: any) =>
-  coursesReducer(state, action);

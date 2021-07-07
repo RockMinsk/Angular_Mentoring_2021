@@ -76,4 +76,7 @@ export class LoadCoursesFailed implements Action {
   public constructor(public error: string) {}
 }
 
-export type All = LoadCoursesPerPage | GetTotalNumberOfCourses | AddCourse;
+export type AllCoursesActions =
+  | LoadCoursesPerPage
+  | GetTotalNumberOfCourses
+  | AddCourse;

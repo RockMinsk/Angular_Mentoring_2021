@@ -1,9 +1,9 @@
 import { IAuthor } from 'src/app/courses/courses-page/courses-page-items-list/courses-page-item/courses-page-item.model';
-import { ActionTypes, All } from '../actions/authors.actions';
+import { ActionTypes, AllAuthorsStates } from '../actions/authors.actions';
 
 export interface AuthorsState {
   allAuthorsLoaded: boolean;
-  data: IAuthor[] | null;
+  data: IAuthor[] | Partial<IAuthor[]> | null;
 }
 
 export const initialState: AuthorsState = {
@@ -11,7 +11,10 @@ export const initialState: AuthorsState = {
   data: null,
 };
 
-export const authorsReducer = (state = initialState, action: All) => {
+export const authorsReducer = (
+  state = initialState,
+  action: AllAuthorsStates
+) => {
   switch (action.type) {
     case ActionTypes.getAuthors:
       return {
@@ -22,6 +25,3 @@ export const authorsReducer = (state = initialState, action: All) => {
       return state;
   }
 };
-
-export const myAuthorsReducer = (state: any, action: any) =>
-  authorsReducer(state, action);

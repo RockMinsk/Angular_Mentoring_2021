@@ -33,4 +33,9 @@ export class LogOut implements Action {
   public readonly type = AuthActionTypes.logout;
 }
 
-export type All = LogIn | LogInSuccess | GetUserInfo | LogInFailed | LogOut;
+export type AllAuthActions =
+  | LogIn
+  | LogInSuccess
+  | GetUserInfo
+  | LogInFailed
+  | LogOut;
