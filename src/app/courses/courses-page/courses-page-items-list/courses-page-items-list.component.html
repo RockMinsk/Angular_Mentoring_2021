@@ -4,19 +4,19 @@
     let course of courses$ | async | paginate : {
       itemsPerPage: itemsPerPage,
       currentPage: currentPage,
-      totalItems: totalItems
+      totalItems: totalItems$ | async
     };
     trackBy: trackByCourseId
   "
   [course]="course"
 ></app-courses-page-item>
-<div *ngIf="(courses$ | async)?.length! > 0" class="load-more-section">
+<div *ngIf="(totalItems$ | async)! > 0" class="load-more-section">
   <pagination-controls class="ngx-pagination"
     previousLabel="Prev"
     nextLabel="Next"
     (pageChange)="handlePageChange($event)">
   </pagination-controls>
 </div>
-<p *ngIf="(courses$ | async)?.length === 0" class="no-items-to-display">
+<p *ngIf="(totalItems$ | async) === 0" class="no-items-to-display">
   {{ "No data, feel free to add new course" | uppercase }}
 </p>

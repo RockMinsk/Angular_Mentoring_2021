@@ -6,10 +6,13 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { IUser } from 'src/app/auth/user.model';
 import { LoggerService } from 'src/app/services/logger.service';
+import { AuthActionTypes } from 'src/app/store/actions/auth.actions';
+import { AppState } from 'src/app/store/app.states';
 
 @Component({
   selector: 'app-user-info',
@@ -25,7 +28,8 @@ export class UserInfoComponent implements OnInit {
 
   public constructor(
     private authService: AuthService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private store: Store<AppState>
   ) {}
 
   public ngOnInit(): void {
@@ -34,7 +38,9 @@ export class UserInfoComponent implements OnInit {
   }
 
   public logout() {
-    return this.authService.logout();
+    this.store.dispatch({
+      type: AuthActionTypes.logout,
+    });
   }
 
   private getUserInfo(): void {

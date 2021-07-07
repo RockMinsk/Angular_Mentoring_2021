@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormControl,
   FormBuilder,
@@ -6,9 +6,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+
 import { LoggerService } from 'src/app/services/logger.service';
-import { CONSTANT } from 'src/app/shared/constants';
+import { AuthActionTypes } from 'src/app/store/actions/auth.actions';
+import { AppState } from 'src/app/store/app.states';
 import { AuthService } from '../auth.service';
 import { IUser } from '../user.model';
 
@@ -24,6 +28,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   public passwordControl = new FormControl('');
 
   private returnUrl: string;
+  private isLoginValid = false;
   private subscription: Subscription | undefined;
 
   public constructor(
@@ -32,7 +37,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private logger: LoggerService,
-    private cdRef: ChangeDetectorRef
+    private store: Store<AppState>
   ) {
     this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/courses';
 
@@ -61,7 +66,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     return this.form.controls;
   }
 
-  public async onSubmit(): Promise<void> {
+  public onSubmit(): void {
     this.submitted = true;
 
     if (this.form.invalid) {
@@ -69,28 +74,20 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
 
     try {
-      this.subscription = this.login(this.form.value).subscribe((data) => {
-        const token: string | undefined = data.token;
-        if (token) {
-          this.authService.saveDataToSessionStorage(
-            CONSTANT.STORAGE.TOKEN,
-            token
-          );
-          this.router.navigate([CONSTANT.url.courses]);
-          console.log(`User logged in successfully`);
-        } else {
-          this.form.controls.password.setErrors({ incorrect: true });
-          console.log(`User cannot login. Token is missing or invalid`);
-        }
-        this.cdRef.markForCheck();
-      });
+      this.login(this.form.value);
+      if (!this.isLoginValid) {
+        this.form.controls.password.setErrors({ incorrect: true });
+      }
     } catch (err) {
       this.form.controls.password.setErrors({ incorrect: true });
-      console.log(`User cannot login. Error - ${err}`);
+      console.log(err);
     }
   }
 
-  private login(user: Partial<IUser>): Observable<Partial<IUser>> {
-    return this.authService.login(user);
+  private login(user: Partial<IUser>): void {
+    this.store.dispatch({
+      type: AuthActionTypes.login,
+      payload: user,
+    });
   }
 }
