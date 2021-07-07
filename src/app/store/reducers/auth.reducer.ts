@@ -1,5 +1,5 @@
 import { IUser } from 'src/app/auth/user.model';
-import { All, AuthActionTypes } from '../actions/auth.actions';
+import { AllAuthActions, AuthActionTypes } from '../actions/auth.actions';
 
 export interface AuthState {
   isAuthenticated: boolean;
@@ -13,7 +13,10 @@ export const initialState: AuthState = {
   errorMessage: null,
 };
 
-const authReducer = (state: AuthState = initialState, action: All) => {
+export const authReducer = (
+  state: AuthState = initialState,
+  action: AllAuthActions
+) => {
   switch (action.type) {
     case AuthActionTypes.loginSuccess:
       return {
@@ -41,6 +44,3 @@ const authReducer = (state: AuthState = initialState, action: All) => {
       return state;
   }
 };
-
-export const myAuthReducer = (state: any, action: any) =>
-  authReducer(state, action);
