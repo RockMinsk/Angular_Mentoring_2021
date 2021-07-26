@@ -10,7 +10,7 @@
     </mat-chip>
     <input
       class="add-course-input-content"
-      placeholder="Enter authors"
+      placeholder="{{ 'PAGES.ADD_EDIT_COURSE.AUTHORS_HINT' | translate }}"
       #authorInput
       formControlName="authors"
       required
@@ -25,6 +25,6 @@
     </mat-option>
   </mat-autocomplete>
   <div *ngIf="f.authors.touched" class="error">
-    <div *ngIf="selectedAuthors.length === 0">Authors is required.</div>
+    <div *ngIf="selectedAuthors.length === 0">{{ "PAGES.ADD_EDIT_COURSE.AUTHORS_REQUIRED" | translate }}</div>
   </div>
 </div>

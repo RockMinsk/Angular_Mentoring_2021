@@ -7,7 +7,7 @@
         [routerLink]="breadcrumb.url"
         routerLinkActive="router-link-active"
       >
-        {{ breadcrumb.label }}
+        {{ breadcrumb.label | translate }}
       </span>
       <span *ngIf="!last" class="breadcrumbs-separator">/</span>
     </div>

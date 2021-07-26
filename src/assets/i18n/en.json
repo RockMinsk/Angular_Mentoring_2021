@@ -1,0 +1,73 @@
+{
+  "PAGES": {
+    "LOGIN": {
+      "TITLE": "Login",
+      "EMAIL": "Email",
+      "EMAIL_PLACEHOLDER": "Enter email",
+      "EMAIL_REQUIRED": "Email is required.",
+      "PASSWORD": "Password",
+      "PASSWORD_PLACEHOLDER": "Enter password",
+      "PASSWORD_REQUIRED": "Password is required.",
+      "FORGOT_PASSWORD": "Forgot password?",
+      "EMAIL_PASSWORD_INVALID": "Email or password is invalid."
+    },
+    "ADD_EDIT_COURSE": {
+      "NEW_COURSE": "New Course",
+      "EDIT_COURSE": "Edit Course",
+      "TITLE": "Title:",
+      "TITLE_PLACEHOLDER": "Enter title",
+      "TITLE_REQUIRED": "Title is required.",
+      "TITLE_MAX_LENGTH": "Title can be max 50 characters long.",
+      "DESCRIPTION" : "Description:",
+      "DESCRIPTION_PLACEHOLDER" : "Enter description",
+      "DESCRIPTION_REQUIRED" : "Description is required.",
+      "DESCRIPTION_MAX_LENGTH" : "Description can be max 500 characters long.",
+      "DURATION": "Duration:",
+      "DURATION_PLACEHOLDER": "minutes",
+      "DURATION_REQUIRED": "Duration is required.",
+      "DURATION_ONLY_NUMBERS": "Only numbers are allowed.",
+      "DATE": "Date:",
+      "DATE_PLACEHOLDER": "MM/DD/YYYY",
+      "DATE_REQUIRED": "Date is required.",
+      "AUTHORS": "Authors:",
+      "AUTHORS_PLACEHOLDER": "Enter authors",
+      "AUTHORS_REQUIRED": "Authors is required.",
+      "ENTER_REQUIRED_DATA_HINT": "Please enter required data to proceed"
+    }
+  },
+  "SHARED": {
+    "HEADER": {
+      "TITLE": "Video courses",
+      "SELECT_LANGUAGE": "Select language",
+      "LOG_OUT": "Log out"
+    },
+    "BREADCRUMBS": {
+      "COURSES": "Courses",
+      "NEW_COURSE": "New Course",
+      "EDIT_COURSE": "Edit Course"
+    },
+    "SEARCH": {
+      "PLACEHOLDER": "Type to search"
+    },
+    "FOOTER": {
+      "COPYRIGHT": "Copyright © Video courses. All rights reserved"
+    },
+    "BUTTONS": {
+      "LOGIN": "Login",
+      "ADD_COURSE": "Add course",
+      "EDIT": "Edit",
+      "SAVE": "Save",
+      "CANCEL": "Cancel",
+      "DELETE": "Delete",
+      "PREVIOUS_PAGE": "Prev",
+      "NEXT_PAGE": "Next"
+    },
+    "FORM": {
+      "REQUIRED": "*required"
+    },
+    "CONFIRMATION": {
+      "DELETE_COURSE": "Do you really want to delete this course?",
+      "CANCEL_COURSE_CREATION": "Do you really want to cancel creation of new course?"
+    }
+  }
+}

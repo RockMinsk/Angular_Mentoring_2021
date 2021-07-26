@@ -2,7 +2,7 @@
   <app-search-bar (searchCriteria)="searchCourse($event)"></app-search-bar>
   <button (click)="openAddCoursePage()" class="add-course-btn">
     <mat-icon class="add-course-btn-icon">add_circle_outline</mat-icon>
-    Add course
+    {{ "SHARED.BUTTONS.ADD_COURSE" | translate }}
   </button>
   <app-courses-page-items-list></app-courses-page-items-list>
 </div>

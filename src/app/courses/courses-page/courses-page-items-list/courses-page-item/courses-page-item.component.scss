@@ -119,6 +119,7 @@
   margin-right: 12px;
   padding-top: 0px;
   padding-bottom: 0px;
+  padding-right: 8px;
   cursor: pointer;
 }
 
@@ -137,18 +138,19 @@
   transform: rotate(0.1deg);
   font-size: 14px;
   color: white;
+  padding-right: 2px;
   height: 14px;
   width: 20px;
 }
 
 .delete-btn {
   display: flex;
-  float: left;
+  float: right;
   align-items: center;
   border-radius: 3px;
   background: #009ECC;
   height: 24px;
-  width: 72px;
+  // width: 72px;
   line-height: 12px;
   letter-spacing: -0.1px;
   border: none;
@@ -157,8 +159,10 @@
   font-family: "SourceSansPro-Semibold";
   font-style: normal;
   text-transform: none;
+  margin-right: 24px;
   padding-top: 0px;
   padding-bottom: 0px;
+  padding-right: 8px;
   cursor: pointer;
 }
 
@@ -177,6 +181,7 @@
   transform: rotate(0.1deg);
   font-size: 14px;
   color: white;
+  padding-right: 2px;
   height: 14px;
   width: 20px;
 }

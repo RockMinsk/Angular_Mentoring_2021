@@ -27,6 +27,8 @@
     "@ngrx/effects": "^12.1.0",
     "@ngrx/store": "^12.1.0",
     "@ngrx/store-devtools": "^12.1.0",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "moment": "^2.29.1",
     "ngx-pagination": "^5.1.0",
     "rxjs": "~6.6.0",

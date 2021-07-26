@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from '../app-routing.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoaderComponent } from './loader/loader.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [BreadcrumbsComponent, PageNotFoundComponent, LoaderComponent],
@@ -13,7 +14,13 @@ import { LoaderComponent } from './loader/loader.component';
     CommonModule, //
     MatIconModule,
     AppRoutingModule,
+    TranslateModule,
   ],
-  exports: [BreadcrumbsComponent, PageNotFoundComponent, LoaderComponent],
+  exports: [
+    BreadcrumbsComponent,
+    PageNotFoundComponent,
+    LoaderComponent,
+    TranslateModule,
+  ],
 })
 export class SharedModule {}

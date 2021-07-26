@@ -4,6 +4,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './auth.interceptor';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [LoginPageComponent],
@@ -11,6 +12,7 @@ import { TokenInterceptor } from './auth.interceptor';
     CommonModule, //
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   exports: [LoginPageComponent],
   providers: [

@@ -22,6 +22,7 @@ import {
 } from '../courses-page/courses-page-items-list/courses-page-item/courses-page-item.model';
 import { CoursesService } from '../courses.service';
 import { v4 as uuidv4 } from 'uuid';
+import { TranslateService } from '@ngx-translate/core';
 
 export const MY_DATE_FORMATS = {
   parse: {
@@ -61,7 +62,8 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
     private coursesService: CoursesService,
     private fb: FormBuilder,
     private cdRef: ChangeDetectorRef,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private translate: TranslateService
   ) {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(50)]],
@@ -144,7 +146,11 @@ export class AddEditCoursePageComponent implements OnInit, OnDestroy {
   }
 
   public onCancel(): void {
-    if (confirm('Do you really want to cancel creation of new course?')) {
+    if (
+      confirm(
+        this.translate.instant('SHARED.CONFIRMATION.CANCEL_COURSE_CREATION')
+      )
+    ) {
       this.router.navigate(['../'], { relativeTo: this.route });
     }
   }

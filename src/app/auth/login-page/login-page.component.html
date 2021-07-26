@@ -2,11 +2,11 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="login-form">
       <div class="login-title">
-        <p>Login</p>
+        <p>{{ "PAGES.LOGIN.TITLE" | translate }}</p>
       </div>
       <div class="login-input-title-box">
-        <p class="login-input-title">Email</p>
-        <p class="required">*required</p>
+        <p class="login-input-title">{{ "PAGES.LOGIN.EMAIL" | translate }}</p>
+        <p class="required">{{ "SHARED.FORM.REQUIRED" | translate }}</p>
       </div>
       <div class="login-input">
         <input
@@ -15,15 +15,15 @@
           class="login-input-content"
           formControlName="login"
           required
-          placeholder="Enter email"
+          placeholder="{{ 'PAGES.LOGIN.EMAIL_PLACEHOLDER' | translate }}"
         />
         <div *ngIf="submitted && f.login.errors" class="error">
-          <div *ngIf="f.login.errors.required">Email is required.</div>
+          <div *ngIf="f.login.errors.required">{{ "PAGES.LOGIN.EMAIL_REQUIRED" | translate }}</div>
         </div>
       </div>
       <div class="login-input-title-box">
-        <p class="login-input-title">Password</p>
-        <p class="required">*required</p>
+        <p class="login-input-title">{{ "PAGES.LOGIN.PASSWORD" | translate }}</p>
+        <p class="required">{{ "SHARED.FORM.REQUIRED" | translate }}</p>
       </div>
       <div class="login-input">
         <input
@@ -32,16 +32,16 @@
           class="login-input-content"
           formControlName="password"
           required
-          placeholder="Enter password"
+          placeholder="{{ 'PAGES.LOGIN.PASSWORD_PLACEHOLDER' | translate }}"
         />
         <div *ngIf="submitted && f.password.errors" class="error">
-          <div *ngIf="f.password.errors.required">Password is required.</div>
-          <div *ngIf="(f.password.errors && !f.password.errors.required) || (f.email.errors && !f.email.errors?.required)">Email or password is invalid</div>
+          <div *ngIf="f.password.errors.required">{{ "PAGES.LOGIN.PASSWORD_REQUIRED" | translate }}</div>
+          <div *ngIf="(f.password.errors && !f.password.errors.required) || (f.email.errors && !f.email.errors?.required)">{{ "PAGES.LOGIN.EMAIL_PASSWORD_INVALID" | translate }}</div>
         </div>
       </div>
       <div class="login-bottom-box">
-        <a href="#" class="forgot-password">Forgot password?</a>
-        <button class="login-btn">Login</button>
+        <a href="#" class="forgot-password">{{ "PAGES.LOGIN.FORGOT_PASSWORD" | translate }}</a>
+        <button class="login-btn">{{ "SHARED.BUTTONS.LOGIN" | translate }}</button>
       </div>
     </div>
   </form>

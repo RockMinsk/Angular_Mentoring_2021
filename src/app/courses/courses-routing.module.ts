@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { AuthGuard } from '../auth/auth.guard';
 import { AddEditCoursePageComponent } from './add-edit-course-page/add-edit-course-page.component';
 import { CoursesPageComponent } from './courses-page/courses-page.component';
@@ -7,7 +8,7 @@ import { CoursesPageComponent } from './courses-page/courses-page.component';
 const routes: Routes = [
   {
     path: '',
-    data: { breadcrumb: 'Courses' },
+    data: { breadcrumb: 'SHARED.BREADCRUMBS.COURSES' },
     children: [
       {
         path: '',
@@ -19,13 +20,13 @@ const routes: Routes = [
         path: 'new',
         component: AddEditCoursePageComponent,
         canActivate: [AuthGuard],
-        data: { breadcrumb: 'New Course' },
+        data: { breadcrumb: 'SHARED.BREADCRUMBS.NEW_COURSE' },
       },
       {
         path: ':id',
         component: AddEditCoursePageComponent,
         canActivate: [AuthGuard],
-        data: { breadcrumb: 'Edit Course' },
+        data: { breadcrumb: 'SHARED.BREADCRUMBS.EDIT_COURSE' },
       },
     ],
   },
@@ -33,6 +34,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule, TranslateModule],
 })
 export class CoursesRoutingModule {}
