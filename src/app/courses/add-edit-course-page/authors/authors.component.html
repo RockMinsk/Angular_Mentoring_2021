@@ -1,0 +1,30 @@
+<div [formGroup]="authorsForm" class="add-course-input-authors">
+  <mat-chip-list #chipList aria-label="Authors selection">
+    <mat-chip
+      *ngFor="let author of selectedAuthors"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(author)">
+      {{author}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      class="add-course-input-content"
+      placeholder="Enter authors"
+      #authorInput
+      formControlName="authors"
+      required
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let author of filteredAuthors$ | async" [value]="author">
+      {{author}}
+    </mat-option>
+  </mat-autocomplete>
+  <div *ngIf="f.authors.touched" class="error">
+    <div *ngIf="selectedAuthors.length === 0">Authors is required.</div>
+  </div>
+</div>

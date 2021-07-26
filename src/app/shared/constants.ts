@@ -11,5 +11,6 @@ export const CONSTANT = {
     userInfo: 'auth/userinfo',
     addCourse: './new',
     courses: 'courses',
+    authors: 'authors',
   },
 };

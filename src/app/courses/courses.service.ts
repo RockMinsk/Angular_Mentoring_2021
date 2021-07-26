@@ -6,7 +6,10 @@ import { catchError, map } from 'rxjs/operators';
 
 import { handleError } from '../services/error-handling.service';
 import { CONSTANT } from '../shared/constants';
-import { ICourse } from './courses-page/courses-page-items-list/courses-page-item/courses-page-item.model';
+import {
+  IAuthor,
+  ICourse,
+} from './courses-page/courses-page-items-list/courses-page-item/courses-page-item.model';
 
 @Injectable({
   providedIn: 'root',
@@ -95,6 +98,13 @@ export class CoursesService {
           count: `${pageSize}`,
         },
       })
+      .pipe(catchError((error) => handleError(error)));
+  }
+
+  public getAuthors(): Observable<Partial<IAuthor[]>> {
+    return this.httpClient
+      .get<IAuthor[]>(`${CONSTANT.baseUrl}/${CONSTANT.url.authors}`)
+      .pipe(map((result: any) => result.map((author: IAuthor) => author.name)))
       .pipe(catchError((error) => handleError(error)));
   }
 }

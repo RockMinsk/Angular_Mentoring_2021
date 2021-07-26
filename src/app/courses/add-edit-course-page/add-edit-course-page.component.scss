@@ -8,7 +8,7 @@
   src: url("/assets/fonts/SourceSansPro-Regular.ttf") format("truetype");
 }
 
-.add-course{
+.add-course {
   &-page {
     position: relative;
     height: 930px;
@@ -107,8 +107,6 @@
     border: 1px solid #51cbee;
     padding-top: 8px;
     padding-bottom: 8px;
-    margin-left: -1px;
-    margin-right: -2px;
   }
 
   &-bottom-box {
@@ -145,6 +143,10 @@
     border-radius: 3px;
     border: 1px solid #51cbee;
   }
+
+  &-btn:disabled {
+    background: #666666;
+  }
 }
 
 .description-field {
@@ -153,6 +155,10 @@
 
 .numeric-field {
   width: 150px !important;
+}
+
+.calendar-field {
+  width: 190px !important;
 }
 
 .duration {

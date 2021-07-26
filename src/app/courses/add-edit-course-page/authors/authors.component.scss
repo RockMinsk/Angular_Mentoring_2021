@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "SourceSansPro-Regular";
+  src: url("/assets/fonts/SourceSansPro-Regular.ttf") format("truetype");
+}
+
+.example-chip-list {
+  width: 100%;
+}
+
+.add-course {
+  &-input-authors {
+    height: 36px;
+    width: 681px;
+  }
+
+  &-input-content {
+    border-radius: 3px;
+    border: 1px solid #ced0db;
+    background: #ffffff;
+    box-sizing: border-box;
+    border-color: #ced0db;
+    border-width: 1px;
+    border-style: solid;
+    height: 36px;
+    width: 681px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+
+  &-input-content:focus {
+    outline: none;
+    border-radius: 3px;
+    border: 1px solid #51cbee;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+
+.error {
+  color: #FF4E33;
+  font-size: 12px;
+  font-family: "SourceSansPro-Regular";
+}
